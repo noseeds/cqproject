@@ -1,2 +1,2 @@
 # cqproject
-proyecto de software de gestión
+proyecto de software de gestión para petsMimos
