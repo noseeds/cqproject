@@ -1,105 +1,56 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
-            https://cordova.apache.org/docs/en/latest/
-        Some notes:
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta name="format-detection" content="telephone=no">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com https://*.googleapis.com https://www.google.com/ 'unsafe-eval'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.google.com; media-src *; frame-src https://www.google.com/; img-src 'self' data: content:;">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-        <meta name="color-scheme" content="light dark">
-        <link rel="stylesheet" href="css/index.css">
-        <title> Pets Mimos </title>
-
-
-    </head>
-    <body class="gris">
-      <div id="parteSuperior" class="fixed w100 gris z2">
-        <div class="barraNavegacion">
-          <img id="iconoMenu" class="icono" src="iconos/menu.svg" alt="menu">
-          <img class="icono" src="" alt="">
-          <img class="icono" src="" alt="">
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pets Mimos</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Seccion superior de la aplicación -->
+    <div id="Navegacion" class="fixed">
+        <div  id="barraNav">
+            <a href="index.html" class="boton, icono"><img src="iconos/menu.svg"></a>   
+            <a href="index.html" class="boton, icono"><img src="iconos/bar-chart-2.svg"></a>
+            <a href="index.html" class="boton, icono"><img src="iconos/account-circle.svg"></a>
+            <a href="index.html" class="boton, icono" ><img src="iconos/add-circle.svg"></a>         
         </div>
-        <div class="menuNavegacion">
-          <div class="fila">
-            <div class="itemNavegacion">
-              <img class="botonCaja" src="iconos/shopping-cart.svg" alt="">
-            </div>
-            <div class="itemNavegacion">
-              <img class="botonCaja" src="iconos/shopping-cart2.svg" alt="">
-            </div>
-            <div class="itemNavegacion">
-              <img class="botonCaja" src="iconos/shopping-cart.svg" alt="">
-            </div>
-          </div>
-          <div class="fila">
-            <div class="itemNavegacion">
-              <img class="botonCaja" src="iconos/shopping-cart2.svg" alt="">
-            </div>
-            <div class="itemNavegacion">
-              <img class="botonCaja" src="iconos/shopping-cart.svg" alt="">
-            </div>
-            <div class="itemNavegacion">
-              <img class="botonCaja" src="iconos/shopping-cart2.svg" alt="">
-            </div>
-          </div>
+        <div  id="Herramientas">
+            <img src="" alt="">
+            <img src="" alt="">
+            <img src="" alt="">
         </div>
-      </div>
-      <div id="registro" class="registro absolute h100 z1">
-        <img class="volverArriba z2" id="volverArriba" src="iconos/arrow-drop-down.svg" alt="">
-        <p class="transaccion"> <label class="razonTransaccion"  margin auto> [transaccion] </label> <label class="valorTransaccion"> +$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> +$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> +$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> +$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> +$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> +$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> +$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> +$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> -$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> -$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> -$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> -$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> -$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> -$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> -$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> -$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> -$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> -$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> +$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> +$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> +$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> +$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> +$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> +$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> +$100 </label> </p>
-        <p class="transaccion"> [transaccion] <label class="valorTransaccion"> +$100 </label> </p>
-      </div>
-      <script src="js/jquery-3.7.1.min.js"></script>
-      <script src="js/index.js"></script>
-    </body>
+        
+        <div  id="BusquedaCat">
+        
+        </div>
+    </div>
+    <!-- Sección inferior de la aplicación -->
+    <div id="transacciones">
+        
+    </div>
+   
+    <!-- Ventana emergente del login -->
+    <div id="loginRegistro" class="loginRegistro"> 
+        <div id="login" class="login">
+            <form action="#" method="post">
+                <h2>Login</h2>
+                <input type="text" placeholder="Nombre de usuario" name="usuario" required>
+                <input type="password" placeholder="Contraseña" name="contrasena" required>
+                <button type="submit">Ingresar</button>
+            </form>
+        </div>
+        <div id="registro" class="registro z">
+            <form action="#" method="post">
+                <h2>Registro</h2>
+                <input type="text" placeholder="Nombre de usuario" name="usuario" required>
+                <input type="email" placeholder="Correo electrónico" name="correo" required>
+                <input type="password" placeholder="Contraseña" name="contrasena" required>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
 </html>
