@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    
     <!-- Seccion superior de la aplicación -->
     <div id="Navegacion" class="fixed, z2">
         <div  id="barraNav">
@@ -53,4 +54,26 @@
 
     <script src="js/script.js"></script>
 </body>
+
+<?php
+function conexion (){
+    $conexion = mysqli_connect("localhost", "root", "", "petsmimos");
+
+    if(mysqli_connect_error()){
+        echo "No se pudo conectar a la base de datos";
+    }
+    if($result=mysqli_query($conexion, "SELECT * FROM Usuario")){
+        echo "Returned rows are:" . mysqli_num_rows($result);
+        mysqli_free_result($result);
+    }
+    return $conexion;
+}
+function probar()
+{
+    $con = conexion();
+}
+
+probar();
+?>
+
 </html>
