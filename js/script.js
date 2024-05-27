@@ -1,4 +1,4 @@
-function consultarBDD(xht){
+/* function consultarBDD(xht){
     console.log("b");
     if(xht.readyState === 4 && (xht.status >= 200 && xht.status < 300)){
         //JSON.parse(this.response);
@@ -19,7 +19,28 @@ function consulta(){
     xht.open('POST', 'bdd.php');
     xht.send();
     console.log("a");
-}
+} */
+
+$("#formularioRegistro").on("submit", function(event){
+    event.preventDefault();
+    const formularioData = new FormData(this);
+    // Enviar la input del formulario con fetch
+    fetch('registrar.php', {
+        method: 'POST',
+        body: formularioData
+    })
+    .then(response => response.text()) // Asumiendo que el servidor devuelve una respuesta de texto
+    .then(data => {
+        // Mostrar la respuesta del servidor
+        document.getElementById('respuestaServidor').innerText = data;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+	$("#respuestaServidor").load("registrar.php");
+	//$(".echo").effect( "shake", { direction: "right", times: 2, distance: 10}, 750);
+});
+
 $(document).ready(function() {
     var loginForm = $("#login");
     var registroForm = $("#registro");
@@ -38,12 +59,9 @@ $(document).ready(function() {
         }
     });
 
-    registrar.click(function() {
-        consulta();
         //registroForm.hide(175, "swing");
-    })
     ingresar.click(function() {
         loginForm.hide(175, "swing");
-    })
+    });
 
 });  
