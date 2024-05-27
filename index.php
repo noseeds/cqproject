@@ -40,7 +40,7 @@
     <!-- Ventana emergente del login y registro -->
     <div id="loginRegistro" class="loginRegistro"> 
         <div id="login" class="login">
-            <form action="#" method="post">
+            <form action="login.php" method="post">
                 <h2>Inicio de sesión</h2>
                 <input type="text" placeholder="Nombre de usuario" name="usuario" required>
                 <input type="password" placeholder="Contraseña" name="contrasena" required>
@@ -50,13 +50,14 @@
             <a id="cambiarARegistro" class="cambiarARegistro">Registrate</a>
         </div>
         <div id="registro" class="registro z5">
-            <form action="bdd.php" method="post">
+            <form action="registrar.php" id="formularioRegistro" method="post">
                 <h2>Registro</h2>
-                <input type="text" placeholder="Cédula de identidad" name="cedula" required>
+                <input type="number" placeholder="Cédula de identidad" name="cedula" required>
                 <input type="password" placeholder="Contraseña" name="contrasena" required>
                 <input type="password" placeholder="Confirmar contraseña" name="contrasena2" required>
                 <button id="registrar" type="submit"> Registrar </button>
             </form>
+            <label id="respuestaServidor" style="color: rgba(255,0,0,0.8);"></label>
         </div>
     </div>
     
