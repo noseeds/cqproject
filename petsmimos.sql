@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-04-2024 a las 21:07:58
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.0.28
+-- Tiempo de generación: 30-05-2024 a las 02:41:25
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,27 +24,99 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `producto`
+-- Estructura de tabla para la tabla `clientes`
 --
 
-CREATE TABLE `producto` (
-  `Codigo` int(11) NOT NULL,
-  `Nombre` varchar(255) NOT NULL,
-  `Precio` decimal(10,2) NOT NULL,
-  `Stock` int(11) NOT NULL
+CREATE TABLE `clientes` (
+  `ID_cliente` int(11) NOT NULL,
+  `Teléfono` varchar(255) DEFAULT NULL,
+  `Dirección` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `venta`
+-- Estructura de tabla para la tabla `detalle_ventas`
 --
 
-CREATE TABLE `venta` (
-  `Codigo` int(11) NOT NULL,
-  `Productos` text NOT NULL,
-  `Total` decimal(10,2) NOT NULL,
-  `Total_IVA` decimal(10,2) NOT NULL
+CREATE TABLE `detalle_ventas` (
+  `ID_venta` int(11) NOT NULL,
+  `ID_producto` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `gastos`
+--
+
+CREATE TABLE `gastos` (
+  `ID_gasto` int(11) NOT NULL,
+  `Cedula_Usuario` varchar(255) DEFAULT NULL,
+  `Valor` decimal(10,2) DEFAULT NULL,
+  `Motivo` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `productos`
+--
+
+CREATE TABLE `productos` (
+  `ID_producto` int(11) NOT NULL,
+  `ID_venta` int(11) DEFAULT NULL,
+  `Nombre_Producto` varchar(255) DEFAULT NULL,
+  `Precio` decimal(10,2) DEFAULT NULL,
+  `Stock` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `Cedula_usuario` varchar(255) NOT NULL,
+  `Contraseña` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`Cedula_usuario`, `Contraseña`) VALUES
+('1', 'a'),
+('123', '123'),
+('2222', 'dsad'),
+('23213', '323'),
+('2343', 'asdf'),
+('324324', 'fdsf'),
+('34', 'as'),
+('43', 'as'),
+('522', 'banana'),
+('523', 'bas'),
+('5232', '32'),
+('543', 'asd'),
+('54353453453451', 'abc'),
+('546', 'cas'),
+('777', '777'),
+('juam', 'bananabanana');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ventas`
+--
+
+CREATE TABLE `ventas` (
+  `ID_venta` int(11) NOT NULL,
+  `Cedula_usuario` varchar(255) DEFAULT NULL,
+  `ID_cliente` int(11) DEFAULT NULL,
+  `Valor` decimal(10,2) DEFAULT NULL,
+  `Tipo` varchar(100) DEFAULT NULL,
+  `Estado` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -52,32 +124,75 @@ CREATE TABLE `venta` (
 --
 
 --
--- Indices de la tabla `producto`
+-- Indices de la tabla `clientes`
 --
-ALTER TABLE `producto`
-  ADD PRIMARY KEY (`Codigo`);
+ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`ID_cliente`);
 
 --
--- Indices de la tabla `venta`
+-- Indices de la tabla `detalle_ventas`
 --
-ALTER TABLE `venta`
-  ADD PRIMARY KEY (`Codigo`);
+ALTER TABLE `detalle_ventas`
+  ADD PRIMARY KEY (`ID_venta`,`ID_producto`),
+  ADD KEY `ID_producto` (`ID_producto`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- Indices de la tabla `gastos`
+--
+ALTER TABLE `gastos`
+  ADD PRIMARY KEY (`ID_gasto`),
+  ADD KEY `Cedula_Usuario` (`Cedula_Usuario`);
+
+--
+-- Indices de la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD PRIMARY KEY (`ID_producto`),
+  ADD KEY `ID_venta` (`ID_venta`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`Cedula_usuario`);
+
+--
+-- Indices de la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  ADD PRIMARY KEY (`ID_venta`),
+  ADD KEY `Cedula_usuario` (`Cedula_usuario`),
+  ADD KEY `ID_cliente` (`ID_cliente`);
+
+--
+-- Restricciones para tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `producto`
+-- Filtros para la tabla `detalle_ventas`
 --
-ALTER TABLE `producto`
-  MODIFY `Codigo` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `detalle_ventas`
+  ADD CONSTRAINT `detalle_ventas_ibfk_1` FOREIGN KEY (`ID_venta`) REFERENCES `ventas` (`ID_venta`),
+  ADD CONSTRAINT `detalle_ventas_ibfk_2` FOREIGN KEY (`ID_producto`) REFERENCES `productos` (`ID_producto`);
 
 --
--- AUTO_INCREMENT de la tabla `venta`
+-- Filtros para la tabla `gastos`
 --
-ALTER TABLE `venta`
-  MODIFY `Codigo` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `gastos`
+  ADD CONSTRAINT `gastos_ibfk_1` FOREIGN KEY (`Cedula_Usuario`) REFERENCES `usuarios` (`Cedula_usuario`);
+
+--
+-- Filtros para la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`ID_venta`) REFERENCES `ventas` (`ID_venta`);
+
+--
+-- Filtros para la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  ADD CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`Cedula_usuario`) REFERENCES `usuarios` (`Cedula_usuario`),
+  ADD CONSTRAINT `ventas_ibfk_2` FOREIGN KEY (`ID_cliente`) REFERENCES `clientes` (`ID_cliente`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

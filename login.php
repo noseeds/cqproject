@@ -1,49 +1,67 @@
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database="petsmimos";
-$cedulaIngresada;
-$passwdUsuario;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+</head>
+<body class="body">
 
-if (isset($_POST["lcedula"]) && !empty( $_POST["lcedula"]) ){
-    $cedulaIngresada = $_POST['lcedula'];
-}else{
-die('Cedula no ingresada');
-}   
-
-if (isset($_POST["lpassword"]) && !empty( $_POST["lpassword"]) ){
-    $passwdUsuario = $_POST['lpassword'];
-}else{
-die('Contraseña no ingresada');
-}   
-
-$conn = mysqli_connect($servername, $username, $password, $database);
-
-if(!$conn){
-    die("Error de conexión " . mysqli_connect_error());
-}
-
-$instruccion = "SELECT cedula_usuario FROM usuario WHERE cedula_usuario = '" . $cedulaIngresada . "'; ";
-$resultado = mysqli_query($conn, $instruccion);
-
-if(!$resultado){
-    die("Error de consulta " . mysqli_error($conn));
-}else {
-   $fila= mysqli_fetch_array($resultado, MYSQLI_BOTH);
-    while ($fila) {
-        $usuarios[] = $fila;
-        $fila = mysqli_fetch_array($resultado, MYSQLI_BOTH);
-        if($usuarios[0]){
-            echo("<script type='text/javascript'>
-                $('#login_registro').css('display', 'none');
+<div id="login_registro"> 
+    <div id="login" class="login">
+        <form id="formulario_login" action="login.php" method="POST">
+            <h2>Iniciar sesión</h2>
+            <input type="text" placeholder="Documento de indentificación" name="lcedula" required>
+            <label for="lcedula">sin puntos ni guiones</label>
+            <input type="password" placeholder="Contraseña" name="lpassword" required>                <div id="lrespuesta_servidor" style="color: rgba(255,0,0,0.8);"></div>
+                <button id="ingresar" type="submit">Acceder</button>
+        </form>
+        <p><b> ¿No tenés cuenta? </b></p>
+        <a class="registro_o_acceso">Registrarme</a>
+    </div>
+    <div id="registro" class="registro z5">
+        <form id="formulario_registro" action="registrar.php" method="POST" >
+            <h2>Registro</h2>
+            <input type="number" placeholder="Documento de indentificación" name="cedula" required>
+            <input type="password" placeholder="Contraseña" name="password" required>
+            <label for="password">mínimo 8 carácteres</label>
+            <input type="password" placeholder="Confirmar contraseña" name="password2" required>  
+            <div id="rrespuesta_servidor" style="color: rgba(255,0,0,0.8);"></div>
+            <button id="registrar" type="submit"> Registrar </button>
+        </form>
+        <a class="registro_o_acceso">Ya tengo un usuario registrado</a>
+    </div>
+</div>
+    <script src="js/script.js" type="application/javascript"></script>
+    <script type="application/javascript">
+        let color1='rgba(0,0,0,1) 50%';
+        let colores= [];
+        let i=0;
+        let body = document.body;
+        function generarColores(){
+            for(e=0; e<=255; e++){
+                colores.push("rgb("+50+","+e+","+50+")");
             }
-            </script>");
-        }else{
-            die("Usuario ingresado no existe");
+            for(e=255; e>=0; e--){
+                colores.push("rgb("+50+","+e+","+50+")");
+            }
         }
-    }
-}
-mysqli_free_result( $resultado );
-$instruccion = ""
-?>
+        generarColores();
+        function actualizarFondo(){
+            setTimeout(function update() {
+                $(body).css("background-image", "linear-gradient(to bottom, "+color1+", "+colores[i]+")");
+                requestAnimationFrame(actualizarFondo);
+                i++;
+                if(i>510){i=0;};
+            }, 1000 / 1); //1 frames por segundo (frames recorridas en 1000ms) ms=milisegundos
+        }
+        requestAnimationFrame(actualizarFondo);
+    </script>
+</body>
+</html>

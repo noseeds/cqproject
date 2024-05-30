@@ -28,6 +28,8 @@
 }
 body{
     margin: 0;
+    height: 900px;
+    width: 100%;
 }
 form{
     text-align: left;
@@ -69,17 +71,7 @@ h2{
 
 /* LOGIN */
 
-#login_registro {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 3;
-}
-#cambiar_a_registro {
+.registro_o_acceso {
     background-color: rgba(58, 137, 255, 0.103);
     display: block;
     margin: 20px auto;
@@ -88,16 +80,17 @@ h2{
     cursor: pointer;
     position: relative;
     top: 100%;
+    user-select: none;
 }
 
 #login_registro{
-    position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(0%, 25%);
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 3;
 }
 #login{
     position: relative;
@@ -116,7 +109,6 @@ h2{
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
 }
 form{
     display: flex;
@@ -133,15 +125,29 @@ form{
 
 #login button, #registro button{
     padding: 10px;
-    background-color: #007bff;
+    /*background-color: #007bff;*/
+    background-color: #1c2f42;
     color: white;
     border: none;
-    cursor: pointer;
-    border-radius: 10px;
-
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
     border-radius: 3px;
+    cursor: pointer;
+}
+
+/* mensajes de alerta */
+#alertas{
+    display:none;
+    justify-content: center;
+}
+.alerta{
+    position: fixed;
+    top: 50%;
+    border: solid 1px rgb(80, 197, 80);
+    border-left: solid 5px rgb(80, 197, 80);
+    border-radius: 5px;
+    background-color: rgb(191, 255, 191);
+    color: rgb(80, 197, 80);
+    padding: 10px;
+    width: 80%;
+    box-shadow: 3px 5px rgba(0, 50, 0, 0.8);
+    z-index: 5;
 }

@@ -41,12 +41,12 @@ if (!$conn) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
-$instruccion = "SELECT cedula_usuario FROM usuario WHERE cedula_usuario = '" . $cedulaIngresada . "'; ";
+$instruccion = "SELECT cedula_usuario FROM usuarios WHERE cedula_usuario = '" . $cedulaIngresada . "'; ";
 $resultado = mysqli_query($conn, $instruccion); //mysqli_query retorna FALSE si falla, pero si es exitosa, retorna un objeto de tipo mysqli_result
 
 if (!$resultado) {
     die("Error en la consulta: " . mysqli_error($conn));
-} else if($resultado) {
+} else if($resultado && strlen($passwdUsuario)==8) {
     $usuarios = array();
     $fila= mysqli_fetch_array($resultado, MYSQLI_BOTH);
     while ($fila) {
@@ -57,7 +57,7 @@ if (!$resultado) {
         }
     }
     mysqli_free_result($resultado);
-    $instruccion = "INSERT INTO usuario (cedula_usuario, contraseña) VALUES('$cedulaIngresada', '$passwdUsuario'); ";
+    $instruccion = "INSERT INTO usuarios (cedula_usuario, contraseña) VALUES('$cedulaIngresada', '$passwdUsuario'); ";
     if($conn->query($instruccion)){
         echo "<label style='color: rgba(0,0,255,0.8);'> Usuario registrado con éxito </label>";
         die();
@@ -65,6 +65,8 @@ if (!$resultado) {
         echo "Error, vuelve a intentarlo más tarde. ". mysqli_error($conn);
     }
     mysqli_free_result($resultado);
+} else if(!strlen($passwdUsuario)==8){
+    
 } else {
     echo "Error en la consulta: " . mysqli_error($conn);
 }

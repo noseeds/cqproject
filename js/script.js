@@ -25,33 +25,47 @@ $("#formulario_registro").on("submit", function(event){
     event.stopPropagation();
     event.preventDefault();
     const formularioData = new FormData(this);
-    // Enviar la input del formulario con fetch
     fetch('registrar.php', {
         method: 'POST',
         body: formularioData
     })
-    .then(response => response.text()) // Asumiendo que el servidor devuelve una respuesta de texto
+    .then(response => response.text()) 
     .then(data => {
-        // Mostrar la respuesta del servidor
-        document.getElementById('respuesta_servidor').innerHTML = data;
+        document.querySelector('#rrespuesta_servidor').innerHTML = data;
+        $("#rrespuesta_servidor").effect( "shake", { direction: "right", times: 3, distance: 4}, 500);
     })
     .catch(error => {
         console.error('Error:', error);
     });
-	//$("#respuesta_servidor").effect( "shake", { direction: "right", times: 2, distance: 10}, 750);
 });
 
+$("#formulario_login").on("submit", function(event){
+event.stopPropagation();
+event.preventDefault();
+const formularioData = new FormData(this);
+fetch('ingresar.php',{
+    method: 'POST',
+    body: formularioData
+})
+.then(response => response.text())
+.then(data => {
+    document.querySelector('#lrespuesta_servidor').innerHTML = data;
+    $("#lrespuesta_servidor").effect( "shake", { direction: "right", times: 3, distance: 4}, 500);
+})
+   
+.catch(error =>{
+    console.error('Error:', error);
+});
+});
 $(document).ready(function() {
     var loginForm = $("#login");
     var registroForm = $("#registro");
     var cambiarFormulario = $("#cambiar_a_registro");
     var ingresar = $("#ingresar");
-
-    cambiarFormulario.click(function() {
+    $('.registro_o_acceso').click(function() {
         if (loginForm.css("display") === "none") {
             loginForm.css("display", "block");
             registroForm.css("display", "none");
-            //cambiarFormulario.text("cambiar a registro");
         } else {
             loginForm.css("display", "none");
             registroForm.css("display", "block");
@@ -59,8 +73,8 @@ $(document).ready(function() {
     });
 
         //registroForm.hide(175, "swing");
-    ingresar.click(function() {
+    /*ingresar.click(function() {
         loginForm.hide(175, "swing");
-    });
+    });*/
 
 });  
