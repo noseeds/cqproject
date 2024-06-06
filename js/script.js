@@ -21,42 +21,6 @@ function consulta(){
     console.log("a");
 } */
 
-$("#formulario_registro").on("submit", function(event){
-    event.stopPropagation();
-    event.preventDefault();
-    const formularioData = new FormData(this);
-    fetch('registrar.php', {
-        method: 'POST',
-        body: formularioData
-    })
-    .then(response => response.text()) 
-    .then(data => {
-        document.querySelector('#rrespuesta_servidor').innerHTML = data;
-        $("#rrespuesta_servidor").effect( "shake", { direction: "right", times: 3, distance: 4}, 500);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-});
-
-$("#formulario_login").on("submit", function(event){
-event.stopPropagation();
-event.preventDefault();
-const formularioData = new FormData(this);
-fetch('ingresar.php',{
-    method: 'POST',
-    body: formularioData
-})
-.then(response => response.text())
-.then(data => {
-    document.querySelector('#lrespuesta_servidor').innerHTML = data;
-    $("#lrespuesta_servidor").effect( "shake", { direction: "right", times: 3, distance: 4}, 500);
-})
-   
-.catch(error =>{
-    console.error('Error:', error);
-});
-});
 $(document).ready(function() {
     var loginForm = $("#login");
     var registroForm = $("#registro");
