@@ -92,6 +92,13 @@ h2{
     align-items: center;
     z-index: 3;
 }
+#logo{
+    top: 50%;
+    left: 50%;
+    width: 15%;
+    margin-left: 42%;
+    margin-top: 100px;
+}
 #login{
     position: relative;
     width: 300px;
@@ -150,4 +157,29 @@ form{
     width: 80%;
     box-shadow: 3px 5px rgba(0, 50, 0, 0.8);
     z-index: 5;
+}
+/* Estilos generales */
+body{
+    margin: 0;
+    height: 900px;
+    width: 100%;
+}
+form{
+    text-align: left;
+}
+label{
+    margin: 0;
+    font-size: 0.9em;
+    color: rgba(130,130,130,1);
+}
+.oculto {
+    display: none;
+}
+.boton {
+    background-color: gray;
+    padding: 2px;
+}
+.icono {
+    width: 50px;
+    position: static;
 }
