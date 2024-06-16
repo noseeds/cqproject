@@ -3,7 +3,7 @@
 .registro_o_acceso {
     background-color: rgba(58, 137, 255, 0.103);
     display: block;
-    margin: 20px auto;
+    margin: 0 0 10px 0;
     padding: 10px;
     color: rgb(71, 120, 255);
     cursor: pointer;
@@ -25,11 +25,12 @@
     top: 50%;
     left: 50%;
     width: 15%;
-    margin-left: 42%;
-    margin-top: 100px;
+    margin: 0 0 0 42%;
 }
 #login{
     position: relative;
+    display: flex;
+    flex-direction: column;
     width: 300px;
     padding: 20px;
     background-color: #f1f1f1;
@@ -38,6 +39,7 @@
 }
 #registro{
     display: none;
+    flex-direction: column;
     position: relative;
     width: 300px;
     padding: 20px;
@@ -60,6 +62,7 @@ form{
 }
 
 #login button, #registro button{
+    margin: 10px 0;
     padding: 10px;
     /*background-color: #007bff;*/
     background-color: #1c2f42;
@@ -90,10 +93,10 @@ form{
 /* Estilos generales */
 body{
     margin: 0;
-    height: 900px;
+    padding: 50px 0;
     width: 100%;
     display: flex;
-    justify-content: center;
+    align-content: center;
     flex-direction: column;
 }
 form{
@@ -103,6 +106,9 @@ label{
     margin: 0;
     font-size: 0.9em;
     color: rgba(130,130,130,1);
+}
+p{
+    margin: 10px 0;
 }
 .oculto {
     display: none;

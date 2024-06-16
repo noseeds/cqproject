@@ -24,18 +24,15 @@ function consulta(){
 $(document).ready(function() {
     var loginForm = $("#login");
     var registroForm = $("#registro");
-    var cambiarFormulario = $("#cambiar_a_registro");
-    var ingresar = $("#ingresar");
     $('.registro_o_acceso').click(function() {
         if (loginForm.css("display") === "none") {
-            loginForm.css("display", "block");
+            loginForm.css("display", "flex");
             registroForm.css("display", "none");
         } else {
             loginForm.css("display", "none");
-            registroForm.css("display", "block");
+            registroForm.css("display", "flex");
         }
     });
-
         //registroForm.hide(175, "swing");
     /*ingresar.click(function() {
         loginForm.hide(175, "swing");
