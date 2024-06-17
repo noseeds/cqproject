@@ -1,6 +1,6 @@
 /* LOGIN */
 
-.registro_o_acceso {
+.ingreso_o_registro {
     background-color: rgba(58, 137, 255, 0.103);
     display: block;
     margin: 0 0 10px 0;
@@ -22,9 +22,7 @@
     z-index: 3;
 }
 #logo{
-    top: 50%;
-    left: 50%;
-    width: 15%;
+    width: 20%;
     margin: 0 0 0 42%;
 }
 #login{

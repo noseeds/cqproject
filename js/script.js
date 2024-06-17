@@ -1,30 +1,18 @@
-/* function consultarBDD(xht){
-    console.log("b");
-    if(xht.readyState === 4 && (xht.status >= 200 && xht.status < 300)){
-        //JSON.parse(this.response);
-        console.log("c");
-        const resultado = xht.responseText;
-
-        alert(resultado);
-        //miPoke.innerHTML = pokemon.id + ' - ' + pokemon.name + '<br> <img src="' + pokemon.sprites.front_default + '">';
-    }
+function obtenerVariableGET(nombre, url = window.location.href) {
+    // obtiene la parte de la url donde se ubican las variables get
+    const variablesGET = window.location.search;
+    // crea un objeto que contiene cada variable get por separado
+    const urlParams = new URLSearchParams(variablesGET);
+    // se agarra el valor de la variable especifica
+    const valor = urlParams.get("formularioActual");
+    return(valor);
 }
-function consulta(){
-    const xht = new XMLHttpRequest();
 
-    xht.addEventListener('load', function() {
-        consultarBDD(xht);
-    });
-    
-    xht.open('POST', 'bdd.php');
-    xht.send();
-    console.log("a");
-} */
-
-$(document).ready(function() {
+$(document).ready(function () {
     var loginForm = $("#login");
     var registroForm = $("#registro");
-    $('.registro_o_acceso').click(function() {
+    //cambiar de formulario
+    $(".ingreso_o_registro").click(function (event) {
         if (loginForm.css("display") === "none") {
             loginForm.css("display", "flex");
             registroForm.css("display", "none");
@@ -33,9 +21,12 @@ $(document).ready(function() {
             registroForm.css("display", "flex");
         }
     });
-        //registroForm.hide(175, "swing");
-    /*ingresar.click(function() {
-        loginForm.hide(175, "swing");
-    });*/
-
+    //mostrar el formulario correcto y ocultar el otro
+    if (obtenerVariableGET("formularioActual") === "registro") {
+        loginForm.css("display", "none");
+        registroForm.css("display", "flex");
+    } else {
+        loginForm.css("display", "flex");
+        registroForm.css("display", "none");
+    }
 });  
