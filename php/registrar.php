@@ -1,34 +1,19 @@
 <?php
 
-//require "conexion.php";
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database= "petsmimos";
-
-$conn = mysqli_connect($servername, $username, $password, $database);
+require "conexion.php";
 
 if(!$conn){
-    Header('Location: ../login.php?advertencia=' . urlencode("Error de conexión" . urlencode(mysqli_connect_error()) . "&formularioActual=" . urlencode("registro")));
-    die();
+    Header('Location: login.php?advertencia=' . urlencode("Error de conexión: " . mysqli_connect_error()) . "&formularioActual=" . urlencode("registro"));
 }
 
 $cedulaIngresada; 
-$passwdUsuario; 
-$passwdUsuario2; 
+$passwordIngresada; 
+$passwordIngresada2; 
 
 if (isset($_POST['cedula']) && !empty($_POST['cedula'])) {
     $cedulaIngresada = $_POST['cedula'];
 } else {
     Header('Location: ../login.php?advertencia=' . urlencode("Cedula no ingresada") . "&formularioActual=" . urlencode("registro"));
-    die();
-}
-if (isset($_POST['password']) && !empty($_POST['password'])) {
-    $passwdUsuario = $_POST['password']; 
-    $passwdUsuario = hash("sha256", $passwdUsuario);
-}else{
-    Header('Location: ../login.php?advertencia=' . urlencode("Contraseña no ingresada") . "&formularioActual=" . urlencode("registro"));
     die();
 }
 
@@ -45,25 +30,33 @@ if($resultado) {
 }
 mysqli_free_result($resultado);
 
+if (isset($_POST['password']) && !empty($_POST['password'])) {
+    $passwordIngresada = $_POST['password']; 
+}else{
+    Header('Location: ../login.php?advertencia=' . urlencode("Contraseña no ingresada") . "&formularioActual=" . urlencode("registro"));
+    die();
+}
+
+if(strlen($passwordIngresada)<8){
+    Header('Location: ../login.php?advertencia=' . urlencode("La contraseña debe contener por lo menos 8 carácteres") . "&formularioActual=" . urlencode("registro"));
+    die();
+}
+
 if (isset($_POST['password2']) && !empty($_POST['password2'])){
-    $passwdUsuario2 = $_POST['password2'];
-    $passwdUsuario2 = hash("sha256", $passwdUsuario2);  
+    $passwordIngresada2 = $_POST['password2']; 
 } else{
     Header('Location: ../login.php?advertencia=' . urlencode("Vuelva a ingresar la contraseña en el campo correspondiente") . "&formularioActual=" . urlencode("registro"));
     die();
 }
 
-if($passwdUsuario != $passwdUsuario2){
+if($passwordIngresada != $passwordIngresada2){
     Header('Location: ../login.php?advertencia=' . urlencode("Las contraseñas no coinciden") . "&formularioActual=" . urlencode("registro"));
     die();
 }
 
-echo strlen($passwdUsuario);  
-if(strlen($passwdUsuario)<8){
-    Header('Location: ../login.php?advertencia=' . urlencode("La contraseña debe contener por lo menos 8 carácteres") . "&formularioActual=" . urlencode("registro"));
-    die();
-}
-$instruccion = "INSERT INTO usuarios (cedula, contrasena) VALUES('$cedulaIngresada', '$passwdUsuario'); ";
+$passwordIngresada = hash("sha256", $passwordIngresada);
+$passwordIngresada2 = hash("sha256", $passwordIngresada2);
+$instruccion = "INSERT INTO usuarios (cedula, contrasena) VALUES('$cedulaIngresada', '$passwordIngresada'); ";
 if(mysqli_query($conn, $instruccion)){
     Header('Location: ../login.php?notificacion=' . urlencode("Usuario registrado con éxito") . "&formularioActual=" . urlencode("registro"));
     die();
@@ -71,15 +64,5 @@ if(mysqli_query($conn, $instruccion)){
     Header('Location: ../login.php?advertencia=' . urlencode("Error, vuelve a intentarlo más tarde" . urlencode(mysqli_error($conn)) . "&formularioActual=" . urlencode("registro")));
     die();
 }
-
-/*    $tabla = array();
-    //fetch_row devuelve la primer fila y la descarta, y si no hay filas devuelve null
-    $fila = mysqli_fetch_row($resultado);
-    while ($fila) { 
-        $tabla[] = $fila;
-        $fila = mysqli_fetch_row($resultado);
-    }
-    mysqli_free($resultado);
-*/
 
 ?>
