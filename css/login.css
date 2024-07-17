@@ -13,17 +13,16 @@
 }
 
 #login_registro{
-    top: 50%;
-    left: 50%;
-    transform: translate(0%, 25%);
+    position: relative;
     display: flex;
+    top: 5rem;
     justify-content: center;
     align-items: center;
     z-index: 3;
 }
 #logo{
-    width: 20%;
-    margin: 0 0 0 42%;
+    width: 14rem;
+    margin: 0 auto;
 }
 #login{
     position: relative;
@@ -91,14 +90,11 @@ form{
 /* Estilos generales */
 body{
     margin: 0;
-    padding: 50px 0;
+    padding: 3rem 0;
     width: 100%;
     display: flex;
     align-content: center;
     flex-direction: column;
-}
-form{
-    text-align: left;
 }
 label{
     margin: 0;

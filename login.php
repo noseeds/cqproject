@@ -19,9 +19,9 @@
     <div id="login" class="login">
         <form id="formulario_login" action="php/ingresar.php" method="POST">
             <h2>Iniciar sesión</h2>
-            <input type="text" placeholder="Documento de indentificación" name="lcedula" required>
-            <label for="lcedula">sin puntos ni guiones</label>
-            <input type="password" placeholder="Contraseña" name="lpassword" required>
+            <input type="text" placeholder="Nombre de usuario" name="nombre_login" required>
+            <label for="nombre_login"> hasta 16 carácteres</label>
+            <input type="password" placeholder="Contraseña" name="contrasena_login" required>
             <div id="alerta_ingreso" style="color: rgba(255,0,0,0.8);">
                 <?php
                     if(isset($_GET["advertencia"]) && !empty($_GET["advertencia"]) ){
@@ -40,10 +40,10 @@
     <div id="registro" class="registro z5">
         <form id="formulario_registro" action="php/registrar.php" method="POST">
             <h2>Registro</h2>
-            <input type="number" placeholder="Documento de indentificación" name="cedula" required>
-            <input type="password" placeholder="Contraseña" name="password" required>
-            <label for="password">mínimo 8 carácteres</label>
-            <input type="password" placeholder="Confirmar contraseña" name="password2" required>  
+            <input type="text" placeholder="Nombre de usuario" name="nombre_registro" required>
+            <input type="password" placeholder="Contraseña" name="contrasena_registro" required>
+            <label for="contrasena_registro">mínimo 8 carácteres</label>
+            <input type="password" placeholder="Confirmar contraseña" name="contrasena_registro2" required>  
             <div id="alerta_registro" style="color: rgba(255,0,0,0.8);">
                 <?php
                     if(isset($_GET["advertencia"]) && !empty($_GET["advertencia"])){
@@ -61,7 +61,7 @@
         <a class="ingreso_o_registro">Ya tengo un usuario registrado</a>
     </div>
 </div>
-    <script src="js/script.js" type="application/javascript"></script>
+    <script src="js/login.js" type="application/javascript"></script>
     <script type="application/javascript">
         let color1='rgba(200,200,200,1) 40%';
         let colores= [];
