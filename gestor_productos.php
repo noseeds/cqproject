@@ -25,12 +25,12 @@
                 <?php require "php/conexion.php";
                 $instruccion = "SELECT ID_imagen, imagen FROM imagenes";
                 $resultado = mysqli_query($conn, $instruccion);
-                while ($row = mysqli_fetch_assoc($resultado)) {
+                while ($row = mysqli_fetch_array($resultado, MYSQLI_BOTH)) {
                     $data_imagen = $row['imagen'];
                     $imagen_base64 = base64_encode($data_imagen);
                     echo '<img src="data:image/jpeg;base64,' . $imagen_base64 . '" alt="Image" />';
                 }
-                mysqli_free_result($result);
+                mysqli_free_result($resultado);
                 mysqli_close($conn);
                 ?>
             </div>
