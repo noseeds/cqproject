@@ -28,8 +28,9 @@ nav{
     display: flex;
     background: linear-gradient(90deg, rgba(210,255,96,1) 0%, rgba(255,74,112,1) 100%);
 }
-nav a{
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 20%, rgba(255, 255, 255, 0) 100%);
+nav li{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25) 20%, rgba(255, 255, 255, 0) 100%);
+
 }
 .icono{
     display: inline-block;
@@ -41,6 +42,7 @@ nav a{
     height: 2.5rem;
     margin: 0.2rem;
 }
+
 form{
     background-color: rgb(241, 241, 241);
     border-radius: 1.5rem;
@@ -50,10 +52,25 @@ form{
     padding: 0.6rem;
     color: rgb(71, 120, 255);
     position: relative;
-    top: 100%;
     user-select: none;
     font-family: "Lato", sans-serif;
 }
+.enviar_formulario{
+    font-size: large;
+    padding: 0.6rem;
+    border-radius: 0.2rem;
+    background-color: rgb(228, 255, 186);
+    box-shadow: 0 0 0.6rem rgb(124, 168, 78);
+    font-family:"Lato", sans-serif;
+    font-weight: 600;
+    color: rgb(39, 62, 15);
+    cursor: pointer;
+}
+#contenido{
+    position: absolute;
+    top: 10rem;
+}
+/* IMAGENES */
 .input_cargar_imagen{
 width: 0.1px;
 height: 0.1px;
@@ -79,21 +96,7 @@ z-index: -1;
     color: rgb(124, 168, 78);
     z-index: 3;
 }
-.enviar_formulario_imagen{
-    position: absolute;
-    bottom: 0.6rem;
-    left:1.15rem;
-    min-width: 6;
-    margin: 0;
-    border-radius: 0.2rem;
-    background-color: rgb(228, 255, 186);
-    box-shadow: 0 0 0.6rem rgb(124, 168, 78);
-    font-family:"Lato", sans-serif;
-    font-weight: 600;
-    color: rgb(39, 62, 15);
-    cursor: pointer;
-    z-index: 3;
-}
+
 .visualizador_imagenes{
     background-color: rgb(242, 255, 221);
     width: 100%;
@@ -104,10 +107,20 @@ z-index: -1;
     z-index: 1;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     overflow-x: auto;
+    max-width: 15rem;;
 }
 .visualizador_imagenes img{
     width: 4rem;
     height: 4rem;
+}
+
+.imagen_seleccionable{
+    cursor: pointer;
+}
+.seleccionado{
+    border: solid rgb(0, 0, 0) 0.2rem;
+    box-shadow: 0 0 0.6rem rgb(0, 0, 0);
+    border-radius: 0.5rem;
 }

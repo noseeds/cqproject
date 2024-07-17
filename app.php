@@ -8,29 +8,31 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="css/aplicacion.css" >
+    <script type="application/javascript" src="js/aplicacion.js"></script>
+    <link rel="stylesheet" href="css/aplicacion.css">
 </head>
 <body>
     
     <!-- Seccion superior de la aplicación -->
-    <header>Pets Mimos</header>
-    <nav>
-        <div  id="barra_nav">
-            <a href="" class="boton, icono"><img src="iconos/menu.svg"></a>   
-            <a href="" class="boton, icono"><img src="iconos/bar-chart-2.svg"></a>
-            <a href="" class="boton, icono"><img src="iconos/account-circle.svg"></a>
-            <a href="" class="boton, icono" ><img src="iconos/add-circle.svg"></a>         
-        </div>
-        <div  id="herramientas">
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
-        </div>
+    <header>
+    <h2> Pets Mimos </h2>
+        <nav>
+            <ul>
+                <li href="" class="boton, icono"><img src="iconos/menu.svg"></li>   
+                <li href="" class="boton, icono"><img src="iconos/bar-chart-2.svg"></li>
+                <li href="" class="boton, icono"><img src="iconos/account-circle.svg"></li>
+                <li href="" class="boton, icono" ><img src="iconos/add-circle.svg"></li>
+            </ul>
+            <div  id="herramientas">
+                <img src="" alt="">
+                <img src="" alt="">
+                <img src="" alt="">
+            </div>
+            <div  id="busquedaCat">
         
-        <div  id="busquedaCat">
-        
-        </div>
-    </nav>
+            </div>
+        </nav>
+    </header>
     <!-- Sección inferior de la aplicación -->
     <div id="transacciones" class="">
     </div>
@@ -38,10 +40,5 @@
 
     <div id="alertas"></div>
 
-<script src="js/script.js" type="application/javascript"></script>
-
-
 </body>
-
-
 </html>
