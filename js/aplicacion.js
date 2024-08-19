@@ -7,6 +7,6 @@ $(document).ready(function () {
         $('.imagen_seleccionable').removeClass('seleccionado');
         $(this).addClass('seleccionado');
         const imagen = $(this).data('value');
-        $('#input_imagen_seleccionada').val();
+        $('#input_imagen_seleccionada').val(imagen);
     });
 });

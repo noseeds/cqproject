@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pets Mimos</title>
     <link rel="stylesheet" href="css/inicio.css">
-    <script src="https://kit.fontawesome.com/c3da410f5c.js" crossorigin="anonymous"></script>
     <script src="js/inicio.js"> </script>
 </head>
 <body>
     <header>
-        <h1>Pets Mimos</h1>
+        <img src="img/logo.png" class="logo" alt="logo">
         <nav>
             <a href="#inicio" class="scroll"> Inicio </a>
             <a href="#catalogo" class="scroll"> Catálogo </a>

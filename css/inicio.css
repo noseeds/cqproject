@@ -11,6 +11,8 @@ body {
 
 header {
   background-color: #0c1001;
+  background: rgb(53,68,10);
+  background: radial-gradient(circle, rgba(53,68,10,1) 5%, rgba(12,16,1,1) 70%); 
   color: #fff;
   z-index: 3;
   position: fixed;
@@ -18,7 +20,7 @@ header {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 2.5rem;
+  height: 6rem;
   top: 0;
   left: 0;
 }
@@ -27,21 +29,23 @@ nav {
   background: linear-gradient(90deg, rgba(210,255,96,1) 0%, rgba(255,74,112,1) 100%);
   padding: 0.5rem; 
   z-index: 2;
-  top: 2.5rem;
+  top: 6rem;
   position: fixed;
   display: flex;
   justify-content: center;
   width: 100%;
+  border: solid rgb(0, 0, 0) 0.1rem;
 }
 
 nav a {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 20%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(40deg, rgba(255, 255, 255, 0.454) 20%, rgb(255, 253, 253) 100%);
   color: #000000;
   text-decoration: none;
   margin: 0 0.1rem; 
   white-space: nowrap;
   padding: 0.3rem;
   border: solid black 0.1rem;
+  border-radius: 0.25rem;
 }
 
 article {
@@ -119,6 +123,10 @@ footer {
 .slider_productos_nav a:hover{
   opacity: 1;
   transition: opacity ease 250ms;
+}
+
+.logo{
+  height:6rem;
 }
 
 /*

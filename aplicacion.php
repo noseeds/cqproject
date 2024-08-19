@@ -1,48 +1,63 @@
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pets Mimos</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-    <script type="application/javascript" src="js/aplicacion.js"></script>
-    <link rel="stylesheet" href="css/aplicacion.css" >
-</head>
-<body>
-    
-    <!-- Seccion superior de la aplicación -->
-    <div id="navegacion" class="nav">
-        <div  id="barra_nav">
-            <a href="" class="boton, icono"><img src="iconos/menu.svg"></a>   
-            <a href="" class="boton, icono"><img src="iconos/bar-chart-2.svg"></a>
-            <a href="" class="boton, icono"><img src="iconos/account-circle.svg"></a>
-            <a href="" class="boton, icono" ><img src="iconos/add-circle.svg"></a>         
-        </div>
-        <div  id="herramientas">
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
-        </div>
-        
-        <div  id="busquedaCat">
-        
-        </div>
-    </div>
-    <!-- Sección inferior de la aplicación -->
-    <div id="transacciones" class="">
-    </div>
-    <!-- Ventana emergente del login y registro -->
-
-    <div id="alertas"></div>
-
-<script src="js/script.js" type="application/javascript"></script>
-
-
+<?php
+include "include/header.php";
+?>
+<article id="transacciones">
+    <table>    
+        <tr class="venta">
+            <td class="col1">
+                <img src="./iconos/money-dollar-circle.svg">
+            </td>
+            <td class="col2">
+                <p><b>Venta</b></p>
+                <a href="ventas.php">productos</a>
+            </td>
+            <td class="col3">
+                <br><p><b>$1000</b></p>
+            </td>
+        </tr>
+        <tr class="egreso">
+            <td class="col1">
+                <img src="./iconos/money-dollar-circle.svg">
+            </td>
+            <td class="col2">
+                <p><b>Egreso</b></p>
+                <p>Compra mercadería</p>
+            </td>
+            <td class="col3">
+                <br><p><b>$1000 </b></p>
+            </td>
+        </tr>
+        <?php
+            include 'php/conexion.php';
+            if(!$conn){
+                die("error de conexion con la base de datos");
+            }
+            $instruccion = "SELECT v.ID_venta AS ID, 'venta' AS tipo, v.valor AS valor, d.fecha AS fecha, p.nombre AS descripcion FROM ventas v JOIN detalles_venta d ON v.ID_venta = d.ID_venta JOIN productos p ON d.ID_producto=p.ID_producto UNION ALL SELECT g.ID_gasto AS ID, 'egreso' AS tipo, g.valor AS valor, g.fecha AS fecha, g.motivo AS descripcion FROM gastos g ORDER BY fecha DESC";
+            $resultado = mysqli_query($conn, $instruccion);
+            while($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
+                $ID=$fila['ID'];
+                $tipo=$fila['tipo'];
+                $valor=$fila['valor'];
+                $fecha=$fila['fecha'];
+                $descripcion=$fila['descripcion'];
+                echo '<tr class="'.$tipo.'">';
+                echo '<td class="col1"><img src="./iconos/money-dollar-circle.svg"></td>';
+                echo '<td class="col2">
+                <p><b>'.ucfirst($tipo).'</b></p>
+                <a href="php/detallesventa.php&ID='.$ID.'">'.$descripcion.'</a></td>';
+                echo '<td class="col3">
+                <br><p><b>'.$fecha.'</b></p>
+            </td>';
+                echo '<td class="col4">
+                <br><p><b>$'.$valor.'</b></p>
+            </td>';
+                echo '</tr>';
+            }           
+        ?>
+    </table>
+</article>
+<article id="interfaces">
+    <a href="gestor_productos"> Productos </a>
+</article>
 </body>
-
-
 </html>

@@ -37,13 +37,16 @@ if(!$resultado){
     Header('Location: ../login.php?advertencia=' . urlencode("Error de consulta ") . urlencode(mysqli_error($conn)) . "&formularioActual=" . urlencode("login"));
     die();
 }else {
-    $fila= mysqli_fetch_array($resultado, MYSQLI_BOTH);
-    if($fila["contrasena"] === $contrasena_ingresada){
-        Header("Location: ../aplicacion.php");
-        die();
+    if($fila= mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
+        if($fila["contrasena"] === $contrasena_ingresada){
+            Header("Location: ../aplicacion.php");
+            die();
+        } else{
+            Header('Location: ../login.php?advertencia=' . urlencode("Datos incorrectos para ".$fila["nombre"].".")."&formularioActual=" . urlencode("login"));
+            die();
+        }
     } else{
-        Header('Location: ../login.php?advertencia=' . urlencode("Datos incorrectos para ".$fila["nombre"]." con contraseña: ".$fila["contrasena"]." y usted ingreso: ".$contrasena_ingresada) . "&formularioActual=" . urlencode("login"));
-        die();
+        Header("Location: ../login.php?advertencia=".urlencode("No se han encontrado registros"));
     }
 }
 ?>
