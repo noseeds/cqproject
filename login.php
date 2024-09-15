@@ -17,7 +17,7 @@
 <img id="logo" src="logo.png">
 <div id="login_registro">
     <div id="login" class="login">
-        <form id="formulario_login" action="php/ingresar.php" method="POST">
+        <form id="formulario_login" action="backend/ingresar.php" method="POST">
             <h2>Iniciar sesión</h2>
             <input type="text" placeholder="Nombre de usuario" name="nombre_login" required>
             <label for="nombre_login"> hasta 16 carácteres</label>
@@ -38,7 +38,7 @@
         <a class="ingreso_o_registro">Registrarme</a>
     </div>
     <div id="registro" class="registro z5">
-        <form id="formulario_registro" action="php/registrar.php" method="POST">
+        <form id="formulario_registro" action="backend/registrar.php" method="POST">
             <h2>Registro</h2>
             <input type="text" placeholder="Nombre de usuario" name="nombre_registro" required>
             <input type="password" placeholder="Contraseña" name="contrasena_registro" required>
@@ -63,29 +63,36 @@
 </div>
     <script src="js/login.js" type="application/javascript"></script>
     <script type="application/javascript">
-        let color1='rgba(200,200,200,1) 40%';
+        let color1='rgba(174, 223, 247) 40%';
+        //255, 195, 180
         let colores= [];
         let i=0;
-        let e2=60;
+        let e1=60;
+        let e2=130;
+        let e3=60;
         let body = document.body;
         function generarColores(){
             for(e=0; e<=255; e++){
-                if(e%4==0){
+                if(e%2==0){
+                    e1--;
                     e2++;
+                    e3++;
                 }
-                colores.push("rgb("+255+","+e2+","+e+")"+" "+e2+"%");
+                colores.push("rgb("+225+","+e2+","+e1+")"+" "+e3+"%");
             }
             for(e=255; e>=0; e--){
-                if(e%4==0){
+                if(e%2==0){
+                    e1++;
                     e2--;
+                    e3--;
                 }
-                colores.push("rgb("+255+","+e2+","+e+")"+" "+e2+"%");
+                colores.push("rgb("+255+","+e2+","+e1+")"+" "+e3+"%");
             }
         }
         generarColores();
         function actualizarFondo(){
             setTimeout(function update() {
-                $(body).css("background-image", "linear-gradient(to bottom right, "+color1+", "+colores[i]+")");
+                $(body).css("background-image", "linear-gradient(to bottom right, "+color1+"30%, "+colores[i]+")");
                 requestAnimationFrame(actualizarFondo);
                 i+=5;
                 if(i>510){i=0;};

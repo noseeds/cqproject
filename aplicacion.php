@@ -1,63 +1,67 @@
 <?php
-include "include/header.php";
+require "headers/header.php";
 ?>
-<article id="transacciones">
-    <table>    
-        <tr class="venta">
-            <td class="col1">
-                <img src="./iconos/money-dollar-circle.svg">
-            </td>
-            <td class="col2">
-                <p><b>Venta</b></p>
-                <a href="ventas.php">productos</a>
-            </td>
-            <td class="col3">
-                <br><p><b>$1000</b></p>
-            </td>
-        </tr>
-        <tr class="egreso">
-            <td class="col1">
-                <img src="./iconos/money-dollar-circle.svg">
-            </td>
-            <td class="col2">
-                <p><b>Egreso</b></p>
-                <p>Compra mercadería</p>
-            </td>
-            <td class="col3">
-                <br><p><b>$1000 </b></p>
-            </td>
-        </tr>
+<div id="ordenador">
+    <form id="ordenador_form">
         <?php
-            include 'php/conexion.php';
-            if(!$conn){
-                die("error de conexion con la base de datos");
+        if (isset($_SESSION["ordenar_por"]) && !empty($_SESSION["ordenar_por"])) {
+            $ordenar_por = $_SESSION["ordenar_por"];
+            echo "<select name='ordenar_por' id='ordenar_por'>";
+
+            echo "<option value='fecha'";
+            if ($ordenar_por == "fecha")
+                echo "selected";
+            echo ">Fecha</option>";
+
+            echo "<option value='valor'";
+            if ($ordenar_por == "valor")
+                echo " selected";
+            echo ">Valor total</option>";
+
+            echo "<option value='tipo'";
+            if ($ordenar_por == "tipo")
+                echo " selected";
+            echo ">Ingreso/egreso</option>";
+            
+            echo "</select>";
+        } else {
+            echo "<select name='ordenar_por' id='ordenar_por'>
+            <option value='fecha'>Fecha</option>
+            <option value='valor'>Valor total</option>
+            <option value='tipo'>Ingreso/egreso</option>
+            </select>";
+        }
+        if (isset($_SESSION["orden_preferido"]) && !empty($_SESSION["orden_preferido"])) {
+            $orden_preferido = $_SESSION["orden_preferido"];
+            echo "<select name='orden_preferido' id='orden_preferido'>";
+
+            echo "<option value='ASC'";
+            if ($orden_preferido == "ASC") {
+                echo " selected";
             }
-            $instruccion = "SELECT v.ID_venta AS ID, 'venta' AS tipo, v.valor AS valor, d.fecha AS fecha, p.nombre AS descripcion FROM ventas v JOIN detalles_venta d ON v.ID_venta = d.ID_venta JOIN productos p ON d.ID_producto=p.ID_producto UNION ALL SELECT g.ID_gasto AS ID, 'egreso' AS tipo, g.valor AS valor, g.fecha AS fecha, g.motivo AS descripcion FROM gastos g ORDER BY fecha DESC";
-            $resultado = mysqli_query($conn, $instruccion);
-            while($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
-                $ID=$fila['ID'];
-                $tipo=$fila['tipo'];
-                $valor=$fila['valor'];
-                $fecha=$fila['fecha'];
-                $descripcion=$fila['descripcion'];
-                echo '<tr class="'.$tipo.'">';
-                echo '<td class="col1"><img src="./iconos/money-dollar-circle.svg"></td>';
-                echo '<td class="col2">
-                <p><b>'.ucfirst($tipo).'</b></p>
-                <a href="php/detallesventa.php&ID='.$ID.'">'.$descripcion.'</a></td>';
-                echo '<td class="col3">
-                <br><p><b>'.$fecha.'</b></p>
-            </td>';
-                echo '<td class="col4">
-                <br><p><b>$'.$valor.'</b></p>
-            </td>';
-                echo '</tr>';
-            }           
+            echo ">Ascendente</option>";
+
+            echo "<option value='DESC'";
+            if ($orden_preferido == "DESC") {
+                echo " selected";
+            }
+            echo ">Descendente</option>";
+
+            echo "</select>";
+        } else {
+            echo "<select name='orden_preferido' id='orden_preferido'>
+            <option value='ASC'>Ascendente</option>
+            <option value='DESC'>Descendente</option>
+            </select>";
+        }
         ?>
-    </table>
-</article>
+    </form>
+</div>
+</header>
+<?php include "registros/transacciones.php" ?>
 <article id="interfaces">
     <a href="gestor_productos"> Productos </a>
 </article>
 </body>
+
 </html>

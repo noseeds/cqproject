@@ -1,5 +1,5 @@
 <?php
-include "include/header.php";
+include "headers/header.php";
 ?>
     <header>
         <h2> Pets Mimos </h2>
@@ -18,12 +18,12 @@ include "include/header.php";
         </nav>
     </header>
     <div id="contenido">
-        <form action="php/cargar_imagen.php" method="POST" id="formulario_cargar_imagen" enctype="multipart/form-data">
+        <form action="backend/cargar_imagen.php" method="POST" id="formulario_cargar_imagen" enctype="multipart/form-data">
             <label for="subir_imagen" class="label_cargar_imagen">    <p>+</p>
             </label>
             <input type="file" name="imagen" id="subir_imagen" class="input_cargar_imagen">
             <div class="visualizador_imagenes">
-                <?php require "php/conexion.php";
+                <?php require "backend/conexion.php";
                 $instruccion = "SELECT ID_imagen, imagen FROM imagenes";
                 $resultado = mysqli_query($conn, $instruccion);
                 while ($row = mysqli_fetch_array($resultado, MYSQLI_BOTH)) {
@@ -37,7 +37,7 @@ include "include/header.php";
             </div>
             <label id="respuesta_servidor"></label>
         </form>
-        <form action="php/cargar_producto" method="POST">
+        <form action="backend/cargar_producto" method="POST">
             <input type="hidden" name="imagen_seleccionada" id="input_imagen_seleccionada">
             <input type="submit" id="enviar_producto" class="enviar_formulario" value="Subir producto">
         </form>

@@ -1,5 +1,5 @@
 <?php
 
-    Header('Location: ./inicio.php');
+    Header('Location: ./catalogo.php');
 
 ?>

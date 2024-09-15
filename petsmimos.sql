@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 25, 2024 at 08:00 PM
+-- Generation Time: Aug 19, 2024 at 09:04 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,19 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `clientes`
---
-
-CREATE TABLE `clientes` (
-  `ID_cliente` int(11) NOT NULL,
-  `nombre` varchar(16) NOT NULL,
-  `telefono` int(16) NOT NULL,
-  `direccion` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `detalles_venta`
 --
 
@@ -46,6 +33,17 @@ CREATE TABLE `detalles_venta` (
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `detalles_venta`
+--
+
+INSERT INTO `detalles_venta` (`ID_venta`, `ID_producto`, `fecha`) VALUES
+(1, 6, '2024-08-19'),
+(2, 7, '2024-08-19'),
+(3, 8, '2024-08-19'),
+(4, 9, '2024-08-19'),
+(5, 10, '2024-08-19');
+
 -- --------------------------------------------------------
 
 --
@@ -54,10 +52,21 @@ CREATE TABLE `detalles_venta` (
 
 CREATE TABLE `gastos` (
   `ID_gasto` int(11) NOT NULL,
-  `motivo` int(64) NOT NULL,
+  `motivo` varchar(200) NOT NULL,
   `valor` int(8) NOT NULL,
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `gastos`
+--
+
+INSERT INTO `gastos` (`ID_gasto`, `motivo`, `valor`, `fecha`) VALUES
+(1, 'asda', 1200, '2024-08-01'),
+(2, 'adasd', 1500, '2024-08-03'),
+(3, 'sfdsf', 1100, '2024-08-05'),
+(4, 'fgdgfdg', 980, '2024-08-07'),
+(5, 'dsadsad', 1340, '2024-08-09');
 
 -- --------------------------------------------------------
 
@@ -114,22 +123,24 @@ CREATE TABLE `productos` (
   `ID_producto` int(16) NOT NULL,
   `ID_imagen` int(16) NOT NULL,
   `nombre` varchar(32) NOT NULL,
+  `descripcion` varchar(200) DEFAULT NULL,
   `precio` int(8) NOT NULL,
   `stock` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `proveedores`
+-- Dumping data for table `productos`
 --
 
-CREATE TABLE `proveedores` (
-  `RUT` int(32) NOT NULL,
-  `nombre` varchar(32) NOT NULL,
-  `telefono` int(16) NOT NULL,
-  `direccion` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `productos` (`ID_producto`, `ID_imagen`, `nombre`, `descripcion`, `precio`, `stock`) VALUES
+(6, 1, 'Collar', 'Descripción del producto 1', 100, 1),
+(7, 2, 'AMOGUS', 'Descripción del producto 2', 150, 2),
+(8, 3, 'ADASDASD', 'Descripción del producto 3', 200, 3),
+(9, 4, 'CASÑDAD', 'Descripción del producto 4', 250, 4),
+(10, 5, 'asdsad', 'Descripción del producto 5', 300, 5),
+(11, 1, 'collar', 'collar para perros', 800, 5),
+(12, 2, 'arenero', 'arenero para gatos, varios colores y modelos', 123124, 45),
+(13, 1, 'collar', 'collar para perros', 800, 5);
 
 -- --------------------------------------------------------
 
@@ -149,7 +160,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`ID_usuario`, `nombre`, `contrasena`, `tipo`) VALUES
-(10, 'banananana', '17007d055e4149923bf0a9b8beec5dd3eeeebadbbe993b09bcdb9c2b86f0126c', '');
+(10, 'banananana', '17007d055e4149923bf0a9b8beec5dd3eeeebadbbe993b09bcdb9c2b86f0126c', ''),
+(11, 'asd', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '');
 
 -- --------------------------------------------------------
 
@@ -160,21 +172,25 @@ INSERT INTO `usuarios` (`ID_usuario`, `nombre`, `contrasena`, `tipo`) VALUES
 CREATE TABLE `ventas` (
   `ID_venta` int(11) NOT NULL,
   `ID_usuario` int(11) NOT NULL,
-  `ID_cliente` int(11) NOT NULL,
-  `valor` int(8) NOT NULL,
-  `tipo` varchar(8) NOT NULL,
-  `estado` varchar(16) NOT NULL
+  `valor` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ventas`
+--
+
+INSERT INTO `ventas` (`ID_venta`, `ID_usuario`, `valor`) VALUES
+(1, 10, 5000),
+(2, 10, 7500),
+(3, 10, 6200),
+(4, 10, 4500),
+(5, 10, 8800),
+(6, 10, 4312),
+(7, 10, 5432);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `clientes`
---
-ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`ID_cliente`);
 
 --
 -- Indexes for table `detalles_venta`
@@ -203,12 +219,6 @@ ALTER TABLE `productos`
   ADD KEY `ID_imagen` (`ID_imagen`);
 
 --
--- Indexes for table `proveedores`
---
-ALTER TABLE `proveedores`
-  ADD PRIMARY KEY (`RUT`);
-
---
 -- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -219,24 +229,17 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `ventas`
   ADD PRIMARY KEY (`ID_venta`),
-  ADD KEY `ID_usuario` (`ID_usuario`,`ID_cliente`),
-  ADD KEY `ID_cliente` (`ID_cliente`);
+  ADD KEY `ventas_ibfk_1` (`ID_usuario`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `clientes`
---
-ALTER TABLE `clientes`
-  MODIFY `ID_cliente` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `gastos`
 --
 ALTER TABLE `gastos`
-  MODIFY `ID_gasto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_gasto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `imagenes`
@@ -248,19 +251,19 @@ ALTER TABLE `imagenes`
 -- AUTO_INCREMENT for table `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `ID_producto` int(16) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_producto` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `ID_venta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
@@ -283,8 +286,7 @@ ALTER TABLE `productos`
 -- Constraints for table `ventas`
 --
 ALTER TABLE `ventas`
-  ADD CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`ID_cliente`) REFERENCES `clientes` (`ID_cliente`),
-  ADD CONSTRAINT `ventas_ibfk_2` FOREIGN KEY (`ID_usuario`) REFERENCES `usuarios` (`ID_usuario`);
+  ADD CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`ID_usuario`) REFERENCES `usuarios` (`ID_usuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
