@@ -1,6 +1,6 @@
-function a(){
-    $opcion_seleccionada1 = $("#ordenar_por").val();
-    $opcion_seleccionada2 = $("#orden_preferido").val();
+function a() {
+    $opcion_seleccionada1 = $('#ordenar_por').val();
+    $opcion_seleccionada2 = $('#orden_preferido').val();
     $.ajax({
         url: 'backend/actualizar_variables_session.php',
         method: 'POST',
@@ -16,19 +16,19 @@ function a(){
 };
 
 $(document).ready(function () {
-    $("#subir_imagen").on("change", function (e) {
+    $('#subir_imagen').on('change', function (e) {
         const imagen = e.target.files[0];
-        $("#formulario_cargar_imagen").submit();
+        $('#formulario_cargar_imagen').submit();
     });
-    $(".imagen_seleccionable").on("click", function () {
-        $(".imagen_seleccionable").removeClass("seleccionado");
-        $(this).addClass("seleccionado");
-        const imagen = $(this).data("value");
-        $("#input_imagen_seleccionada").val(imagen);
+    $('.imagen_seleccionable').on('click', function () {
+        $('.imagen_seleccionable').removeClass('seleccionado');
+        $(this).addClass('seleccionado');
+        const imagen = $(this).data('imagen-id');
+        $('#input_imagen_seleccionada').val(imagen);
     });
-    $("#ordenar_por").on("change", function (){
-        $opcion_seleccionada1 = $("#ordenar_por").val();
-        $opcion_seleccionada2 = $("#orden_preferido").val();
+    $('#ordenar_por').on('change', function () {
+        $opcion_seleccionada1 = $('#ordenar_por').val();
+        $opcion_seleccionada2 = $('#orden_preferido').val();
         $.ajax({
             url: 'backend/actualizar_variables_session.php',
             method: 'POST',
@@ -42,9 +42,9 @@ $(document).ready(function () {
             }
         });
     });
-    $("#orden_preferido").on("change", function (){
-        $opcion_seleccionada1 = $("#ordenar_por").val();
-        $opcion_seleccionada2 = $("#orden_preferido").val();
+    $('#orden_preferido').on('change', function () {
+        $opcion_seleccionada1 = $('#ordenar_por').val();
+        $opcion_seleccionada2 = $('#orden_preferido').val();
         $.ajax({
             url: 'backend/actualizar_variables_session.php',
             method: 'POST',
@@ -57,5 +57,15 @@ $(document).ready(function () {
                 }
             }
         });
+    });
+    $('#banner_ingresos').on('click', function () {
+        let url = new URL(window.location.href);
+        url.searchParams.set('transacciones_a_mostrar', 'ingresos');
+        window.location.href = url;
+    });
+    $('#banner_egresos').on('click', function () {
+        let url = new URL(window.location.href);
+        url.searchParams.set('transacciones_a_mostrar', 'egresos');
+        window.location.href = url;
     });
 });

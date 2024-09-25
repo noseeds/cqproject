@@ -16,4 +16,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } else {
     echo json_encode(['estado' => 'error', 'mensaje' => 'Método de solicitud inválido (debe ser POST)']);
 }
-?>

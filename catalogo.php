@@ -1,7 +1,19 @@
 <?php include "headers/header_catalogo.php"; ?>
+<article id="slider_banner">
+    <div class="slider_container">
+        <div class="slider">
+            <img src="img/mochila para gatos.jpg" alt="" id="objeto1">
+            <img src="img/mochila para gatos.jpg" alt="" id="objeto2">
+        </div>
+        <div class="slider_nav">
+            <a href="#objeto1" class="scroll"></a>
+            <a href="#objeto2" class="scroll"></a>
+        </div>
+    </div>
+</article>
 <article id="slider_catalogo">
-    <div class="productos">
-        <div class="slider_productos">
+    <div class="slider_container">
+        <div class="slider">
             <img src="img/mochila para gatos.jpg" alt="" id="objeto1">
             <img src="img/mochila para gatos.jpg" alt="" id="objeto2">
             <img src="img/mochila para gatos.jpg" alt="" id="objeto3">
@@ -18,7 +30,7 @@
             <img src="img/mochila para gatos.jpg" alt="" id="objeto14">
             <img src="img/mochila para gatos.jpg" alt="" id="objeto15">
         </div>
-        <div class="slider_productos_nav">
+        <div class="slider_nav">
             <a href="#objeto1" class="scroll"></a>
             <a href="#objeto2" class="scroll"></a>
             <a href="#objeto3" class="scroll"></a>
@@ -49,165 +61,6 @@
                 width="100%"></iframe>
         </div>
         <img id="iconoMapa" class="icono, desplegar" src="iconos/map-pin-2.svg" alt="" display="none">
-</article>
-<article id="sobre_nosotros">
-
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
-</article>
-<article>
-    <h3>Sobre nosotros</h2>
 </article>
 
 <footer>Pets Mimos © 2024</footer>

@@ -1,19 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400..800&display=swap');
 
 body {
     background-color: rgb(240, 233, 227);
+    background-image: url('/img/patron2.png');
+    background-size: 30%;
+    background-repeat: repeat;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     width: 100%;
+    max-width: 100vw;
     top: 0;
     left: 0;
     padding: 0;
     margin: 7rem 0 0 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 206, 96, 1) rgba(165, 206, 0, 1);
+}
+
+::-webkit-scrollbar {
+    width: 0.5rem;
 }
 
 header {
-    background: rgb(255, 122, 0);
-    background: linear-gradient(to right, rgb(255, 168, 19) 35%, rgb(255, 122, 0) 45%);
+    background: rgba(255, 122, 0, 1);
+    background: linear-gradient(to right, rgba(255, 168, 19, 1) 35%, rgba(255, 122, 0, 1) 45%);
     color: #000000;
     z-index: 3;
     position: fixed;
@@ -26,7 +38,6 @@ header {
     height: 6rem;
     top: 0;
     left: 0;
-    border: solid rgb(137, 50, 0) 0.1rem;
 }
 
 nav {
@@ -40,57 +51,123 @@ nav {
     width: 100%;
 }
 
+article {
+    background-color: rgba(255, 255, 255, 0);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 1) 90%, rgba(255, 255, 255, 0) 100%);
+    box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.2);
+}
+
 select {
     background-color: rgba(255, 255, 255, 0.45);
-    font-size: 1rem;
+    width: 90%;
     border: 0.1rem solid rgba(0, 0, 0, 0.45);
+    font-size: 1rem;
 }
 
 option {
     font-size: 1rem;
     background-color: rgba(255, 252, 252, 0.48);
+    color: #000000;
+}
 
+h1 {
+    margin: 2rem auto;
+    line-height: 0.2rem;
+    font-family: "Baloo Thambi 2", system-ui;
+    font-weight: 800;
+    text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+    margin: 2rem auto;
+    font-family: "Baloo Thambi 2", system-ui;
+    font-weight: 700;
+    text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
+}
+
+hr {
+    border: 0.2rem solid rgba(235, 235, 235, 1);
+    width: 80%;
+    margin: 20px auto;
+}
+
+/* MENU PRINCIPAL */
+
+.menu_div {
+    padding: 0 1rem;
+}
+
+.menu_div img {
+    width: 4rem;
 }
 
 /* REGISTROS */
 
-table {
+.banner_simple {
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner_simple img {
+    width: 10rem;
+}
+
+#transacciones table {
     width: 100%;
     table-layout: fixed;
 }
 
-th {
+#transacciones th {
     height: 3rem;
 }
 
-tr {
+#transacciones tr {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border: solid 0.1rem rgba(145, 145, 145, 0.8);
+    /*border: solid 0.1rem rgba(145, 145, 145, 0.8);*/
     border-radius: 2rem;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 2rem;
+    margin: 0.1rem 0;
 }
 
-td {
-    min-width: 2rem;
-    max-height: 3rem;
-    min-height: 2rem;
-    max-height: 3rem;
-    width: 100%;
-    overflow: hidden;
-    font-size: 1rem;
-    line-height: 0.2rem;
-    font-family: "Lato", system-ui;
-    font-weight: 400;
-    font-style: normal;
-}
-
-td img {
+.venta img,
+.egreso img {
     max-width: 3rem;
 }
 
-p {
-    margin: 0.75rem 0 1rem 0;
+.venta td,
+.egreso td {
+    min-width: 2rem;
+    max-height: 3rem;
+    color: white;
+    font-size: 0.8rem;
+    font-family: "Baloo Thambi 2", system-ui;
+    font-weight: 800;
+    display: flex;
+    justify-content: start;
+}
+
+.venta a,
+.egreso a {
+    margin: 0 0 0 0.5rem;
+    display: flex;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.venta label,
+.egreso label {
+    margin: 0 0 0 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.7rem;
+
 }
 
 .venta .col1,
@@ -100,35 +177,35 @@ p {
 
 .venta .col2,
 .egreso .col2 {
-    width: 45%;
-    padding: 0 0 0 1rem;
+    width: 30%;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: column;
     justify-content: flex-start;
-    align-content: left;
+    align-content: start;
     text-align: initial;
+    overflow: visible;
 }
 
 .venta .col3,
 .egreso .col3 {
-    width: 20%;
-    font-size: 0.7rem;
+    width: 30%;
+    font-size: 1rem;
     text-align: center;
 }
 
 .venta .col4,
 .egreso .col4 {
-    width: 20%;
+    width: 25%;
     text-align: center;
 }
 
 .venta {
-    background-image: linear-gradient(to left, rgb(245, 211, 179) 0%, rgb(255, 233, 194) 40%, rgba(210, 255, 96, 1) 95%, rgba(210, 255, 96, 1) 98%);
+    background-image: linear-gradient(125deg, rgba(20, 212, 142, 1) 0%, rgba(20, 212, 142, 1) 30%, rgba(28, 242, 64, 1) 100%);
 }
 
 .egreso {
-    background-image: linear-gradient(to left, rgb(245, 211, 179) 5%, rgb(255, 233, 194) 40%, rgba(255, 96, 96, 1) 95%, rgba(255, 96, 96, 1) 98%);
+    background-image: linear-gradient(125deg, rgba(186, 0, 0, 1) 0%, rgba(186, 0, 0, 1) 50%, rgba(244, 144, 4, 1) 100%);
 }
 
 /*
@@ -149,80 +226,110 @@ p {
 }
 
 #ordenador {
-    background-color: white;
     width: 100%;
 }
 
-#ordenador_form{
+#ordenador_form {
     width: 100%;
+    height: 2rem;
     border-radius: 0;
     box-shadow: none;
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: start;
     margin: 0 0 0 0;
-    padding: 0 0.6rem 0 0.6rem;
-    color: black;
+    padding: 0 1rem 0 1rem;
+    background-color: rgba(209, 148, 148, 0);
+    background-image: linear-gradient(to bottom, rgba(97, 0, 157, 0.275) 20%, rgba(255, 255, 255, 0) 100%);
     font-family: "Lato", sans-serif;
 }
 
-#ordenador_form select{
-    border-radius: 2.5rem;
+#ordenador_form select {
+    background-color: rgba(235, 137, 0, 1);
+    border: none;
+    margin: 0 0.1rem;
 }
 
-/* MEDIA
-  QUERIES */
-
-  @media (max-width: 48rem) {
-    *{
-      max-width: 100%;
-    }
-    body {
-      padding: 0;
-    }
-    article{
-      max-width:90%;
-      margin: 1rem 5%;
-    }
-    .nav_item{
-      font-size: x-small;
-    }
-    .nav_icon{
-      width:100%;
-      height: 2rem;
-    }
-    .slider_productos img{
-      margin: 0 0 0 25%;
-    }
-  }
-
-  /* FORMULARIO */
+/* FORMULARIO */
 
 form {
     background-color: rgb(241, 241, 241);
     border-radius: 1.5rem;
-    box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.2);
     display: flex;
-    padding: 0.6rem;
-    color: rgb(71, 120, 255);
+    padding: 2rem 0.6rem;
+    color: rgba(0, 0, 0, 1);
+    font-family: "Baloo Thambi 2", system-ui;
+    font-weight: 800;
     position: relative;
     user-select: none;
-    font-family: "Lato", sans-serif;
 }
 
-.enviar_formulario {
-    font-size: large;
-    padding: 0.6rem;
-    border-radius: 0.2rem;
-    background-color: rgb(228, 255, 186);
-    box-shadow: 0 0 0.6rem rgb(124, 168, 78);
-    font-family: "Lato", sans-serif;
-    font-weight: 600;
-    color: rgb(39, 62, 15);
-    cursor: pointer;
+form label {
+    margin: 0 0 0 1rem;
 }
 
-#contenido {
-    position: absolute;
-    top: 10rem;
+#formulario_imagen {
+    display: flex;
+    justify-content: center;
+}
+
+#formulario_venta {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+#formulario_producto {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+.formulario_producto_input {
+    width: 90%;
+    height: 1.25rem;
+    border-radius: 0.3rem;
+    padding-left: 0.5rem;
+}
+
+.formulario_producto_input[type="number"] {
+    width: 4rem;
+}
+
+.opciones_interfaz {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0 0 0;
+}
+
+#formulario_producto textarea {
+    width: 90%;
+    padding-left: 0.5rem;
+    resize: none;
+}
+
+#boton_cancelar {
+    background-color: rgb(255, 103, 103);
+}
+
+#boton_guardar {
+    background-color: rgb(179, 255, 103);
+}
+
+#boton_cancelar, #boton_guardar{
+    height: 2rem;
+    font-family: "Baloo Thali 2", system-ui;
+    font-weight: 700;
+    padding: 0.2rem 2rem;
+    border-radius: 1rem;
 }
 
 /* IMAGENES */
@@ -236,9 +343,11 @@ form {
 }
 
 .label_cargar_imagen {
-    background-color: rgb(208, 255, 132);
-    box-shadow: 0 0 0.6rem rgb(124, 168, 78);
-    border-radius: 0.5rem;
+    background-color: rgba(208, 255, 132, 1);
+    background-image: linear-gradient(to bottom, rgb(199, 255, 109), rgb(134, 255, 132));
+    box-shadow: -0.15rem 0 0.6rem rgb(124, 168, 78);
+    border-bottom-left-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
     min-width: 6rem;
     min-height: 8rem;
     text-align: center;
@@ -260,19 +369,21 @@ form {
     height: 10rem;
     padding: 1rem;
     box-shadow: 0 0 0.6rem rgb(124, 168, 78);
-    border-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
     z-index: 1;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
     overflow-x: auto;
-    max-width: 15rem;
-    ;
 }
 
 .visualizador_imagenes img {
     width: 4rem;
     height: 4rem;
+    width: 32%;
+    max-width: 33%;
 }
 
 .imagen_seleccionable {
@@ -280,8 +391,8 @@ form {
 }
 
 .seleccionado {
-    border: solid rgb(0, 0, 0) 0.2rem;
-    box-shadow: 0 0 0.6rem rgb(0, 0, 0);
+    border: solid rgba(0, 0, 0, 1) 0.2rem;
+    box-shadow: 0 0 0.6rem rgba(0, 0, 0, 1);
     border-radius: 0.5rem;
 }
 
@@ -303,4 +414,84 @@ form {
     width: 100%;
     background-color: rgba(50, 50, 50, 0.1);
     height: 8rem;
+}
+/* ALERTAS &
+NOTIFICACIONES */
+
+.advertencia {
+    margin: 0 auto;
+    color: rgb(255, 0, 0, 1);
+}
+
+.notificacion {
+    margin: 0 auto;
+    color: rgb(79, 135, 0)
+}
+
+/* MEDIA
+  QUERIES */
+
+@media (max-width: 48rem) {
+    * {
+        max-width: 100%;
+    }
+
+    body {
+        padding: 0;
+        background-size: 80%;
+        background-repeat: repeat;
+    }
+
+    article {
+        border-radius: 1.5rem;
+        max-width: 100%;
+        margin: 1rem 0;
+        padding: 1rem;
+    }
+
+    h1 {
+        margin: 1rem auto;
+    }
+
+    h2 {
+        margin: 1rem 0;
+    }
+
+    .nav_item {
+        font-size: x-small;
+    }
+
+    .nav_icon {
+        height: 2rem;
+    }
+
+    .slider_productos img {
+        margin: 0 0 0 25%;
+    }
+
+    .visualizador_imagenes {
+        max-width: 15rem;
+    }
+
+    .visualizador_imagenes img {
+        min-height: 3rem;
+        min-width: 3.5rem;
+    }
+}
+
+@media (min-width: 48rem) {
+    article {
+        background-color: rgba(255, 255, 255, 0);
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 1) 80%, rgba(255, 255, 255, 0) 100%);
+        padding: 1rem 20%;
+    }
+
+    .banner_simple img {
+        width: 13rem;
+    }
+
+    .visualizador_imagenes img {
+        min-height: 3rem;
+        max-width: 5rem;
+    }
 }

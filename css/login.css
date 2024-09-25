@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400..800&display=swap');
 /* LOGIN */
 
 .ingreso_o_registro {
@@ -31,8 +32,9 @@
     width: 300px;
     padding: 20px;
     background-color: #f1f1f1;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 0.1rem rgba(0, 0, 0, 0.2);
+    border-radius: 1.5rem;
+
 }
 #registro{
     display: none;
@@ -42,20 +44,26 @@
     padding: 20px;
     background-color: #f1f1f1;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0.1rem rgba(0, 0, 0, 0.1);
+    border-radius: 1.5rem;
+
 }
 form{
     display: flex;
     flex-direction: column;
     text-align: left;
+    font-family: "Baloo Thali 2", system-ui;
+    font-weight: 800;
 }
 
 #login input, #registro input{
+    color: rgb(62, 62, 62);
+    font-family: "Baloo Thali 2", system-ui;
+    font-weight: 700;
     margin: 10px 0;
     padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 3px;
+    border-radius: 0.3rem;
 }
 
 #login button, #registro button{
@@ -69,7 +77,7 @@ form{
     cursor: pointer;
 }
 
-/* mensajes de alerta */
+/* mensajes de alerta. No usado*/
 #alertas{
     display:none;
     justify-content: center;
@@ -115,4 +123,8 @@ p{
 .icono {
     width: 50px;
     position: static;
+}
+.respuesta_backend{
+    font-family: "Baloo Thali 2", system-ui;
+    font-weight: 600;
 }

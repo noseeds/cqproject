@@ -18,13 +18,16 @@ img, h3, footer{
 }
 
 body {
+  background-color: #f0f0f0;
+  background-image: url('/img/patron2.png');
+  background-size: 30%;
+  background-repeat: repeat;
   display: flex;
   flex-direction: column;
   width: 100%;
   flex-wrap: wrap;
   font-family: Teachers, sans-serif;
   font-weight: 700;
-  background-color: #f0f0f0;
   margin: 6rem 0 0 0;
   padding: 0 20%;
 }
@@ -76,6 +79,13 @@ nav {
   opacity: 90%;
 }
 
+#login{
+  height: 100%;
+}
+#login img{
+  height: 100%;
+}
+
 article {
   display: flex;
   justify-content: center;
@@ -95,7 +105,8 @@ aside {
 
 footer {
   background: rgb(255, 122, 0);
-  background: linear-gradient(to right,  rgb(255, 168, 19) 22%, rgb(255, 122, 0) 45%);
+  background-color: rgb(235, 223, 215);
+  /* background: linear-gradient(to right,  rgb(255, 168, 19) 22%, rgb(255, 122, 0) 45%); */
   color: #000000;
   text-align: center;
   padding: 0.7rem; 
@@ -104,7 +115,7 @@ footer {
   left: 0;
   width: 100%;
 }
-.productos {
+.slider_container {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -113,7 +124,7 @@ footer {
   padding: 0;
   margin: 0 auto;
 }
-.slider_productos {
+.slider {
   display: flex;
   position: relative;
   overflow-x: auto;
@@ -126,10 +137,10 @@ footer {
   box-shadow: 0 1rem 0 -1rem rgba(0,0,0,1);
   z-index: 0;
 }
-.slider_productos::-webkit-scrollbar {
+.slider::-webkit-scrollbar {
   display: none;
 }
-.slider_productos img{
+.slider img{
   flex-grow: 0;
   flex-shrink: 0;
   flex-basis: auto;
@@ -139,7 +150,7 @@ footer {
   scroll-snap-align: center;
   object-fit: cover;
 }
-.slider_productos_nav{
+.slider_nav{
   display: flex;
   justify-content: center;
   position: absolute;
@@ -151,7 +162,7 @@ footer {
   width: 100%;
   overflow: none;
 }
-.slider_productos_nav a{
+.slider_nav a{
   min-width: 0.2rem;
   min-height: 0.2rem;
   width: 0.5rem;
@@ -163,7 +174,7 @@ footer {
   transition: opacity ease 250ms;
 }
 
-.slider_productos_nav a:hover{
+.slider_nav a:hover{
   opacity: 1;
   transition: opacity ease 250ms;
 }
@@ -193,62 +204,7 @@ footer {
   .nav_icon{
     max-height: 5vh;
   }
-  .slider_productos img{
+  .slider img{
     margin: 0 0 0 25%;
   }
-  #login{
-    height: 5vh;
-    width: 5vh;
-  }
 }
-
-
-/*
-
-.contenedor{
-  padding: 2rem;
-}
-.productos{
-  position: relative;
-   max-width: 48rem;
-   margin: 0 auto;
-   overflow: hidden;
-}
-.slider_productos{
-  display: flex;
-  /*aspect-ratio: 16/9;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  box-shadow: 0 2rem 4rem -1rem rgba(0,0,0,1);
-  z-index: 0;
-}
-.slider_productos img{
-  flex-grow: 1;
-  flex-shrink: 0;
-  flex-basis: 100%;
-  scroll-snap-align: start;
-  object-fit: cover;
-}
-.slider_productos_nav{
-  display: flex;
-  column-gap: 1rem;
-  position: absolute;
-  bottom: 3rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
-}
-.slider_productos_nav a{
-  width: 1rem;
-  height: 1rem;
-  border-radius: 15%;
-  background-color: rgba(175,250,125,1);
-  opacity: 0.6;
-  transition: opacity ease 250ms;
-}
-.slider_productos_nav a:hover{
-  opacity: 1;
-  transition: opacity ease 250ms;
-}
-*/

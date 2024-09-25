@@ -4,7 +4,7 @@ function obtenerVariableGET(nombre, url = window.location.href) {
     // crea un objeto que contiene cada variable get por separado
     const urlParams = new URLSearchParams(variablesGET);
     // se agarra el valor de la variable especifica
-    const valor = urlParams.get("formularioActual");
+    const valor = urlParams.get("formulario_actual");
     return(valor);
 }
 
@@ -22,7 +22,7 @@ $(document).ready(function () {
         }
     });
     //mostrar el formulario correcto y ocultar el otro
-    if (obtenerVariableGET("formularioActual") === "registro") {
+    if (obtenerVariableGET("formulario_actual") === "registro") {
         loginForm.css("display", "none");
         registroForm.css("display", "flex");
     } else {
