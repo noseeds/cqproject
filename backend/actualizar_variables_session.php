@@ -1,6 +1,6 @@
 <?php
+require "../backend/conexion.php";
 session_start();
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['ordenar_por'])) {
         $ordenar_por = $_POST['ordenar_por'];
@@ -10,9 +10,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         echo json_encode(['estado' => 'exito', 'ordenar_por' => $_SESSION['ordenar_por'], 'orden_preferido' => $_SESSION['orden_preferido']]);
         die();
-    } else {
-        echo json_encode(['estado' => 'error', 'mensaje' => 'Ninguna opcion seleccionada']);
+    }
+    if (isset($_POST['producto_para_agregar']) && isset($_POST['cantidad'])) {
+        $ID_producto = $_POST['producto_para_agregar'];
+        $cantidad = $_POST['cantidad'];
+
+        $instruccion = "SELECT * FROM productos WHERE ID_producto = '$ID_producto'";
+        $resultado = mysqli_query($conn, $instruccion);
+        $fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC);
+
+        $producto = ['nombre' => $fila['nombre'], 'cantidad' => $cantidad, 'precio' => $fila['precio']];
+
+        array_push($_SESSION['productos_seleccionados'], $producto); 
+
+        echo json_encode(['estado' => 'exito', 'producto' => $producto]);
+        Header ('Location: ../interfaces/ingreso_ventas.php&a=sddas');
+        die();
     }
 } else {
     echo json_encode(['estado' => 'error', 'mensaje' => 'Método de solicitud inválido (debe ser POST)']);
+    die();
 }

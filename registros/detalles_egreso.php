@@ -1,4 +1,6 @@
-<?php
+<h1> Detalles de egreso </h1>
+<article>
+    <?php
 include '../headers/header_interfaces.php';
 include '../backend/conexion.php';
 if (!$conn) {
@@ -16,7 +18,7 @@ $valor = $fila['valor'];
 $fecha = $fila['fecha'];
 echo '<p> ID: ' . $ID . '  Motivo: ' . $motivo . '  Valor: ' . $valor . '  Fecha: ' . $fecha . '</p>';
 ?>
-
+</article>
 </body>
 
 </html>

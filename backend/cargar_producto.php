@@ -17,7 +17,7 @@
         
         $instruccion = "INSERT INTO productos (ID_imagen, nombre, descripcion, precio, stock) VALUES ('$imagen', '$nombre', '$descripcion', '$precio', '$stock')";
         if (mysqli_query($conn, $instruccion) === TRUE) {
-            Header('Location: ../interfaces/ingreso_productos.php?notificacion=' . urlencode('Producto registrado exitosamente'));
+            Header('Location: ../interfaces/ingreso_productos.php?notificacion=' . urlencode('Producto registrado exitosamente') . '#respuesta_servidor');
             die();
         } else {
             echo 'Error en: ' . $instruccion . '<br>' . mysqli_error($conn);

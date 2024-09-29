@@ -11,6 +11,9 @@ require 'headers/header.php';
         <a href='interfaces/ingreso_productos.php'>
             <img src='./iconos/add-circle.svg' alt=''>
         </a>
+        <a href="interfaces/ingreso_ventas.php">
+        <img src='./iconos/add-circle.svg' alt=''>
+        </a>
     </div>
     <hr>
 </article>

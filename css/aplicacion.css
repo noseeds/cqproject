@@ -59,7 +59,8 @@ article {
 
 select {
     background-color: rgba(255, 255, 255, 0.45);
-    width: 90%;
+    width: 30%;
+    max-width: 40%;
     border: 0.1rem solid rgba(0, 0, 0, 0.45);
     font-size: 1rem;
 }
@@ -102,6 +103,17 @@ hr {
 }
 
 /* REGISTROS */
+
+.tabla_registros{
+    border-collapse: collapse;
+    border: none;
+}
+
+.tabla_registros th, .tabla_registros td {
+    border: 0.1rem solid rgb(194, 194, 194);
+}
+
+/* TRANSACCIONES */
 
 .banner_simple {
     width: 100%;
@@ -248,6 +260,8 @@ hr {
 #ordenador_form select {
     background-color: rgba(235, 137, 0, 1);
     border: none;
+    min-width: 4rem;
+    max-width: 7rem;
     margin: 0 0.1rem;
 }
 
