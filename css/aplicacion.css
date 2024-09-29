@@ -104,12 +104,13 @@ hr {
 
 /* REGISTROS */
 
-.tabla_registros{
+.tabla_registros {
     border-collapse: collapse;
     border: none;
 }
 
-.tabla_registros th, .tabla_registros td {
+.tabla_registros th,
+.tabla_registros td {
     border: 0.1rem solid rgb(194, 194, 194);
 }
 
@@ -265,7 +266,7 @@ hr {
     margin: 0 0.1rem;
 }
 
-/* FORMULARIO */
+/* FORMULARIOS */
 
 form {
     background-color: rgb(241, 241, 241);
@@ -338,12 +339,23 @@ form label {
     background-color: rgb(179, 255, 103);
 }
 
-#boton_cancelar, #boton_guardar{
+#boton_cancelar,
+#boton_guardar {
     height: 2rem;
     font-family: "Baloo Thali 2", system-ui;
     font-weight: 700;
     padding: 0.2rem 2rem;
     border-radius: 1rem;
+}
+
+#formulario_agregar_producto {
+    margin: 1rem 0 0 0;
+    padding: 1rem;
+
+}
+
+#formulario_venta {
+    padding: 0;
 }
 
 /* IMAGENES */
@@ -429,6 +441,7 @@ form label {
     background-color: rgba(50, 50, 50, 0.1);
     height: 8rem;
 }
+
 /* ALERTAS &
 NOTIFICACIONES */
 

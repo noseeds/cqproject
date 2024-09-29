@@ -14,17 +14,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['producto_para_agregar']) && isset($_POST['cantidad'])) {
         $ID_producto = $_POST['producto_para_agregar'];
         $cantidad = $_POST['cantidad'];
+        echo $ID_producto . ' ' . $cantidad;
 
         $instruccion = "SELECT * FROM productos WHERE ID_producto = '$ID_producto'";
+        echo $instruccion;
         $resultado = mysqli_query($conn, $instruccion);
-        $fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC);
 
-        $producto = ['nombre' => $fila['nombre'], 'cantidad' => $cantidad, 'precio' => $fila['precio']];
+        mysqli_error($conn);
 
-        array_push($_SESSION['productos_seleccionados'], $producto); 
+        $producto = [];
+        if ($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
+            echo $fila['nombre'];
+            $producto['nombre'] = $fila['nombre'];
+            $producto['cantidad'] = $cantidad;
+            $producto['precio'] = $fila['precio'];
+        }
+        mysqli_free_result($resultado);
+
+        $_SESSION['productos_seleccionados'][] = $producto;
 
         echo json_encode(['estado' => 'exito', 'producto' => $producto]);
-        Header ('Location: ../interfaces/ingreso_ventas.php&a=sddas');
+        Header('Location: ../interfaces/ingreso_ventas.php?&a=sddas');
         die();
     }
 } else {

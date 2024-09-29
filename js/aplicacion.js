@@ -69,8 +69,7 @@ $(document).ready(function () {
         window.location.href = url;
     });
 
-    $('#formulario_agregar_producto').on('submit', function (event) {
-        event.preventDefault();
+/*     $('#formulario_agregar_producto').on('submit', function (event) {
         $opcion_seleccionada = $('#selector_productos').val();
         $cantidad = $('#cantidad_productos').val();
         $.ajax({
@@ -93,5 +92,5 @@ $(document).ready(function () {
                 }
             }
         });
-    });
+    }); */
 });
