@@ -5,7 +5,7 @@ require '../backend/conexion.php';
 <h1> Registro de Ventas</h1>
 <article>
     <h2> Artículos:</h2>
-    <table>
+    <table class='tabla_registros'>
         <thead>
             <tr>
                 <th>Producto</th>
@@ -25,7 +25,7 @@ require '../backend/conexion.php';
                                 <td>' . $producto['precio'] . '</td>
                                 <td>' . ($producto['cantidad'] * $producto['precio']) . '</td>
                               </tr>';
-                    $total += $producto['precio'];
+                    $total += $producto['cantidad'] * $producto['precio'];
                 }
             }
             ?>
@@ -35,8 +35,7 @@ require '../backend/conexion.php';
             </tr>
         </tbody>
     </table>
-    <form id='formulario_agregar_producto' action='../backend/actualizar_variables_session.php'
-        method='POST'>
+    <form id='formulario_agregar_producto' action='../backend/actualizar_variables_session.php' method='POST'>
         <?php
         $instruccion = "SELECT * FROM productos WHERE stock > '0'";
         $resultado = mysqli_query($conn, $instruccion);
@@ -53,9 +52,13 @@ require '../backend/conexion.php';
         }
         echo '</select>';
         ?>
-        <input type="int" name="cantidad">
-        <input type='submit'>
+        <input type='number' min='1' value='1' name='cantidad'>
+        <input type='submit' value='A&ntilde;adir'>
     </form>
     <form id='formulario_venta' action='../backend/cargar_venta.php' method='POST'></form>
+    <div class='opciones_interfaz'>
+        <button id='boton_cancelar'> Cancelar</button>
+        <button id='boton_guardar'> Guardar</button>
+    </div>
     </form>
 </article>

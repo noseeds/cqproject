@@ -11,7 +11,7 @@ require "../headers/header_interfaces.php";
     </div>
     <table>
         <?php
-        include '../backend/conexion.php';
+        require '../backend/conexion.php';
         if (!$conn) {
             die('error de conexion con la base de datos');
         }

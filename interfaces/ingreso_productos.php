@@ -1,8 +1,8 @@
 <?php
 require '../headers/header_interfaces.php';
 ?>
-<h1> Registrar un Producto</h1>
-<article>
+<h1> Registrar un Art&iacute;culo</h1>
+<article id='articulo_productos'>
     <form id='formulario_cargar_imagen' action='../backend/cargar_imagen.php' method='POST' enctype='multipart/form-data'>
         <label for='subir_imagen' class='label_cargar_imagen'>
             <p>+</p>
@@ -49,6 +49,5 @@ require '../headers/header_interfaces.php';
             echo '</label>';
 
         ?>
-        <label id='respuesta_servidor'> </label>
     </form>
 </article>

@@ -1,5 +1,6 @@
 <?php
 require 'headers/header.php';
+include 'backend/limpiar_session.php';
 ?>
 </header>
 
@@ -12,6 +13,9 @@ require 'headers/header.php';
             <img src='./iconos/add-circle.svg' alt=''>
         </a>
         <a href="interfaces/ingreso_ventas.php">
+        <img src='./iconos/add-circle.svg' alt=''>
+        </a>
+        <a href="interfaces/ingreso_gastos.php">
         <img src='./iconos/add-circle.svg' alt=''>
         </a>
     </div>

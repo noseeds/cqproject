@@ -8,6 +8,9 @@
     }
 
     $ID = $_GET['ID'];
+    $usuario = '';
+    $total = 0;
+
     $instruccion = 'SELECT v.ID_venta, v.fecha, u.nombre AS usuario, p.nombre AS producto, dv.cantidad, p.precio, (dv.cantidad * p.precio) AS total_producto
     FROM ventas v
     JOIN usuarios u ON v.ID_usuario = u.ID_usuario
@@ -19,10 +22,8 @@
 
     $resultado = mysqli_query($conn, $instruccion);
 
-    $total = 0;
-    $usuario = '';
     $fecha = date('d-m-y');
-    $detalle_producto[] = array();
+    $detalle_producto;
     while ($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
         $ID_venta = $fila['ID_venta'];
         $producto = $fila['producto'];

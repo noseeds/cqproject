@@ -69,6 +69,10 @@ $(document).ready(function () {
         window.location.href = url;
     });
 
+    $('#boton_cancelar').on('click', function () {
+        window.location.href = '../aplicacion.php';
+    });
+
 /*     $('#formulario_agregar_producto').on('submit', function (event) {
         $opcion_seleccionada = $('#selector_productos').val();
         $cantidad = $('#cantidad_productos').val();
