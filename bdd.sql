@@ -78,36 +78,11 @@ CREATE TABLE codigos_acceso (
 /* Ingreso de registros a modo de prueba  */
 
 INSERT INTO `usuarios` (`nombre`, `contrasena`, `tipo`) VALUES 
-('asd', '12345678', 'admin'),
-('user1', 'hashedpassword2', 'user'),
-('user2', 'hashedpassword3', 'user');
+('asd', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 'admin');
 
-INSERT INTO `imagenes` (`imagen`) VALUES 
-(LOAD_FILE('/path/to/image1.jpg')),
-(LOAD_FILE('/path/to/image2.jpg')),
-(LOAD_FILE('/path/to/image3.jpg'));
-
-INSERT INTO `productos` (`ID_imagen`, `nombre`, `descripcion`, `precio`, `stock`) VALUES 
-(1, 'Dog Food', 'High-quality dog food', 50, 100),
-(2, 'Cat Toy', 'Interactive cat toy', 20, 200),
-(3, 'Bird Cage', 'Spacious cage for birds', 150, 50);
 
 INSERT INTO `gastos` (`ID_usuario`, `motivo`, `valor`, `fecha`) VALUES 
 (1, 'Compra de insumos', 100, '2024-09-01'),
 (2, 'Mantenimiento', 200, '2024-09-02'),
 (3, 'Publicidad', 300, '2024-09-03');
 
-INSERT INTO `ventas` (`ID_venta`, `ID_usuario`, `fecha`) VALUES 
-(1, 1, '2024-09-04'),
-(2, 2, '2024-09-05'),
-(3, 3, '2024-09-06');
-
-INSERT INTO `detalles_venta` (`ID_venta`, `ID_producto`, `cantidad`) VALUES 
-(1, 1, 2),
-(2, 2, 1),
-(3, 3, 3);
-
-INSERT INTO `codigos_acceso` (`codigo`, `fecha_expiracion`) VALUES 
-('ABC123', '2024-12-31'),
-('XYZ789', '2025-01-15'),
-('LMN456', '2024-11-30');

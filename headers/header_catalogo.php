@@ -7,7 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pets Mimos</title>
     <link rel="stylesheet" href="css/catalogo.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="application/javascript" src="../js/catalogo.js"></script>
 </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H42JGFE1GH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-H42JGFE1GH');
+</script>
 
 <body>
     <header>

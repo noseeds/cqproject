@@ -1,8 +1,5 @@
 <?php
     require './conexion.php';
-    if(!$conn){
-        die();
-    }
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['imagen'])) {
         $imagen = $_FILES['imagen']['tmp_name'];
         $dataImagen = addslashes(file_get_contents($imagen));

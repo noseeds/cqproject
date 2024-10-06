@@ -20,16 +20,16 @@ img, h3, footer{
 body {
   background-color: #f0f0f0;
   background-image: url('/img/patron2.png');
-  background-size: 30%;
+  background-size: 30vw;
   background-repeat: repeat;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100vw;
   flex-wrap: wrap;
   font-family: "Teachers", sans-serif;
   font-weight: 700;
   margin: 6rem 0 0 0;
-  padding: 0 20%;
+  padding: 0 20vw;
 }
 
 
@@ -90,13 +90,17 @@ article {
   background-color: rgba(255, 255, 255, 0);
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 1) 90%, rgba(255, 255, 255, 0) 100%);
   box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.2);
+
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 1.4rem; 
   margin: 0.7rem; 
   border-radius: 2rem;
 
+  overflow-x: hidden;
 }
 
 aside {
@@ -117,6 +121,9 @@ footer {
   left: 0;
   width: 100%;
 }
+
+/* CLASES */
+
 .slider_container {
   position: relative;
   display: flex;
@@ -124,45 +131,52 @@ footer {
   justify-content: center;
   align-items: center;
   padding: 0;
-  margin: 0 auto;
-}
-.slider {
-  display: flex;
-  position: relative;
-  overflow-x: auto;
-  white-space: nowrap;
+  overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x proximity;
   scroll-behavior: smooth;
   scrollbar-width: none; /*Firefox */
   -ms-overflow-style: none; /*IE */
+}
+.slider {
+  display: flex;
+  align-items: center;
+  position: relative;
+  white-space: nowrap;
+
   box-shadow: 0 1rem 0 -1rem rgba(0,0,0,1);
   z-index: 0;
 }
 .slider::-webkit-scrollbar {
   display: none;
 }
-.slider img{
+.slider_banner{
   flex-grow: 0;
   flex-shrink: 0;
   flex-basis: auto;
   min-width: 5rem;
-  width: 15rem;
+  max-width: 15rem;
   margin: 1rem 0% 2rem 50%;
   scroll-snap-align: center;
   object-fit: cover;
 }
 .slider_nav{
-  display: flex;
-  justify-content: center;
+  background-color: rgba(255, 255, 255, 0);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+  width: 50vh;
+  height: 5vh;
   position: absolute;
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 2;
   gap: 0.5rem;
-  bottom: 0rem;
   left: 50%;
+  bottom: 0;
   transform: translateX(-50%);
-  z-index: 1;
-  width: 100%;
-  overflow: none;
 }
 .slider_nav a{
   min-width: 0.2rem;
@@ -181,6 +195,50 @@ footer {
   transition: opacity ease 250ms;
 }
 
+.icono {
+  width: 2rem;
+}
+
+.producto {
+  min-width: 10rem;
+  height:max-content;
+}
+
+.producto:hover {
+  transform: scale(1.2);
+}
+
+/* IDs */
+
+#visor_producto {
+  position: fixed;
+  z-index: 5;
+  left: 2vw;
+  height: 50%;
+  top: 25%;
+
+  max-width: 15vw;
+  font-size: 0.8vw;
+
+  background-color: rgba(255, 255, 255, 0);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.5) 100%);
+  box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.2);
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  padding: 1.4rem; 
+  margin: 0.7rem; 
+  border-radius: 2rem;
+}
+
+#mapa {
+  width: 100%;
+}
+
 /* MEDIA
   QUERIES */
 
@@ -188,7 +246,7 @@ footer {
   *{
     max-width: 100%;
   }
-  body {
+  body{
     padding: 0;
   }
   article{
@@ -201,12 +259,19 @@ footer {
     justify-content: space-around;
   }
   .nav_item{
-    font-size: small;
+    font-size: 3vw;
   }
   .nav_icon{
     max-height: 5vh;
   }
   .slider img{
     margin: 0 0 0 25%;
+  }
+  #visor_producto{
+    left: 10vw;
+    max-width: 40vw;
+    width: 40vw;
+    
+    font-size: 3vw;
   }
 }
