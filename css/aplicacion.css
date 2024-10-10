@@ -3,7 +3,7 @@
 
 body {
     background-color: rgb(240, 233, 227);
-    background-image: url('/img/patron2.png');
+    background-image: url('/img/patron4.png');
     background-size: 30%;
     background-repeat: repeat;
     display: flex;
@@ -49,6 +49,10 @@ nav {
     align-items: center;
     gap: 1rem;
     width: 100%;
+}
+
+a {
+    text-decoration: none;
 }
 
 article {
@@ -101,10 +105,41 @@ p {
     line-height: 0.5rem;
 }
 
+li {
+    color: rgba(75, 75, 75, 1);
+    font-size: 0.8rem;
+    font-family: "Baloo Thambi 2", system-ui;
+    font-weight: 500;
+    line-height: 1.2rem;
+    max-width: 90%;
+    margin: 0 0 1rem 0;
+}
+
 /* MENU PRINCIPAL */
 
 .menu_div {
     padding: 0 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    align-items: baseline;
+}
+
+.menu_div a {
+    max-width: 16vw;
+    margin: 0 1vw;
+    display: flex;
+    color: rgba(0, 0, 0, 1);
+    font-size: 0.8rem;
+    font-family: "Baloo Thambi 2", system-ui;
+    font-weight: 800;
+    text-decoration: none;
+    text-align: center;
+    word-wrap: break-word;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .menu_div img {
@@ -125,8 +160,71 @@ p {
     padding: 0.5rem;
     text-align: left;
 }
+
 .tabla_registros td {
-    border: 0.1rem solid rgb(194, 194, 194);
+    border: 0.1rem solid rgb(214, 190, 169);
+}
+
+.tabla_productos {
+    background-color: bisque;
+    border-collapse: collapse;
+    border: none;
+    font-family: "Baloo Thambi 2", system-ui;
+    font-size: 2.5vw;
+    table-layout: fixed;
+    position: relative;
+    width: 100%;
+}
+
+.tabla_productos th {
+    padding: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+
+.tabla_productos_celda {
+    width: 15vw;
+    max-width: 14%;
+    border: 0.1rem solid rgb(214, 190, 169);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    vertical-align: top;
+}
+
+.tabla_productos_opciones {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.tabla_productos_celda a {
+    height: 100%;
+}
+
+.tabla_productos_celda img {
+    max-width: 40%;
+}
+
+.celda_imagen {
+    background-color: rgba(255, 255, 255, 1);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 60%, bisque 95%, rgba(255, 255, 255, 1) 100%);
+    height: 10vh;
+    width: 25vw;
+    max-width: 30%;
+    position: relative;
+}
+
+.celda_imagen img {
+    width: auto;
+    height: 10vh;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /* TRANSACCIONES */
@@ -186,6 +284,7 @@ p {
     display: flex;
     color: white;
     font-size: 1.1rem;
+    text-decoration: underline;
 }
 
 .venta label,
@@ -195,7 +294,6 @@ p {
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 0.7rem;
-
 }
 
 .venta .col1,
@@ -317,15 +415,32 @@ form label {
     flex-wrap: nowrap;
 }
 
+#formulario_gasto {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+#formulario_codigo {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#formulario_gasto input {
+    border-radius: 1.5rem;
+    height: 1.2rem;
+}
+
 #formulario_producto {
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: baseline;
     justify-content: flex-start;
-    gap: 0.5rem;
+    gap: 1vw;
 }
 
-#formulario_producto input {
+#formulario_producto input[type="text"]{
     width: auto;
     height: 1.25rem;
     border-radius: 0.3rem;
@@ -336,8 +451,15 @@ form label {
     width: 4rem;
 }
 
+#formulario_producto textarea {
+    width: auto;
+    padding-left: 0.5rem;
+    resize: none;
+}
+
 .opciones_interfaz {
     width: 90%;
+    height: 3rem;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -347,10 +469,9 @@ form label {
     margin: 1rem 0 0 0;
 }
 
-#formulario_producto textarea {
-    width: auto;
-    padding-left: 0.5rem;
-    resize: none;
+.opciones_interfaz input {
+    max-width: 40%;
+    width: 40%;
 }
 
 #boton_cancelar {
@@ -361,12 +482,20 @@ form label {
     background-color: rgb(179, 255, 103);
 }
 
-#boton_cancelar,
-#boton_guardar {
+.boton {
     height: 2rem;
+    width: 40%;
+    max-width: 8rem;
     font-family: "Baloo Thali 2", system-ui;
     font-weight: 700;
-    padding: 0.2rem 2rem;
+    border-radius: 1rem;
+}
+
+.boton_grande {
+    height: 5vh;
+    width: 40%;
+    font-family: "Baloo Thali 2", system-ui;
+    font-weight: 700;
     border-radius: 1rem;
 }
 
@@ -390,13 +519,13 @@ form label {
     z-index: -1;
 }
 
-.label_cargar_imagen {
+.cargar_imagen {
     background-color: rgba(208, 255, 132, 1);
     background-image: linear-gradient(to bottom, rgb(199, 255, 109), rgb(134, 255, 132));
     box-shadow: -0.15rem 0 0.6rem rgb(124, 168, 78);
     border-bottom-left-radius: 0.5rem;
     border-top-left-radius: 0.5rem;
-    min-width: 6rem;
+    min-width: 4rem;
     min-height: 8rem;
     text-align: center;
     display: flex;
@@ -407,7 +536,7 @@ form label {
     z-index: 2;
 }
 
-.label_cargar_imagen p {
+.cargar_imagen p {
     font-size: 3rem;
     color: rgb(124, 168, 78);
     z-index: 3;
@@ -430,9 +559,8 @@ form label {
 }
 
 .visualizador_imagenes img {
-    width: 4rem;
-    height: 4rem;
-    width: 32%;
+    height: auto;
+    width: 13vw;
     max-width: 33%;
 }
 
@@ -501,7 +629,9 @@ NOTIFICACIONES */
     }
 
     h1 {
+        max-width: 90%;
         margin: 1rem auto;
+        line-height: 2rem;
     }
 
     h2 {
@@ -520,8 +650,12 @@ NOTIFICACIONES */
         margin: 0 0 0 25%;
     }
 
+    #formulario_cargar_imagen {
+        max-width: 80vw;
+    }
+
     .visualizador_imagenes {
-        max-width: 15rem;
+        gap: 0.5vh;
     }
 
     .visualizador_imagenes img {
@@ -531,7 +665,7 @@ NOTIFICACIONES */
 
     #formulario_producto {
         margin: 0 auto;
-        width: auto;
+        width: 80vw;
     }
 }
 
@@ -539,22 +673,24 @@ NOTIFICACIONES */
     article {
         background-color: rgba(255, 255, 255, 0);
         background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 1) 80%, rgba(255, 255, 255, 0) 100%);
-        padding: 1rem 25%;
+        padding: 1rem 15%;
     }
 
     #articulo_productos{
         flex-direction: row;
         justify-content: center;
+        width: auto;
         height: 35rem;
+        padding: 1rem 15%;
     }
 
     #formulario_cargar_imagen {
-        height: auto;
-        width: 65%;
+        height: 80%;
+        width: 60%;
     }
 
     #formulario_producto {
-        height: auto;
+        height: 80%;
         width: 35%;
     }
 
@@ -565,9 +701,23 @@ NOTIFICACIONES */
     .visualizador_imagenes {
         height: auto;
     }
+
     .visualizador_imagenes img {
         min-height: 3rem;
         min-width: 5rem;
-        max-width: 5rem;
+        width: 6vw;
+        height:auto;
+    }
+
+    .tabla_productos {
+        font-size: 1vw;
+    }
+
+    .tabla_productos_celda {
+        height: 3vw;
+    }
+
+    .celda_imagen {
+
     }
 }

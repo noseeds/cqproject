@@ -55,10 +55,30 @@ require '../backend/conexion.php';
         <input type='number' min='1' value='1' name='cantidad'>
         <input type='submit' value='A&ntilde;adir'>
     </form>
-    <form id='formulario_venta' action='../backend/cargar_venta.php' method='POST'></form>
+    <form id='formulario_venta' action='../backend/cargar_venta.php' method='POST'>
+        <?php
+        echo "<input type='hidden' name='productos' value='";
+        echo json_encode($_SESSION['productos_seleccionados']);
+        echo "'>";
+        echo '<input id="ID_usuario" type="hidden" name="usuario" value="';
+        echo $_SESSION['ID_usuario'];
+        echo '">';
+        ?>
+    </form>
     <div class='opciones_interfaz'>
         <button id='boton_cancelar'> Cancelar</button>
         <button id='boton_guardar'> Guardar</button>
     </div>
+    <?php
+    echo '<label id="respuesta_servidor"';
+    if(isset($_GET['notificacion'])){
+        echo ' class="notificacion">';
+        echo $_GET['notificacion'];
+    } else if(isset($_GET['advertencia'])){
+        echo ' class="advertencia">';
+        echo $_GET['advertencia'];
+    }
+    echo '</label>';
+    ?>
     </form>
 </article>

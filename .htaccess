@@ -2,3 +2,7 @@
 # HTID:23216089: DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES BELOW
 php_value display_errors 1
 # DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES ABOVE HTID:23216089:
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} petsmimos\.infinityfreeapp\.com [NC]
+RewriteCond %{SERVER_PORT} 80

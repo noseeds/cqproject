@@ -9,7 +9,7 @@
     ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login PetsMimos</title>
     <link rel="stylesheet" href="css/login.css">
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -24,9 +24,9 @@
     <div id="login_registro">
         <div id="login" class="login">
             <form id="formulario_login" action="backend/ingresar.php" method="POST">
-                <h2>Iniciar sesión</h2>
+                <h2> Iniciar Sesión</h2>
+                <label class='aviso'> Aviso: para poder iniciar sesión y acceder a la aplicación de gestión de empresa debe haberse registrado previamente bajo el consenso de los propietarios de la empresa y poseer los datos de ingreso.</label>
                 <input type="text" placeholder="Nombre de usuario" name="nombre_login" required>
-                <label for="nombre_login"> hasta 16 carácteres</label>
                 <input type="password" placeholder="Contraseña" name="contrasena_login" required>
                 <div id="alerta_ingreso" class="respuesta_backend" style="color: rgba(255,0,0,0.8);">
                     <?php

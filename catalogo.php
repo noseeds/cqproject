@@ -12,7 +12,7 @@
         <a href='#objeto2' class='scroll'></a>
     </div>
 </article>
-
+<h1> Artículos</h1>
 <article id='slider_catalogo'>
     <div class='slider_container'>
         <?php
@@ -34,10 +34,10 @@
                 $imagen = $fila['imagen'];
                 $imagen_base64 = base64_encode($imagen);
 
-                echo '<div class="producto">';
+                echo '<a  class="producto">';
                 echo '<img id="'.$ID_producto.'" class="producto_img"  src="data:image/jpeg;base64,'.$imagen_base64.'" data-nombre="'.$nombre_producto.'" data-precio="'.$precio_producto.'" data-descripcion="'.$descripcion_producto.'" alt="'.$nombre_producto.'">';
 
-                echo '</div>';
+                echo '</a>';
             }
             echo '</div>';
             echo '</div>';
@@ -47,14 +47,15 @@
             echo '<div class="slider_nav">';
             while( $fila = mysqli_fetch_array($resultado) ) {
                 $ID_producto = $fila['ID_producto'];
-                echo '<a href="#'.$ID_producto.'" class="scroll, producto" ></a>';
+                echo '<a href="#'.$ID_producto.'" class="scroll" ></a>';
             }
             echo '</div>';
 
         ?>
-
+    <a id='anterior_producto'> <img src="./iconos/line/arrow-left-s.svg" alt="flecha"></a>    
+    <a id='siguiente_producto'> <img src="./iconos/line/arrow-right-s.svg" alt="flecha"></a>
 </article>
-
+<h1> Contacto</h1>
 <article id='contacto'>
 
     <h3>Contacto</h2>
@@ -79,7 +80,6 @@
 </article>
 
 <div id='visor_producto'>
-
 </div>
 
 <footer>Pets Mimos © 2024</footer>

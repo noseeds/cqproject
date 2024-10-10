@@ -124,6 +124,9 @@ p{
     width: 50px;
     position: static;
 }
+.aviso {
+    font-size: 0.7rem;
+}
 .respuesta_backend{
     font-family: "Baloo Thali 2", system-ui;
     font-weight: 600;

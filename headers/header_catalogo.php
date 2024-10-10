@@ -31,7 +31,7 @@
             <a href="#contacto" class="nav_item"> Contacto </a>
             |
             <a href="about_us.html" class="nav_item"> Sobre Nosotros </a>
-            <a href="login.php" class="nav_item" id="login"> <img src="iconos/account-circle.svg" class="nav_icon"
+            <a href="login.php" class="nav_item" id="login"> <img src="iconos/admin.svg" class="nav_icon"
                     alt="ingreso de usuario"> </a>
         </nav>
     </header>

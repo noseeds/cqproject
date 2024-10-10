@@ -1,19 +1,3 @@
-function a() {
-    $opcion_seleccionada1 = $('#ordenar_por').val();
-    $opcion_seleccionada2 = $('#orden_preferido').val();
-    $.ajax({
-        url: 'backend/actualizar_variables_session.php',
-        method: 'POST',
-        data: { ordenar_por: $opcion_seleccionada1, orden_preferido: $opcion_seleccionada2 },
-        success: function (response) {
-            $respuesta = JSON.parse(response);
-            console.log('Session variable updated:', response);
-            if ($respuesta.estado === 'exito') {
-                window.location.reload();
-            }
-        }
-    });
-};
 
 $(document).ready(function () {
     $('#subir_imagen').on('change', function (e) {
@@ -73,28 +57,49 @@ $(document).ready(function () {
         window.location.href = '../aplicacion.php';
     });
 
-/*     $('#formulario_agregar_producto').on('submit', function (event) {
-        $opcion_seleccionada = $('#selector_productos').val();
-        $cantidad = $('#cantidad_productos').val();
+    $('#boton_guardar').on('click', function () {
+        $('#formulario_venta').submit();
+    });
+
+    $('#formulario_codigo').on('submit', function (event) {
+        event.preventDefault();
+        $datos_formulario = new FormData($('#formulario_codigo')[0]);
         $.ajax({
-            url: '../backend/actualizar_variables_session.php',
-            method: 'POST',
-            data: {
-                producto_para_agregar: $opcion_seleccionada,
-                cantidad: $cantidad,
-                success: function (response) {
-                    try {
-                        $respuesta = JSON.parse(response);
-                        console.log('Variables de sesi$oacute;n actualizadas:', response);
-                        if ($respuesta.estado === 'exito') {
-                            window.location.reload();
-                        }
-                    } catch (error) {
-                        console.error('Error parsing JSON:', error);
-                        console.log('Raw response:', response);
-                    }
-                }
+            url: $(this).attr('action'),
+            type: 'POST',
+            data: $datos_formulario,
+            //falso si se envía FormData o archivos, previene que jquery sobreescriba el header content-type
+            contentType: false,
+            //que los datos no se conviertan en string, dejar en true si se envia texto o json
+            processData: false,
+            success: function(datos) {
+                $('body').append(datos);
+                $url = $('#url').val();
+                console.log($url);
+                navigator.clipboard.writeText($url)
+                .then(() => {
+                    alert('Enlace copiado al portapapeles, debe enviar este enlace a la persona que desea registrarse como usuario administrador. Compartir este enlace únicamente con personas de confianza. ');
+                })
+                .catch(error => {
+                    console.error('Error al copiar el enlace: ', error);
+                });
+            },
+            error: function(error) {
+                console.error('Ocurrió un error, registro no concretado.', error);
             }
         });
-    }); */
+    });
+
+    $('.editar_producto').on('click', function () {
+        window.location.href = './modificar_producto.php?producto='+$(this).parent().attr('id');
+    });
+    $('.eliminar_producto').on('click', function () {
+        var confirmacion = confirm('¿Seguro? Esta acción no se podrá deshacer');
+        if(confirmacion){
+            window.location.href = './eliminar_producto.php?producto='+$(this).parent().attr('id');
+        }
+    });
+    $('volver_menu').on('click', function () {
+        window.location.href = '../aplicacion.php';
+    });
 });

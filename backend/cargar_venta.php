@@ -1,26 +1,31 @@
 <?php
 require '../backend/conexion.php';
-if (isset($_POST['productos']) && !empty($_POST['productos'])) {
-    $ID_venta = mt_rand(1000, 9000);
 
-    $productos_con_cantidad = explode(',', $_POST['productos']);
-    foreach ($productos_con_cantidad as $producto) {
-        list($ID_producto, $cantidad) = explode('-', $producto);
-        $productos[] = $ID_producto;
-        $cantidad_productos[] = $cantidad;
+if (isset($_POST['productos']) && !empty($_POST['productos'])
+    && isset($_POST['usuario']) && !empty($_POST['usuario'])) {
+    if($_POST['productos'] != []) {
+        Header('Location: ../interfaces/ingreso_ventas.php?advertencia=' . urlencode('Ingrese un producto para poder registrar su venta'));
+    }
+    $productos = json_decode($_POST['productos'], true);
+    $ID_usuario = $_POST['usuario'];
+    
+    $consulta = mysqli_query($conn, 'SELECT IFNULL(MAX(ID_venta) + 1, 1) AS nueva_ID FROM ventas');
+    $fila = mysqli_fetch_array($consulta, MYSQLI_ASSOC);
+    $ID_venta = $fila['nueva_ID'];
+    mysqli_free_result($consulta);
+
+    $instruccion_venta = 'INSERT INTO ventas (ID_venta, ID_usuario) VALUES';
+    $instruccion_venta .= ' (' . $ID_venta . ', ' . $ID_usuario . ')';
+
+    $instruccion_detalles_venta = 'INSERT INTO detalles_venta (ID_venta, ID_producto, cantidad) VALUES';
+    $i=0;
+    foreach($productos as $producto) {
+        $i++;
+        $instruccion_detalles_venta .= ' (' . $ID_venta . ', '.$producto['ID_producto'].', '.$producto['cantidad'].')';
+        if($i != count($productos)) $instruccion_detalles_venta .= ',';
     }
 
-    $instruccion_venta = "INSERT INTO ventas (ID_venta, ID_usuario) VALUES";
-    $instruccion_venta .= " ($ID_venta, " . 11 . ")";
-    $instruccion_detalles_venta = "INSERT INTO detalles_venta (ID_venta, ID_producto, cantidad) VALUES";
-    for ($i = 0; $i < count($productos); $i++) {
-        if ($i != 0) {
-            $instruccion_detalles_venta .= ",";
-        }
-        $instruccion_detalles_venta .= " ($ID_venta, " . $productos[$i] . ", " . $cantidad_productos[$i] . ")";
-    }
     $instruccion = $instruccion_venta . '; ' . $instruccion_detalles_venta . ';';
-    echo $instruccion;
     if (mysqli_query($conn, $instruccion_venta) == true && mysqli_query($conn, $instruccion_detalles_venta) == true) {
         Header('Location: ../interfaces/ingreso_ventas.php?notificacion=' . urlencode('Venta registrada exitosamente'));
     } else {

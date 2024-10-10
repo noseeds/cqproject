@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $producto = [];
         if ($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
-            echo $fila['nombre'];
+            $producto['ID_producto'] = $fila['ID_producto'];
             $producto['nombre'] = $fila['nombre'];
             $producto['cantidad'] = $cantidad;
             $producto['precio'] = $fila['precio'];
