@@ -6,3 +6,4 @@ php_value display_errors 1
 RewriteEngine On
 RewriteCond %{HTTP_HOST} petsmimos\.infinityfreeapp\.com [NC]
 RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://petsmimos.infinityfreeapp.com/$1 [R,L]
