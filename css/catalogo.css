@@ -155,11 +155,18 @@ footer {
   flex-grow: 0;
   flex-shrink: 0;
   flex-basis: auto;
-  min-width: 5rem;
-  max-width: 15rem;
   margin: 1rem 0% 2rem 50%;
   scroll-snap-align: center;
   object-fit: cover;
+  overflow: hidden;
+}
+.banner {
+  width: auto;
+  user-select: none;
+  white-space: normal;
+  display: inline-block;
+  height: 100%;
+  margin: 0 8vw;
 }
 .slider_nav{
   background-color: rgba(255, 255, 255, 0);
@@ -200,6 +207,11 @@ footer {
   width: 2rem;
 }
 
+.banner {
+    min-width: 14rem;
+    height:max-content;
+}
+
 .producto {
   min-width: 14rem;
   height:max-content;
@@ -210,7 +222,12 @@ footer {
 }
 
 .producto_img {
+  width: 100%;
   user-select: none;
+  white-space: normal;
+  display: inline-block;
+  height: auto;
+  max-width: 15vw;
 }
 
 #anterior_producto {

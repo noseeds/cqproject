@@ -4,7 +4,7 @@ require '../backend/conexion.php';
 include '../headers/ordenador_transacciones.php';
 ?>
 </header>
-<h1> Registro de Ventas</h1>
+<h1> Editar Venta</h1>
 <article>
     <h2> Artículos:</h2>
     <table class='tabla_registros'>

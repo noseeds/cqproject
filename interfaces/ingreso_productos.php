@@ -1,42 +1,48 @@
 <?php
 require '../headers/header_interfaces.php';
+require '../backend/conexion.php';
+include '../headers/ordenador_transacciones.php';
 ?>
+</header>
 <h1> Registrar un Art&iacute;culo</h1>
 <article id='articulo_productos'>
-    <form id='formulario_cargar_imagen' action='../backend/cargar_imagen.php' method='POST' enctype='multipart/form-data'>
-        <a for='subir_imagen' class='cargar_imagen'>
-            <p>+</p>
-        </a>
-        <input type='file' name='imagen' id='subir_imagen' class='input_cargar_imagen'>
-        <div class='visualizador_imagenes'>
-            <?php require '../backend/conexion.php';
-            $instruccion = 'SELECT ID_imagen, imagen FROM imagenes';
-            $resultado = mysqli_query($conn, $instruccion);
-            while ($fila = mysqli_fetch_array($resultado, MYSQLI_BOTH)) {
-                $data_imagen = $fila['imagen'];
-                $ID_imagen = $fila['ID_imagen'];
-                $imagen_base64 = base64_encode($data_imagen);
-                echo '<img data-imagen-id="'.$ID_imagen.'" class="imagen_seleccionable" src="data:image/jpeg;base64,' . $imagen_base64 . '" alt="imagen" />';
-            }
-            mysqli_free_result($resultado);
-            mysqli_close($conn);
-            ?>
+    <form id='formulario_producto' action='../backend/cargar_producto.php' method='POST' enctype='multipart/form-data'>
+        <div class='interfaz_imagen'>
+            <label for='subir_imagen' class='cargar_imagen'>
+                <img src="../iconos/image-add-fill.svg" alt="+">
+            </label>
+            <div class='visualizador_imagen'>
+                <input type='file' name='imagen' id='subir_imagen' class='input_cargar_imagen' accept='image/*'>
+                <img id='imagen_previa' src='' alt='Seleccione una imagen...'>
+            </div>
         </div>
-    </form>
-    <form id='formulario_producto' action='../backend/cargar_producto.php' method='POST'>
+
         <label for='nombre'> Nombre</label>
         <input class='formulario_producto_input' type='text' name='nombre' placeholder='Nombre' required>
         <label for='descripcion'> Descripci&oacute;n</label>
         <textarea type='text' name='descripcion' placeholder='Descripci&oacute;n' rows='3'></textarea>
         <label for='stock'> Precio Unitario</label>
-        <input class='formulario_producto_input' type='number' step="1" min="1" name='precio' placeholder='0 uyu'>
+        <input class='formulario_producto_input' type='number' step='1' min='1' name='precio' placeholder='0 uyu'>
         <label for='stock'> Unidades</label>
-        <input class='formulario_producto_input' type='number' step="1" min="0" name='stock' placeholder='0'>
-        <div class="opciones_interfaz">
-            <input id='boton_cancelar' class='boton' type='button' name='cancelar' value='Cancelar'>
-            <input type='hidden' id='input_imagen_seleccionada' name='imagen_seleccionada' value="">
-            <input id='boton_guardar' class='boton' type='submit' value='Guardar'>
+        <input class='formulario_producto_input' type='number' step='1' min='0' name='stock' placeholder='0'>
+        <label for="categoria"> Categoria</label>
+        <select name='categoria'>
+            <?php
+            $instruccion = 'SELECT * FROM categorias';
+            $resultado = mysqli_query($conn, $instruccion);
+            while($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
+                $ID_categoria = $fila['ID_categoria'];
+                $categoria = $fila['nombre'];
+                echo "<option value='" . $ID_categoria . "'> $categoria</option>";
+            }
+            ?>
+        </select>
+
+        <div class='opciones_interfaz'>
+            <button id='boton_cancelar' class='boton' type='button'> Cancelar</button>
+            <button id='boton_guardar' class='boton' type='submit'> Guardar</button>
         </div>
+
         <?php
             echo '<label id="respuesta_servidor"';
             if(isset($_GET['notificacion'])){

@@ -28,6 +28,3 @@
             <a href="../catalogo.php" class="nav_item"><img src="../iconos/shopping-bag.svg" class="nav_icon"></a>
             <a href="../login.php" class="nav_item"><img src="../iconos/account-circle-fill.svg" class="nav_icon"></a>
         </nav>
-        <?php include 'ordenador.php'; ?>
-
-    </header>

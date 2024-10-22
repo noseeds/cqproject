@@ -1,5 +1,6 @@
 <?php
 require "../headers/header_interfaces.php";
+include '../headers/ordenador_transacciones.php';
 ?>
 </header>
 
@@ -15,8 +16,15 @@ require "../headers/header_interfaces.php";
         if (!$conn) {
             die('error de conexion con la base de datos');
         }
-        $atributo = $_SESSION['ordenar_por'];
-        $orden = $_SESSION['orden_preferido'];
+        $atributo = 'fecha';
+        $orden = 'DESC';
+        if(isset($_SESSION['ordenar_por']) && !empty($_SESSION['ordenar_por'])) {
+            $atributo = $_SESSION['ordenar_por'];
+        }
+        if(isset($_SESSION['orden_preferido']) && !empty($_SESSION['orden_preferido'])) {
+            $orden = $_SESSION['orden_preferido'];
+        }
+
         $instruccion = 'SELECT v.ID_venta AS ID, "venta" AS tipo, p.precio AS valor, v.fecha AS fecha, p.nombre AS descripcion, d.cantidad AS cantidad, u.nombre AS usuario FROM ventas v JOIN detalles_venta d ON v.ID_venta = d.ID_venta JOIN productos p ON d.ID_producto=p.ID_producto JOIN usuarios u ON v.ID_usuario = u.ID_usuario UNION ALL SELECT g.ID_gasto AS ID, "egreso" AS tipo, g.valor AS valor, g.fecha AS fecha, g.motivo AS descripcion, "" AS cantidad, u.nombre AS usuario FROM gastos g JOIN usuarios u ON g.ID_usuario = u.ID_usuario ORDER BY ' . $atributo . ' ' . $orden;
         if (isset($_GET['transacciones_a_mostrar']) && $_GET['transacciones_a_mostrar'] == 'ingresos') {
             $instruccion = 'SELECT v.ID_venta AS ID, "venta" AS tipo, p.precio AS valor, v.fecha AS fecha, p.nombre AS descripcion, d.cantidad AS cantidad, u.nombre AS usuario FROM ventas v JOIN detalles_venta d ON v.ID_venta = d.ID_venta JOIN productos p ON d.ID_producto=p.ID_producto JOIN usuarios u ON v.ID_usuario = u.ID_usuario ORDER BY ' . $atributo . ' ' . $orden;

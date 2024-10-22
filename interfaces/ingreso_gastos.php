@@ -1,8 +1,9 @@
 <?php
-    require '../backend/conexion.php';
     require '../headers/header_interfaces.php';
-?>
-
+    require '../backend/conexion.php';
+    include '../headers/ordenador_transacciones.php';
+    ?>
+</header>
 <div id='ordenador_productos'>
 </div>
 <h1> Registrar un Egreso</h1>
@@ -19,10 +20,12 @@
             echo $_SESSION['ID_usuario'];
             echo '">';
         ?>
+
         <div class='opciones_interfaz'>
-            <button id='boton_cancelar' class='boton'> Cancelar</button>
-            <button id='boton_guardar' class='boton'> Guardar</button>
+            <button id='boton_cancelar' class='boton' type='button'> Cancelar</button>
+            <button id='boton_guardar' class='boton' type='submit'> Guardar</button>
         </div>
+        
         <?php
             echo '<label id="respuesta_servidor"';
             if(isset($_GET['notificacion'])){

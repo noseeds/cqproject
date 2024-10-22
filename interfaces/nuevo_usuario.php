@@ -1,8 +1,9 @@
 <?php
     require '../backend/conexion.php';
     require '../headers/header_interfaces.php';
+    include '../headers/ordenador_transacciones.php';
 ?>
-
+</header>
 <h1> Generar Enlace de Permiso de Registro Administrativo</h1>
 <article>
     <p> Tenga en cuenta que...</p>
@@ -18,6 +19,6 @@
             echo $_SESSION['ID_usuario'];
             echo '">';
         ?>    
-        <button class='boton_grande'> Generar Enlace</button>
+        <button class='boton_grande'> Generar Enlace <img class='icono' src="../iconos/links-fill.svg" alt=""></button>
     </form>
 </article>

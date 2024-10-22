@@ -27,7 +27,7 @@ header {
     background: rgba(255, 122, 0, 1);
     background: linear-gradient(to right, rgba(255, 168, 19, 1) 35%, rgba(255, 122, 0, 1) 45%);
     color: #000000;
-    z-index: 3;
+    z-index: 7;
     position: fixed;
     display: flex;
     flex-direction: row;
@@ -184,7 +184,7 @@ li {
     text-align: left;
 }
 
-.tabla_productos_celda {
+.tabla_registros_celda {
     width: 15vw;
     max-width: 14%;
     border: 0.1rem solid rgb(214, 190, 169);
@@ -195,17 +195,15 @@ li {
     vertical-align: top;
 }
 
-.tabla_productos_opciones {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+.tabla_registros_opciones img {
+    width: 20%;
 }
 
-.tabla_productos_celda a {
+.tabla_registros_celda a {
     height: 100%;
 }
 
-.tabla_productos_celda img {
+.tabla_registros_celda img {
     max-width: 40%;
 }
 
@@ -389,7 +387,8 @@ li {
 /* FORMULARIOS */
 
 form {
-    background-color: rgb(241, 241, 241);
+    background-color: rgba(241, 241, 241, 1);
+    /*background-image: linear-gradient(top);*/
     border-radius: 1.5rem;
     display: flex;
     padding: 2rem 0.6rem;
@@ -397,11 +396,27 @@ form {
     font-family: "Baloo Thambi 2", system-ui;
     font-weight: 800;
     position: relative;
+}
+
+form *:not(input) {
     user-select: none;
+}
+
+form input {
+    margin-left: 5vw;
+    border-radius: 1.5rem;
 }
 
 form label {
     margin: 0 0 0 1rem;
+}
+
+form textarea {
+    border-radius: 0.75rem;
+}
+
+form select {
+    border-radius: 1.5rem;
 }
 
 #formulario_imagen {
@@ -433,11 +448,16 @@ form label {
 }
 
 #formulario_producto {
+    max-width: 100%;
+    height: auto;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: baseline;
     justify-content: flex-start;
+    flex-shrink: 1;
     gap: 1vw;
+    overflow: hidden;
+    padding-bottom: 0;
 }
 
 #formulario_producto input[type="text"]{
@@ -497,6 +517,11 @@ form label {
     font-family: "Baloo Thali 2", system-ui;
     font-weight: 700;
     border-radius: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
 #formulario_agregar_producto {
@@ -536,13 +561,21 @@ form label {
     z-index: 2;
 }
 
-.cargar_imagen p {
-    font-size: 3rem;
+.cargar_imagen img {
+    width: 4rem;
     color: rgb(124, 168, 78);
     z-index: 3;
 }
 
-.visualizador_imagenes {
+.interfaz_imagen {
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 0 auto;
+}
+
+.visualizador_imagen {
     background-color: rgb(242, 255, 221);
     width: 100%;
     height: 10rem;
@@ -551,20 +584,32 @@ form label {
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
     z-index: 1;
+    position: relative;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
-    overflow-x: auto;
+    overflow: hidden;
+
 }
 
-.visualizador_imagenes img {
-    height: auto;
-    width: 13vw;
-    max-width: 33%;
+.regresar {
+    max-width: 100%;
 }
 
-.imagen_seleccionable {
+.icono {
+    max-width: 1.2rem;
+    height: 1.2rem;
+}
+
+#imagen_previa {
+    max-height: 100%;
+    max-width: 100%;
+    width: fit-content;
+    height: fit-content;
+}
+
+.seleccionable {
     cursor: pointer;
 }
 
@@ -650,17 +695,13 @@ NOTIFICACIONES */
         margin: 0 0 0 25%;
     }
 
-    #formulario_cargar_imagen {
-        max-width: 80vw;
-    }
-
-    .visualizador_imagenes {
-        gap: 0.5vh;
-    }
-
-    .visualizador_imagenes img {
+    .imagen_cargada {
         min-height: 3rem;
         min-width: 3.5rem;
+    }
+
+    .interfaz_imagen {
+        width: 90%;
     }
 
     #formulario_producto {
@@ -680,32 +721,24 @@ NOTIFICACIONES */
         flex-direction: row;
         justify-content: center;
         width: auto;
-        height: 35rem;
         padding: 1rem 15%;
-    }
-
-    #formulario_cargar_imagen {
-        height: 80%;
-        width: 60%;
+        margin: 0 0 10rem 0;
     }
 
     #formulario_producto {
-        height: 80%;
-        width: 35%;
+        max-height: 90vh;
+        width: 65%;
     }
 
     .banner_simple img {
         width: 13rem;
     }
 
-    .visualizador_imagenes {
-        height: auto;
-    }
-
-    .visualizador_imagenes img {
+    .imagen_cargada {
         min-height: 3rem;
         min-width: 5rem;
         width: 6vw;
+        height: 6vw;
         height:auto;
     }
 
@@ -713,11 +746,9 @@ NOTIFICACIONES */
         font-size: 1vw;
     }
 
-    .tabla_productos_celda {
+    .tabla_registros_celda {
         height: 3vw;
     }
-
-    .celda_imagen {
-
-    }
 }
+
+/* rgb(58, 26, 186)*/

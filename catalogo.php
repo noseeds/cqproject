@@ -1,19 +1,16 @@
 <?php include 'headers/header_catalogo.php'; ?>
 
-<article id='slider_banner'>
+<article>
     <div class='slider_container'>
-        <div class='slider'>
-            <img src='img/mochila para gatos.jpg' alt='' id='objeto1'>
-            <img src='img/mochila para gatos.jpg' alt='' id='objeto2'>
+        <div class='slider_nav'>
+            <a class='banner'><img  src='img/mochila para gatos.jpg' alt='' id='objeto1'></a>
+            <a class='banner'><img class='banner' src='img/mochila para gatos.jpg' alt='' id='objeto2'></a>
+            <a class='banner'><img class='banner' src='img/mochila para gatos.jpg' alt='' id='objeto3'></a>
         </div>
-    </div>
-    <div class='slider_nav'>
-        <a href='#objeto1' class='scroll'></a>
-        <a href='#objeto2' class='scroll'></a>
     </div>
 </article>
 <h1> Artículos</h1>
-<article id='slider_catalogo'>
+<article>
     <div class='slider_container'>
         <?php
 
@@ -52,8 +49,8 @@
             echo '</div>';
 
         ?>
-    <a id='anterior_producto'> <img src="./iconos/line/arrow-left-s.svg" alt="flecha"></a>    
-    <a id='siguiente_producto'> <img src="./iconos/line/arrow-right-s.svg" alt="flecha"></a>
+        <a id='anterior_producto'> <img src="./iconos/line/arrow-left-s.svg" alt="flecha"></a>
+        <a id='siguiente_producto'> <img src="./iconos/line/arrow-right-s.svg" alt="flecha"></a>
 </article>
 <h1> Contacto</h1>
 <article id='contacto'>

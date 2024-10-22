@@ -1,7 +1,18 @@
+function mostrar_imagen(e) {
+    $lector = new FileReader();
+    $lector.onload = function () {
+        $input_imagen = document.getElementById('imagen_previa');
+        $input_imagen.src = $lector.result;
+        $input_imagen.style.display = 'block';
+    };
+    $lector.readAsDataURL(e.target.files[0]);
+}
 
 $(document).ready(function () {
+
     $('#subir_imagen').on('change', function (e) {
-        const imagen = e.target.files[0];
+        mostrar_imagen(e);
+        $imagen = e.target.files[0];
         $('#formulario_cargar_imagen').submit();
     });
     $('.imagen_seleccionable').on('click', function () {
@@ -10,6 +21,7 @@ $(document).ready(function () {
         const imagen = $(this).data('imagen-id');
         $('#input_imagen_seleccionada').val(imagen);
     });
+
     $('#ordenar_por').on('change', function () {
         $opcion_seleccionada1 = $('#ordenar_por').val();
         $opcion_seleccionada2 = $('#orden_preferido').val();
@@ -72,34 +84,40 @@ $(document).ready(function () {
             contentType: false,
             //que los datos no se conviertan en string, dejar en true si se envia texto o json
             processData: false,
-            success: function(datos) {
+            success: function (datos) {
                 $('body').append(datos);
                 $url = $('#url').val();
                 console.log($url);
                 navigator.clipboard.writeText($url)
-                .then(() => {
-                    alert('Enlace copiado al portapapeles, debe enviar este enlace a la persona que desea registrarse como usuario administrador. Compartir este enlace únicamente con personas de confianza. ');
-                })
-                .catch(error => {
-                    console.error('Error al copiar el enlace: ', error);
-                });
+                    .then(() => {
+                        alert('Enlace copiado al portapapeles, debe enviar este enlace a la persona que desea registrarse como usuario administrador. Compartir este enlace únicamente con personas de confianza. ');
+                    })
+                    .catch(error => {
+                        console.error('Error al copiar el enlace: ', error);
+                    });
             },
-            error: function(error) {
+            error: function (error) {
                 console.error('Ocurrió un error, registro no concretado.', error);
             }
         });
     });
 
     $('.editar_producto').on('click', function () {
-        window.location.href = './modificar_producto.php?producto='+$(this).parent().attr('id');
+        window.location.href = './modificar_producto.php?producto=' + $(this).parent().attr('id');
     });
-    $('.eliminar_producto').on('click', function () {
-        var confirmacion = confirm('¿Seguro? Esta acción no se podrá deshacer');
-        if(confirmacion){
-            window.location.href = './eliminar_producto.php?producto='+$(this).parent().attr('id');
-        }
+    $('.desactivar_producto').on('click', function () {
+        window.location.href = '../backend/desactivar_producto.php?producto=' + $(this).parent().attr('id');
     });
-    $('volver_menu').on('click', function () {
+    $('.activar_producto').on('click', function () {
+        window.location.href = '../backend/activar_producto.php?producto=' + $(this).parent().attr('id');
+    });
+    $('#volver_menu').on('click', function () {
         window.location.href = '../aplicacion.php';
+    });
+    $('.editar_gasto').on('click', function () {
+        window.location.href = '../interfaces/modificar_gasto.php?gasto=' + $(this).parent().attr('id');
+    });
+    $('.eliminar_gasto').on('click', function () {
+        window.location.href = '../backend/eliminar_gasto.php?gasto=' + $(this).parent().attr('id');
     });
 });
