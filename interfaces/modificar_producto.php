@@ -38,16 +38,16 @@
         </div>
 
         <label for='nombre'> Nombre</label>
-        <input class='formulario_producto_input' type='text' name='nombre' placeholder=''
+        <input type='text' name='nombre' placeholder=''
             <?php echo 'value="' . $nombre . '"'; ?> required>
         <label for='descripcion'> Descripci&oacute;n</label>
         <textarea type='text' name='descripcion' placeholder='Descripci&oacute;n'
             rows='3'><?php echo $descripcion; ?></textarea>
         <label for='stock'> Precio Unitario</label>
-        <input class='formulario_producto_input' type='number' step="1" min="1" name='precio'
+        <input type='number' step="1" min="1" name='precio'
             <?php echo 'value="' . $precio . '"'; ?> placeholder='0 uyu'>
         <label for='stock'> Unidades</label>
-        <input class='formulario_producto_input' type='number' step="1" min="0" name='stock'
+        <input type='number' step="1" min="0" name='stock'
             <?php echo 'value="' . $stock . '"'; ?> placeholder='0'>
         <label for="categoria"> Categoria</label>
         <select name='categoria'>
@@ -65,6 +65,7 @@
             }
             ?>
         </select>
+        <?php echo '<input type="hidden" name="categoria_anterior" value="' . $ID_categoria_actual . '">'; ?>
 
         <div class='opciones_interfaz'>
             <input id='boton_cancelar' class='boton' type='button' name='cancelar' value='Cancelar'>

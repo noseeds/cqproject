@@ -31,19 +31,19 @@ include '../headers/ordenador_productos.php';
                 $orden = $_SESSION['orden_preferido'];
             }
 
-            $instruccion = 'SELECT p.ID_producto AS ID_producto, 
+            $instruccion = 'SELECT p.ID_producto, 
                p.nombre AS nombre, 
-               p.descripcion AS descripcion, 
-               p.precio AS precio, 
-               p.stock AS stock, 
-               p.activo AS activo,
-               i.imagen AS imagen, 
-               c.nombre AS categoria
+               p.descripcion, 
+               p.precio, 
+               p.stock, 
+               p.activo,
+               i.imagen, 
+               GROUP_CONCAT(c.nombre) AS categoria
             FROM productos p 
             JOIN imagenes i ON p.ID_imagen = i.ID_imagen 
             JOIN categoria_productos cp ON p.ID_producto = cp.ID_producto 
             JOIN categorias c ON cp.ID_categoria = c.ID_categoria 
-            ORDER BY p.activo DESC, ' . $atributo . ' ' . $orden;
+            GROUP BY p.ID_producto ORDER BY p.activo DESC, ' . $atributo . ' ' . $orden;
             $resultado = mysqli_query($conn, $instruccion);
             while ($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
                 $ID_producto = $fila['ID_producto'];
@@ -77,8 +77,12 @@ include '../headers/ordenador_productos.php';
             }
             mysqli_free_result($resultado);
             ?>
-            </tbody>
-            </table>
-            <a href='../aplicacion.php'> <img class='regresar' src='../img/regresar_largo.png' alt='regresar al menu'>
-            </a>
+        </tbody>
+    </table>
+    <picture>
+        <source media="(min-width: 48rem)" srcset="../img/regresar_largo.png">
+        <source media="(max-width: 48rem)" srcset="../img/regresar.png">
+        <img class='regresar' src="../img/regresar_largo.png" alt="regresar">
+    </picture>
+
 </article>

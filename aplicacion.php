@@ -7,55 +7,40 @@ include 'backend/limpiar_session.php';
     </form>
 </div>
 </header>
-
-<h1> Menu</h1>
-<article>
-    <h2> Ingresar...</h2>
-    <div class='menu_div'>
-        <a href='interfaces/ingreso_productos.php'>
-            <img src='./iconos/price-tag-3-fill.svg' alt=''>
-            <label> Nuevo producto</label>
-        </a>
-        <a href='interfaces/ingreso_ventas.php'>
-            <img src='./iconos/shopping-basket-2-fill.svg' alt=''>
-            <label> Venta</label>
-        </a>
-        <a href='interfaces/ingreso_gastos.php'>
-            <img src='./iconos/receipt-fill.svg' alt=''>
-            <label> Egreso</label>
-        </a>
-        <a href='interfaces/ingreso_descuentos.php'>
-            <img src='./iconos/discount-percent-fill.svg' alt=''>
-            <label> Descuento</label>
-        </a>
-        <a href='interfaces/nuevo_usuario.php'>
-            <img src='./iconos/user-add-fill.svg' alt=''>
-            <label> Nuevo usuario</label>
-        </a>
+<div id="div_principal-Menu">
+    <!-- Div blanco con el mensaje de bienvenida y la imagen del usuario -->
+    <div id="bienvenida_div" style="background-color: white; text-align: center; padding: 20px; border-radius: 10px; margin: 20px;">
+        <h1>Bienvenido a PetMimos WebApp</h1>
+        
+        <!-- Aquí se colocaría la imagen del usuario -->
+        <img src="./iconos/Icono-Usuario.svg" alt="Usuario" style="width: 100px; height: 100px; border-radius: 50%; margin-top: 20px;">
+        
+        <!-- Nombre del usuario -->
+        <h2>Nombre del Usuario</h2>
+        
+        <!-- Pregunta debajo del nombre -->
+        <p>¿Qué desea hacer en la app?</p>
     </div>
-    <hr>
-    <h2> Modificar...</h2>
-    <div class='menu_div'>
-        <a href='interfaces/gestion_productos.php'>
-            <img src='./iconos/pencil-fill.svg' alt=''>
-            <label> Catálogo de Productos</label>
-        </a>
-        <a href='interfaces/gestion_ventas.php'>
-            <img src='./iconos/pencil-fill.svg' alt=''>
-            <label> Ventas registradas</label>
-        </a>
-        <a href='interfaces/gestion_gastos.php'>
-            <img src='./iconos/receipt-fill.svg' alt=''>
-            <label> Egresos</label>
-        </a>
-        <a href='interfaces/gestion_egresos.php'>
-            <img src='./iconos/price-tag-fill.svg' alt=''>
-            <label> Descuentos</label>
 
+   
+<article>
+<h1> Menu de opciones</h1>
+    <div class='menu_div'>
+        <a href='./menu_empresa.php'>
+            <img src='./iconos/Icono-Producto.svg' alt=''>
+            <label> Gest&iacute;on de la tienda</label>
         </a>
-        <a href='interfaces/gestion_usuarios.php'>
-            <img src='./iconos/id-card-fill.svg' alt=''>
-            <label> Usuarios</label>
+        <a href='./menu_catalogo.php'>
+            <img src='./iconos/Icono-Transacciones.svg' alt=''>
+            <label> Gest&iacute;on de transacciones</label>
+        </a>
+        <a href='./menu_admin.php'>
+            <img src='./iconos/Icono-G_Usuarios.svg' alt=''>
+            <label> Gest&iacute;on de Usuario</label>
+        </a>
+        <a href='./backend/cerrar_sesion.php'>
+            <img src='./iconos/Icono-Volver.svg' alt=''>
+            <label> Volver a la página principal</label>
         </a>
     </div>
 </article>

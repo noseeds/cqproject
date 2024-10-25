@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     && isset($_POST['precio']) && !empty($_POST['precio'])
     && isset($_POST['stock']) && !empty($_POST['stock'])
     && isset($_POST['categoria']) && !empty($_POST['categoria'])
+    && isset($_POST['categoria_anterior']) && !empty($_POST['categoria_anterior'])
     && isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
 
         $imagen = $_FILES['imagen']['tmp_name'];
@@ -25,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $ID_producto = $_SESSION['producto'];
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];
+        $categoria_anterior = $_POST['categoria_anterior'];
         $categoria = $_POST['categoria'];
         $precio = $_POST['precio'];
         $stock = $_POST['stock'];
@@ -32,8 +34,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $instruccion = 'UPDATE productos SET nombre = "' . $nombre . '", descripcion = "' . $descripcion . '", precio = ' . $precio . ', stock = ' . $stock . ', ID_imagen = ' . $ID_imagen . ' WHERE ID_producto = ' . $ID_producto;
         echo $instruccion;
         if(mysqli_query($conn, $instruccion)) {
-            Header('Location: ../interfaces/modificar_producto.php?notificacion=' . urlencode('Información del producto actualizada exitosamente') . '#respuesta_servidor');
+            $instruccion = 'INSERT INTO categoria_productos (ID_producto, ID_categoria) VALUES (' . $ID_producto . ', ' . $ID_categoria . ')';
+            if(mysqli_query($conn, $instruccion)) {
+                $instruccion = 'DELETE FROM categoria_productos WHERE ID_producto =' . $ID_producto;
+                Header('Location: ../interfaces/modificar_producto.php?notificacion=' . urlencode('Información del producto actualizada exitosamente') . '#respuesta_servidor');
+            } else {
+                Header('Location: ../interfaces/modificar_producto.php?notificacion=' . urlencode('Error al intentar asignar una categoría al producto') . '#respuesta_servidor');
+            }
             die();
+        } else {
+            Header('Location: ../interfaces/modificar_producto.php?notificacion=' . urlencode('Ocurrió un error. No se ha modificado el producto'));
         }
 
     } else {

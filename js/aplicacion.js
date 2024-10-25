@@ -120,4 +120,8 @@ $(document).ready(function () {
     $('.eliminar_gasto').on('click', function () {
         window.location.href = '../backend/eliminar_gasto.php?gasto=' + $(this).parent().attr('id');
     });
+
+    $('.regresar').on('click', function () {
+        window.location.href = '../aplicacion.php';
+    });
 });

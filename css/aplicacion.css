@@ -23,6 +23,7 @@ body {
     width: 0.5rem;
 }
 
+
 header {
     background: rgba(255, 122, 0, 1);
     background: linear-gradient(to right, rgba(255, 168, 19, 1) 35%, rgba(255, 122, 0, 1) 45%);
@@ -116,35 +117,61 @@ li {
 }
 
 /* MENU PRINCIPAL */
-
 .menu_div {
-    padding: 0 1rem;
-    display: flex;
-    flex-direction: row;
-    justify-content:space-evenly;
-    align-items: baseline;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas */
+    gap: 10px; /* Espacio entre los botones */
+    background-color: rgb(255, 102, 0); /* Fondo naranja para el contenedor */
+    border-radius: 10px;
 }
 
 .menu_div a {
-    max-width: 16vw;
-    margin: 0 1vw;
     display: flex;
-    color: rgba(0, 0, 0, 1);
-    font-size: 0.8rem;
-    font-family: "Baloo Thambi 2", system-ui;
-    font-weight: 800;
-    text-decoration: none;
-    text-align: center;
-    word-wrap: break-word;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    justify-content: center;
+    background-color: orange; /* Fondo naranja para cada botón */
+    padding: 50px;
+    text-decoration: none; /* Sin subrayado en los enlaces */
+    color: black; /* Color del texto */
+    font-family: "Baloo Thambi 2", system-ui;
+    font-weight: 700;
+    border-radius: 10px; /* Bordes redondeados */
+ transition: background-color 0.3s, color 0.3s;
 }
 
 .menu_div img {
-    width: 4rem;
+    max-width: 100px; /* Tamaño máximo de los iconos */
+    margin-bottom: 10px; /* Espacio entre el icono y el texto */
 }
+.menu_div a img {
+    filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+    transition: filter 0.3s;
+}
+
+.menu_div a:hover img {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+.menu_div a:hover {
+    color: white;
+}
+
+.menu_div label {
+    text-align: center; /* Centrar el texto */
+}
+@media (max-width: 768px){
+    .menu_div{
+        grid-template-columns: 1fr 1r;
+    }
+    .menu_div a {
+        padding: 10px;
+    }
+
+    .menu_div img {
+        max-width: 100px;
+    }
+}
+
 
 /* REGISTROS */
 
@@ -211,7 +238,7 @@ li {
     background-color: rgba(255, 255, 255, 1);
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 60%, bisque 95%, rgba(255, 255, 255, 1) 100%);
     height: 10vh;
-    width: 25vw;
+    width: auto;
     max-width: 30%;
     position: relative;
 }
@@ -594,7 +621,11 @@ form select {
 }
 
 .regresar {
-    max-width: 100%;
+    position: fixed;
+    max-width: 70vw;
+    bottom: 0;
+    left: 50%;
+    transform:translateX(-50%);
 }
 
 .icono {

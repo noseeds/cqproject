@@ -25,6 +25,6 @@
             <a href="aplicacion.php" class="nav_item"><img src="iconos/menu.svg" class="nav_icon"></a>
             <a href="interfaces/transacciones.php" class="nav_item"><img src="iconos/funds-fill.svg"
                     class="nav_icon"></a>
-            <a href="catalogo.php" class="nav_item"><img src="iconos/shopping-bag.svg" class="nav_icon"></a>
+            <a href="catalogo.php" class="nav_item"><img src="iconos/store-3-fill.svg" class="nav_icon"></a>
             <a href="login.php" class="nav_item"><img src="iconos/account-circle-fill.svg" class="nav_icon"></a>
         </nav>

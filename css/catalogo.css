@@ -19,9 +19,9 @@ img, h3, footer{
 }
 
 body {
-  background-color: #f0f0f0;
-  background-image: url('/img/patron4.png');
-  background-size: 30vw;
+  background-color: rgba(240, 240, 240, 1);
+  background-image: url('/img/patron4.png'), linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+  background-size: 20vw;
   background-repeat: repeat;
   display: flex;
   flex-direction: column;
@@ -29,11 +29,9 @@ body {
   flex-wrap: wrap;
   font-family: "Teachers", sans-serif;
   font-weight: 700;
-  margin: 6rem 0 0 0;
+  margin: 8vh 0 0 0;
   padding: 0 20vw;
 }
-
-
 
 header {
   background: rgb(255, 122, 0);
@@ -87,6 +85,10 @@ nav {
   height: 100%;
 }
 
+h1 {
+  text-shadow: 1vw 1vw 1vw rgba(139, 139, 139, 0.347);
+}
+
 article {
   background-color: rgba(255, 255, 255, 0);
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 1) 90%, rgba(255, 255, 255, 0) 100%);
@@ -98,7 +100,7 @@ article {
   justify-content: center;
   align-items: center;
   padding: 1.4rem; 
-  margin: 0.7rem; 
+  margin: 0 1.1vw 1.1vw 1.1vw; 
   border-radius: 2rem;
 
   overflow-x: hidden;
@@ -123,7 +125,20 @@ footer {
   width: 100%;
 }
 
-/* CLASES */
+#contacto {
+  margin-bottom: 20vh;  
+}
+
+.contacto {
+  font-family:Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 1);
+}
+
+.icono {
+  max-width: 1.5rem;
+  height: 1.5rem;
+}
 
 .slider_container {
   position: relative;
@@ -144,21 +159,31 @@ footer {
   align-items: center;
   position: relative;
   white-space: nowrap;
-
   box-shadow: 0 1rem 0 -1rem rgba(0,0,0,1);
   z-index: 0;
 }
 .slider::-webkit-scrollbar {
   display: none;
 }
-.slider_banner{
-  flex-grow: 0;
-  flex-shrink: 0;
-  flex-basis: auto;
-  margin: 1rem 0% 2rem 50%;
-  scroll-snap-align: center;
-  object-fit: cover;
+#slider_container_banner {
+  position: relative;
+  width: 100vw;
   overflow: hidden;
+}
+#slider_banner img {
+  background-color: rgba(0, 0, 0, 0);
+  object-fit: cover;
+  margin: 0 auto;
+}
+#slider_banner{
+  display: flex;
+  transition: transform 0.5s ease;
+  width: 300vw;
+  overflow: hidden;
+}
+#articulo_banner {
+  border-radius: 0;
+  padding: 0;
 }
 .banner {
   width: auto;
@@ -168,6 +193,32 @@ footer {
   height: 100%;
   margin: 0 8vw;
 }
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.slider_banner {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+.mySlides {
+  display: none;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
 .slider_nav{
   background-color: rgba(255, 255, 255, 0);
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 1) 100%);
@@ -203,10 +254,6 @@ footer {
   transition: opacity ease 250ms;
 }
 
-.icono {
-  width: 2rem;
-}
-
 .banner {
     min-width: 14rem;
     height:max-content;
@@ -222,15 +269,15 @@ footer {
 }
 
 .producto_img {
-  width: 100%;
+  height: 100%;
   user-select: none;
   white-space: normal;
   display: inline-block;
-  height: auto;
+  width: 100%;
   max-width: 15vw;
 }
 
-#anterior_producto {
+#anterior_producto, #anterior_banner {
   z-index: 4;
   position: absolute;
   left: 0vw;
@@ -242,13 +289,13 @@ footer {
   background-color: rgba(0, 0, 0, 0);
   background-image: linear-gradient(to right, rgba(255, 255, 255, 1) 55%, rgba(255, 255, 255, 0) 100%);
 }
-#anterior_producto img {
+#anterior_producto img, #siguiente_producto img {
   z-index: 4;
   width: 10vw;
   height: auto;
   user-select: none;
 }
-#siguiente_producto {
+#siguiente_producto, #siguiente_banner {
   z-index: 4;
   position: absolute;
   right: 0vw;
@@ -259,12 +306,6 @@ footer {
   justify-content: center;
   background-color: rgba(0, 0, 0, 0);
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%,rgba(255, 255, 255, 1) 45%);
-}
-#siguiente_producto img {
-  z-index: 4;
-  width: 10vw;
-  height: auto;
-  user-select: none;
 }
 
 /* IDs */
@@ -308,11 +349,18 @@ footer {
     max-width: 100%;
   }
   body{
+    margin: 8vh 0;
     padding: 0;
+    background-size: 50%;
   }
   article{
-    max-width:90vw;
-    margin: 1vh 5vw;
+    width:100vw;
+    margin: 1vh 0 3vh 0;
+    padding: 20vw 0;
+  }
+  #articulo_banner{
+    margin: 0;
+    width: 100vw;
   }
   nav{
     gap: 0;
@@ -329,7 +377,8 @@ footer {
     max-height: 5vh;
   }
   .slider img{
-    margin: 0 0 0 25%;
+    margin: 0 0 0 20vw;
+    max-width: 100%;
   }
   #visor_producto{
     left: 5vw;

@@ -94,4 +94,20 @@ $(document).ready(function () {
     });
     ajustar_scroll();
     $('#anterior_producto, #siguiente_producto').on('click', ajustar_scroll);
+
+    $indice_banner = 0;
+    $banners = $('#slider_banner img');
+    $total_banners = $banners.length;
+
+    $($banners[$indice_banner]).addClass('active');
+
+    function cambiar_banner($i) {
+        $banners.removeClass('active').fadeOut();
+        $($banners[$i]).addClass('active').fadeIn();
+    }
+
+    setInterval(function () {
+        $indice_banner = ($indice_banner + 1) % $total_banners;
+        cambiar_banner($indice_banner);
+    }, 3000);
 });
