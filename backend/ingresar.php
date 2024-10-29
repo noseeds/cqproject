@@ -5,7 +5,7 @@ $_SESSION['orden_preferido'] = 'DESC';
 require 'conexion.php';
 
 if (!$conn || $_SERVER['REQUEST_METHOD'] !== 'POST') {
-    Header('Location: ../login.php?advertencia=' . urlencode('Error de conexión') . urlencode(mysqli_connect_error()) . '&formulario_actual=' . urlencode('login'));
+    Header('Location: ../login.php?advertencia=' . urlencode('Error de conexión. ' . mysqli_connect_error()) . '&formulario_actual=' . urlencode('login'));
     die();
 }
 
@@ -35,16 +35,25 @@ try {
     die();
 }
 if (!$resultado) {
-    Header('Location: ../login.php?advertencia=' . urlencode('Error de consulta ') . urlencode(mysqli_error($conn)) . '&formulario_actual=' . urlencode('login'));
+    Header('Location: ../login.php?advertencia=' . urlencode('Error de consulta ' . mysqli_error($conn)) . '&formulario_actual=' . urlencode('login'));
     die();
 } else {
     if ($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
         if ($fila['contrasena'] === $contrasena_ingresada) {
-            $_SESSION['ID_usuario'] = $fila['ID_usuario'];
-            $_SESSION['nombre'] = $fila['nombre'];
-            $_SESSION['ingresado'] = true;
-            Header('Location: ../aplicacion.php');
-            die();
+            if($fila['activo'] != 0) {
+                $_SESSION['ID_usuario'] = $fila['ID_usuario'];
+                $_SESSION['nombre_usuario'] = $fila['nombre'];
+                $_SESSION['ingresado'] = true;
+                $_SESSION['tipo_usuario'] = $fila['tipo'];
+                if($fila['tipo'] === 'administrador'){
+                    Header('Location: ../menu_admin.php');
+                } else {
+                    Header('Location: ../menu.php');
+                }
+                die();
+            } else {
+                Header('Location: ../login.php?advertencia=' . urlencode('El usuario ' . $fila['ID_usuario'] . ' se encuentra inactivo, por lo que no podrá ser utilizado para ingresar a la aplicación. Solo un administrador es capaz de volver a activarlo'));
+            }
         } else {
             Header('Location: ../login.php?advertencia=' . urlencode('Datos incorrectos para ' . $fila['nombre'] . '.') . '&formulario_actual=' . urlencode('login'));
             die();

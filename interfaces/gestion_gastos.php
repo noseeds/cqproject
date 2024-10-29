@@ -1,12 +1,14 @@
 <?php
-include '../headers/header_interfaces.php';
+require '../backend/comprobar_usuario_administrador.php';
+require '../headers/header_interfaces.php';
+require '../backend/conexion.php';
 include '../headers/ordenador_transacciones.php';
+
 ?>
 </header>
 <h1> Egresos </h1>
-<article>
+<article id='articulo_gastos'>
     <?php
-    include '../backend/conexion.php';
 
     $atributo = 'fecha';
     $orden = 'DESC';
@@ -20,7 +22,7 @@ include '../headers/ordenador_transacciones.php';
     $instruccion = 'SELECT g.ID_usuario AS ID_usuario, u.nombre AS nombre_usuario, g.ID_gasto AS ID_gasto, g.motivo AS motivo, g.valor AS valor, g.fecha AS fecha FROM gastos g JOIN usuarios u ON g.ID_usuario = u.ID_usuario ORDER BY ' . $atributo . ' ' . $orden;
     $resultado = mysqli_query($conn, $instruccion);
 
-    echo '<table class="tabla_registros">
+    echo '<table id="tabla_registros">
         <thead>
             <tr>
                 <th>Codigo egreso</th>
@@ -29,8 +31,10 @@ include '../headers/ordenador_transacciones.php';
                 <th>Valor</th>
                 <th>Motivo</th>
                 <th>Fecha</th>
+                <th></th>
             </tr>
-        </thead>';
+        </thead>
+        <tbody>';
     while ($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
         $ID_gasto = $fila['ID_gasto'];
         $ID_usuario = $fila['ID_usuario'];
@@ -39,7 +43,6 @@ include '../headers/ordenador_transacciones.php';
         $motivo = $fila['motivo'];
         $fecha = $fila['fecha'];
         echo '
-        <tbody>
             <tr>
                 <td>' . $ID_gasto . '</td>
                 <td>' . $ID_usuario . '</td>
@@ -61,6 +64,11 @@ include '../headers/ordenador_transacciones.php';
     ?>
             </tbody>
     </table>
+    <picture>
+        <source media='(min-width: 48rem)' srcset='../img/regresar_largo.png'>
+        <source media='(max-width: 48rem)' srcset='../img/regresar.png'>
+        <img class='regresar' data-destino='../menu_empresa.php' src='../img/regresar_largo.png' alt='regresar'>
+    </picture>
 </article>
 </body>
 

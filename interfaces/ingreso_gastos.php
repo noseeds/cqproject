@@ -1,8 +1,9 @@
 <?php
+    require '../backend/comprobar_usuario.php';
     require '../headers/header_interfaces.php';
     require '../backend/conexion.php';
     include '../headers/ordenador_transacciones.php';
-    ?>
+?>
 </header>
 <div id='ordenador_productos'>
 </div>
@@ -25,7 +26,7 @@
             <button id='boton_cancelar' class='boton' type='button'> Cancelar</button>
             <button id='boton_guardar' class='boton' type='submit'> Guardar</button>
         </div>
-        
+
         <?php
             echo '<label id="respuesta_servidor"';
             if(isset($_GET['notificacion'])){
@@ -38,4 +39,12 @@
             echo '</label>';
         ?>
     </form>
+    <picture>
+        <source media='(min-width: 48rem)' srcset='../img/regresar_largo.png'>
+        <source media='(max-width: 48rem)' srcset='../img/regresar.png'>
+        <img class='regresar' data-destino='../menu_empresa.php' src='../img/regresar_largo.png' alt='regresar'>
+    </picture>
 </article>
+</body>
+
+</html>

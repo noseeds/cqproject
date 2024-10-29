@@ -1,4 +1,5 @@
 <?php
+require 'backend/comprobar_usuario.php';
 require '../headers/header_interfaces.php';
 
 $api_key = '6b2344deb47d222d95e4e8b375668cd3';
@@ -37,7 +38,7 @@ if (isset($datos['rates'])) {
             </tr>
             <?php
             foreach ($tasas_usd as $moneda => $tasa) {
-                if($moneda === 'UYU') {
+                if ($moneda === 'UYU') {
                     echo '<tr>';
                     echo '<td>' . htmlspecialchars($moneda) . '</td>';
                     echo '<td>' . number_format($tasa, 4) . '</td>';
@@ -46,6 +47,11 @@ if (isset($datos['rates'])) {
             }
             ?>
         </table>
+        <picture>
+            <source media='(min-width: 48rem)' srcset='../img/regresar_largo.png'>
+            <source media='(max-width: 48rem)' srcset='../img/regresar.png'>
+            <img class='regresar' data-destino='../menu_admin.php' src='../img/regresar_largo.png' alt='regresar'>
+        </picture>
     </article>
 </body>
 

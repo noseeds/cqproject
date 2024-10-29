@@ -20,7 +20,7 @@ img, h3, footer{
 
 body {
   background-color: rgba(240, 240, 240, 1);
-  background-image: url('/img/patron4.png'), linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+  background-image: url('../img/patron4.png'), linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
   background-size: 20vw;
   background-repeat: repeat;
   display: flex;

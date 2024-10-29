@@ -1,6 +1,6 @@
 <?php
 require 'headers/header_menu.php';
-require 'backend/comprobar_usuario.php';
+require 'backend/comprobar_usuario_administrador.php';
 include 'backend/limpiar_session.php';
 ?>
 <div id="ordenador">
@@ -9,17 +9,17 @@ include 'backend/limpiar_session.php';
 </div>
 </header>
 
-<h1> Menu Cat&aacute;logo</h1>
+<h1> Menu</h1>
 <article>
     <h2> Opciones...</h2>
     <div class='menu_div'>
-        <a href='./interfaces/ingreso_productos.php'>
-            <img src='./iconos/price-tag-3-fill.svg' alt=''>
-            <label> Nuevo producto</label>
+        <a href='interfaces/nuevo_usuario.php'>
+            <img src='./iconos/user-add-fill.svg' alt=''>
+            <label> Nuevo usuario</label>
         </a>
-        <a href="interfaces/gestion_productos.php">
-            <img src="./iconos/pencil-fill.svg" alt="">
-            <label> Catálogo de Productos</label>
+        <a href='interfaces/gestion_usuarios.php'>
+            <img src='./iconos/id-card-fill.svg' alt=''>
+            <label> Gestionar Usuarios</label>
         </a>
     </div>
     <picture>

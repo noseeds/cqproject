@@ -1,7 +1,8 @@
 <?php
-require '../headers/header_interfaces.php';
-require '../backend/conexion.php';
-include '../headers/ordenador_transacciones.php';
+    require '../backend/comprobar_usuario.php';
+    require '../headers/header_interfaces.php';
+    require '../backend/conexion.php';
+    include '../headers/ordenador_transacciones.php';
 ?>
 </header>
 <h1> Registrar un Art&iacute;culo</h1>
@@ -18,15 +19,17 @@ include '../headers/ordenador_transacciones.php';
         </div>
 
         <label for='nombre'> Nombre</label>
-        <input class='formulario_producto_input' type='text' name='nombre' placeholder='Nombre' required>
+        <input  type='text' name='nombre' placeholder='Nombre' required>
         <label for='descripcion'> Descripci&oacute;n</label>
         <textarea type='text' name='descripcion' placeholder='Descripci&oacute;n' rows='3'></textarea>
         <label for='stock'> Precio Unitario</label>
-        <input class='formulario_producto_input' type='number' step='1' min='1' name='precio' placeholder='0 uyu'>
+        <input  type='number' step='1' min='1' name='precio' placeholder='0 uyu' required>
         <label for='stock'> Unidades</label>
-        <input class='formulario_producto_input' type='number' step='1' min='0' name='stock' placeholder='0'>
+        <input  type='number' step='1' min='0' name='stock' placeholder='0' required>
+        <label for='stock_minimo'> (Opcional) Stock mínimo</label>
+        <input  type='number' step='1' min='0' name='stock_minimo' placeholder='0'>
         <label for="categoria"> Categoria</label>
-        <select name='categoria'>
+        <select name='categoria' required>
             <?php
             $instruccion = 'SELECT * FROM categorias';
             $resultado = mysqli_query($conn, $instruccion);
@@ -55,4 +58,12 @@ include '../headers/ordenador_transacciones.php';
             echo '</label>';
         ?>
     </form>
+    <picture>
+        <source media='(min-width: 48rem)' srcset='../img/regresar_largo.png'>
+        <source media='(max-width: 48rem)' srcset='../img/regresar.png'>
+        <img class='regresar' data-destino='../menu_catalogo.php' src='../img/regresar_largo.png' alt='regresar'>
+    </picture>
 </article>
+</body>
+
+</html>

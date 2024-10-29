@@ -23,7 +23,6 @@ body {
     width: 0.5rem;
 }
 
-
 header {
     background: rgba(255, 122, 0, 1);
     background: linear-gradient(to right, rgba(255, 168, 19, 1) 35%, rgba(255, 122, 0, 1) 45%);
@@ -117,82 +116,109 @@ li {
 }
 
 /* MENU PRINCIPAL */
+
 .menu_div {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Dos columnas */
-    gap: 10px; /* Espacio entre los botones */
-    background-color: rgb(255, 102, 0); /* Fondo naranja para el contenedor */
-    border-radius: 10px;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
+    align-items: baseline;
+    background-image: linear-gradient(to right, rgba(88, 88, 88, 0) 0%, rgba(88, 88, 88, 0.075) 50%, rgba(88, 88, 88, 0) 100%);
+
 }
 
 .menu_div a {
+    max-width: 16vw;
+    margin: 0 1vw;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: orange; /* Fondo naranja para cada botón */
-    padding: 50px;
-    text-decoration: none; /* Sin subrayado en los enlaces */
-    color: black; /* Color del texto */
+    color: rgba(0, 0, 0, 1);
+    font-size: 0.8rem;
     font-family: "Baloo Thambi 2", system-ui;
-    font-weight: 700;
-    border-radius: 10px; /* Bordes redondeados */
- transition: background-color 0.3s, color 0.3s;
+    font-weight: 800;
+    text-decoration: none;
+    text-align: center;
+    word-wrap: break-word;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .menu_div img {
-    max-width: 100px; /* Tamaño máximo de los iconos */
-    margin-bottom: 10px; /* Espacio entre el icono y el texto */
-}
-.menu_div a img {
-    filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
-    transition: filter 0.3s;
+    width: 4rem;
 }
 
-.menu_div a:hover img {
-    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+#alertas_restock {
+    z-index: 10;
+    display: none;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 45vw;
+    position: fixed;
+    top: 6rem;
+    right: 0;
+    padding: 0.5rem;
+    background-color: rgb(255, 255, 255);
+    box-shadow: -0.1rem 0.1rem 0.5rem rgb(111, 111, 111);
+    border-radius: 0.5rem;
 }
-.menu_div a:hover {
-    color: white;
+.mensaje {
+    font-family: "Baloo Thambi 2", system-ui;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: left;
+    word-wrap: break-word;
+    color: rgb(88, 88, 88);
+    background-image: linear-gradient(45deg, rgba(88, 88, 88, 0) 0%, rgba(88, 88, 88, 0.1) 50%, rgba(88, 88, 88, 0) 100%);
+    border-radius: 0.5rem;
 }
-
-.menu_div label {
-    text-align: center; /* Centrar el texto */
-}
-@media (max-width: 768px){
-    .menu_div{
-        grid-template-columns: 1fr 1r;
-    }
-    .menu_div a {
-        padding: 10px;
-    }
-
-    .menu_div img {
-        max-width: 100px;
-    }
-}
-
-
 /* REGISTROS */
 
-.tabla_registros {
+#tabla_registros {
+    max-width: 100%;
     background-color: bisque;
     border-collapse: collapse;
     border: none;
     font-family: "Baloo Thambi 2", system-ui;
 }
 
-.tabla_registros th,
-.tabla_registros td {
+#tabla_registros th,
+#tabla_registros td {
     padding: 0.5rem;
     text-align: left;
 }
 
-.tabla_registros td {
+#tabla_registros td {
     border: 0.1rem solid rgb(214, 190, 169);
+    padding: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.tabla_productos {
+#tabla_ventas {
+    background-color: bisque;
+    border-collapse: collapse;
+    border: none;
+    font-family: "Baloo Thambi 2", system-ui;
+    font-size: 1.5vw;
+    table-layout: fixed;
+    position: relative;
+    width: 100%;
+    padding: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+
+#tabla_ventas th {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+
+#tabla_productos {
     background-color: bisque;
     border-collapse: collapse;
     border: none;
@@ -203,17 +229,17 @@ li {
     width: 100%;
 }
 
-.tabla_productos th {
+#tabla_productos th {
     padding: 0.5rem;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    word-wrap: break-word;
     text-align: left;
 }
 
 .tabla_registros_celda {
     width: 15vw;
-    max-width: 14%;
     border: 0.1rem solid rgb(214, 190, 169);
     white-space: nowrap;
     overflow: hidden;
@@ -223,7 +249,7 @@ li {
 }
 
 .tabla_registros_opciones img {
-    width: 20%;
+    width: 40%;
 }
 
 .tabla_registros_celda a {
@@ -558,7 +584,10 @@ form select {
 }
 
 #formulario_venta {
-    padding: 0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
 }
 
 /* IMAGENES */
@@ -735,6 +764,24 @@ NOTIFICACIONES */
         width: 90%;
     }
 
+    #tabla_registros {
+        font-size: 3vw;
+    }
+
+    .celda_imagen img {
+        max-height: 4vh;
+        width: auto;
+    }
+
+    #tabla_registros td, #tabla_registros th {
+        padding: 0.1rem;
+        max-height: 2vh; 
+    }
+
+    #tabla_productos th {
+        padding: 0;
+    }
+    
     #formulario_producto {
         margin: 0 auto;
         width: 80vw;
@@ -773,8 +820,12 @@ NOTIFICACIONES */
         height:auto;
     }
 
-    .tabla_productos {
-        font-size: 1vw;
+    #tabla_productos {
+        font-size: 1rem;
+    }
+
+    #tabla_registros {
+        overflow: hidden;
     }
 
     .tabla_registros_celda {

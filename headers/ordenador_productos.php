@@ -6,27 +6,27 @@
             echo "<select name='ordenar_por' id='ordenar_por'>";
 
             echo "<option value='nombre'";
-            if ($ordenar_por == "nombre")
+            if ($ordenar_por === "nombre")
                 echo "selected";
             echo ">nombre</option>";
 
             echo "<option value='descripcion'";
-            if ($ordenar_por == "descripcion")
+            if ($ordenar_por === "descripcion")
                 echo " selected";
             echo ">descripcion</option>";
 
             echo "<option value='categoria'";
-            if ($ordenar_por == "categoria")
+            if ($ordenar_por === "categoria")
                 echo " selected";
             echo ">categoria</option>";
 
             echo "<option value='precio'";
-            if ($ordenar_por == "precio")
+            if ($ordenar_por === "precio")
                 echo " selected";
             echo ">precio</option>";
 
             echo "<option value='stock'";
-            if ($ordenar_por == "stock")
+            if ($ordenar_por === "stock")
                 echo " selected";
             echo ">stock</option>";
 
@@ -43,13 +43,13 @@
             echo "<select name='orden_preferido' id='orden_preferido'>";
 
             echo "<option value='ASC'";
-            if ($orden_preferido == "ASC") {
+            if ($orden_preferido === "ASC") {
                 echo " selected";
             }
             echo ">Ascendente</option>";
 
             echo "<option value='DESC'";
-            if ($orden_preferido == "DESC") {
+            if ($orden_preferido === "DESC") {
                 echo " selected";
             }
             echo ">Descendente</option>";
@@ -61,7 +61,7 @@
             <option value='DESC'>Descendente</option>
             </select>";
         }
-        echo '<img src="../iconos/filter-3.svg">'; /*onclick="' . "$('#ordenador_form select').hide()" . '"*/
+        echo '<img id="ocultar_ordenador" src="../iconos/filter-3.svg">';
         ?>
     </form>
 </div>

@@ -27,13 +27,15 @@ if (isset($_POST['contrasena_registro']) && !empty($_POST['contrasena_registro']
 $resultado = mysqli_query($conn, "SELECT nombre FROM usuarios WHERE nombre = '" . $nombre_ingresado . "'; ");
 //mysqli_query retorna FALSE si falla, pero si es exitosa, retorna un objeto de tipo mysqli_result  (resultado de la consulta en forma de tabla)
 if($resultado) {
-    $usuario = array();
-    if($fila = mysqli_fetch_array($resultado, MYSQLI_BOTH)) {
+    if(mysqli_num_rows($resultado) > 0) {
+        $fila = mysqli_fetch_array($resultado, MYSQLI_BOTH);
         if($fila['nombre'] === $nombre_ingresado){
             Header('Location: ../registro.php?advertencia=' . urlencode("El nombre ingresado ya fue registrado") . "&formulario_actual=" . urlencode("registro"));
             die();
         }
-    }
+    } // Alternativamente podría usar if($fila = mysqli_fetch_array($resultado, MYSQLI_BOTH)). en caso de que no se obtenga una fila es porque no hay coincidencias y el nombre ingresado está disponible.
+} else {
+    Header('Location: ../registro.php?advertencia=' . urlencode('Error de consulta.'));
 }
 mysqli_free_result($resultado);
 
@@ -54,7 +56,7 @@ if($contrasena_ingresada != $contrasena_ingresada2){
     die();
 }
 $contrasena_ingresada = hash('sha256', $contrasena_ingresada);
-$instruccion = "INSERT INTO usuarios (nombre, contrasena) VALUES('$nombre_ingresado', '$contrasena_ingresada'); ";
+$instruccion = "INSERT INTO usuarios (nombre, contrasena, tipo) VALUES('$nombre_ingresado', '$contrasena_ingresada', 'común'); ";
 if(mysqli_query($conn, $instruccion)){
     Header('Location: ../registro.php?notificacion=' . urlencode('Usuario registrado con éxito') . '&formulario_actual=' . urlencode('registro'));
     die();
@@ -62,13 +64,3 @@ if(mysqli_query($conn, $instruccion)){
     Header('Location: ../registro.php?advertencia=' . urlencode('Error, vuelve a intentarlo más tarde' . urlencode(mysqli_error($conn)) . '&formulario_actual=' . urlencode('registro')));
     die();
 }
-
-/*    $tabla = array();
-    //fetch_row devuelve la primer fila y la descarta, y si no hay filas devuelve null
-    $fila = mysqli_fetch_row($resultado);
-    while ($fila) { 
-        $tabla[] = $fila;
-        $fila = mysqli_fetch_row($resultado);
-    }
-    mysqli_free($resultado);
-*/

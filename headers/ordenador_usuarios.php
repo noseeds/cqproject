@@ -5,27 +5,33 @@
             $ordenar_por = $_SESSION["ordenar_por"];
             echo "<select name='ordenar_por' id='ordenar_por'>";
 
-            echo "<option value='fecha'";
-            if ($ordenar_por === "fecha")
+            echo "<option value='nombre'";
+            if ($ordenar_por === "nombre")
                 echo "selected";
-            echo ">Fecha</option>";
+            echo ">nombre</option>";
 
-            echo "<option value='valor'";
-            if ($ordenar_por === "valor")
+            echo "<option value='ID'";
+            if ($ordenar_por === "ID")
                 echo " selected";
-            echo ">Valor total</option>";
+            echo ">ID</option>";
 
             echo "<option value='tipo'";
             if ($ordenar_por === "tipo")
                 echo " selected";
-            echo ">Ingreso/egreso</option>";
+            echo ">tipo</option>";
+
+            echo "<option value='estado'";
+            if ($ordenar_por === "estado")
+                echo " selected";
+            echo ">estado</option>";
 
             echo "</select>";
         } else {
             echo "<select name='ordenar_por' id='ordenar_por'>
-            <option value='fecha'>Fecha</option>
-            <option value='valor'>Valor total</option>
-            <option value='tipo'>Ingreso/egreso</option>
+            <option value='nombre'>nombre</option>
+            <option value='ID'>ID</option>
+            <option value='tipo'>tipo</option>
+            <option value='activo'>estado</option>
             </select>";
         }
         if (isset($_SESSION["orden_preferido"]) && !empty($_SESSION["orden_preferido"])) {

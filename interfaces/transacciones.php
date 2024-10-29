@@ -1,5 +1,7 @@
 <?php
-require "../headers/header_interfaces.php";
+require '../backend/comprobar_usuario.php';
+require '../headers/header_interfaces.php';
+require '../backend/conexion.php';
 include '../headers/ordenador_transacciones.php';
 ?>
 </header>
@@ -12,16 +14,15 @@ include '../headers/ordenador_transacciones.php';
     </div>
     <table>
         <?php
-        require '../backend/conexion.php';
         if (!$conn) {
             die('error de conexion con la base de datos');
         }
         $atributo = 'fecha';
         $orden = 'DESC';
-        if(isset($_SESSION['ordenar_por']) && !empty($_SESSION['ordenar_por'])) {
+        if (isset($_SESSION['ordenar_por']) && !empty($_SESSION['ordenar_por'])) {
             $atributo = $_SESSION['ordenar_por'];
         }
-        if(isset($_SESSION['orden_preferido']) && !empty($_SESSION['orden_preferido'])) {
+        if (isset($_SESSION['orden_preferido']) && !empty($_SESSION['orden_preferido'])) {
             $orden = $_SESSION['orden_preferido'];
         }
 
@@ -44,7 +45,7 @@ include '../headers/ordenador_transacciones.php';
                 echo '<tr class="' . $tipo . '">';
                 echo '<td class="col1"><img src="../iconos/money-dollar-circle-white.png"></td>';
                 echo '<td class="col2">
-                    <a href="../registros/detalles_venta.php?ID=' . $ID . '">' . ucfirst($tipo) . '</a>
+                    <a href="../interfaces/detalles_venta.php?ID=' . $ID . '">' . ucfirst($tipo) . '</a>
                     <label>' . $descripcion . '</label></td>';
                 echo '<td class="col3">
                     ' . $fecha . '
@@ -58,7 +59,7 @@ include '../headers/ordenador_transacciones.php';
                 echo '<tr class="' . $tipo . '">';
                 echo '<td class="col1"><img src="../iconos/money-dollar-circle-white.png"></td>';
                 echo '<td class="col2">
-                <a href="../registros/detalles_egreso.php?ID=' . $ID . '">' . ucfirst($tipo) . '</a>
+                <a href="../interfaces/detalles_egreso.php?ID=' . $ID . '">' . ucfirst($tipo) . '</a>
                 <label>' . $descripcion . '</label></td>';
                 echo '<td class="col3">
                 ' . $fecha . '
@@ -71,8 +72,18 @@ include '../headers/ordenador_transacciones.php';
         }
         ?>
     </table>
-    </a>
+    <picture>
+        <source media='(min-width: 48rem)' srcset='../img/regresar_largo.png'>
+        <source media='(max-width: 48rem)' srcset='../img/regresar.png'>
+        <?php
+        if($_SESSION['tipo_usuario'] === 'administrador') {
+            echo '<img class="regresar" data-destino="../menu_empresa.php" src="../img/regresar_largo.png" alt="regresar">';
+        } else {
+            echo '<img class="regresar" data-destino="../menu.php" src="../img/regresar_largo.png" alt="regresar">';
+        }
+        ?>
+    </picture>
+</article>
+</body>
 
-    </body>
-
-    </html>
+</html>

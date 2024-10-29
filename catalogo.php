@@ -14,7 +14,15 @@
 
         require './backend/conexion.php';
 
-        $instruccion = 'SELECT p.ID_producto AS ID_producto, p.nombre AS nombre_producto, p.precio AS precio_producto, p.descripcion AS descripcion_producto, i.imagen AS imagen FROM productos p JOIN imagenes i ON p.ID_imagen = i.ID_imagen';
+        $instruccion = 'SELECT
+        p.ID_producto,
+        p.nombre AS nombre_producto,
+        p.precio AS precio_producto,
+        p.descripcion AS descripcion_producto,
+        i.imagen
+        FROM productos p
+        JOIN imagenes i
+        ON p.ID_producto = i.ID_producto';
 
         $resultado = mysqli_query($conn, $instruccion);
 
@@ -78,7 +86,7 @@
 <div id='visor_producto'>
 </div>
 
-<footer>Pets Mimos © 2024</footer>
+<footer>Pets Mimos © 2024 | made by CodeQuarry</footer>
 
 </body>
 

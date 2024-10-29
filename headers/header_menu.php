@@ -3,10 +3,13 @@
 
 <head>
     <?php
-    session_start();
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
     if ($_SESSION['ingresado'] != true) {
         Header("Location: login.php");
     }
+    require './backend/conexion.php';
     ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,9 +25,14 @@
 <body class="noseleccionable">
     <header>
         <nav>
-            <a href="aplicacion.php" class="nav_item"><img src="iconos/menu.svg" class="nav_icon"></a>
+            <a href="menu.php" class="nav_item"><img src="iconos/menu.svg" class="nav_icon"></a>
             <a href="interfaces/transacciones.php" class="nav_item"><img src="iconos/funds-fill.svg"
                     class="nav_icon"></a>
             <a href="catalogo.php" class="nav_item"><img src="iconos/store-3-fill.svg" class="nav_icon"></a>
             <a href="login.php" class="nav_item"><img src="iconos/account-circle-fill.svg" class="nav_icon"></a>
+            <a id='mostrar_alertas_restock' class="nav_item"> <img src="iconos/notification-fill.svg" class="nav_icon"
+                    alt="alertas de restock"> </a>
         </nav>
+<?php
+include './interfaces/alertas_restock.php';
+?>

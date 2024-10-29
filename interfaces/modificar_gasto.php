@@ -1,4 +1,5 @@
 <?php
+    require '../backend/comprobar_usuario_administrador.php';
     require '../headers/header_interfaces.php';
     require '../backend/conexion.php';
     include '../headers/ordenador_transacciones.php';
@@ -59,4 +60,12 @@
             echo '</label>';
         ?>
     </form>
+    <picture>
+        <source media='(min-width: 48rem)' srcset='../img/regresar_largo.png'>
+        <source media='(max-width: 48rem)' srcset='../img/regresar.png'>
+        <img class='regresar' data-destino='./gestion_gastos.php' src='../img/regresar_largo.png' alt='regresar'>
+    </picture>
 </article>
+</body>
+
+</html>

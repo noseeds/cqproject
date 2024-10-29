@@ -1,7 +1,8 @@
 <?php
-require '../headers/header_interfaces.php';
-require '../backend/conexion.php';
-include '../headers/ordenador_transacciones.php';
+    require '../backend/comprobar_usuario.php';
+    require '../headers/header_interfaces.php';
+    require '../backend/conexion.php';
+    include '../headers/ordenador_transacciones.php';
 ?>
 </header>
 <h1> Registro de Ventas</h1>
@@ -19,7 +20,7 @@ include '../headers/ordenador_transacciones.php';
         <tbody>
             <?php
             $total = 0;
-            if (!empty($_SESSION['productos_seleccionados'])) {
+            if (isset($_SESSION['productos_seleccionados']) && !empty($_SESSION['productos_seleccionados'])) {
                 foreach ($_SESSION['productos_seleccionados'] as $producto) {
                     echo '<tr>
                                 <td>' . $producto['nombre'] . '</td>
@@ -39,7 +40,7 @@ include '../headers/ordenador_transacciones.php';
     </table>
     <form id='formulario_agregar_producto' action='../backend/actualizar_variables_session.php' method='POST'>
         <?php
-        $instruccion = "SELECT * FROM productos WHERE stock > '0'";
+        $instruccion = 'SELECT * FROM productos WHERE stock > 0';
         $resultado = mysqli_query($conn, $instruccion);
         echo '<select id="selector_productos" name="producto_para_agregar">';
         while ($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
@@ -66,6 +67,29 @@ include '../headers/ordenador_transacciones.php';
         echo $_SESSION['ID_usuario'];
         echo '">';
         ?>
+        <select id='metodo_pago' name='metodo_pago'>
+            <?php
+                $metodo_pago = 'efectivo';
+                if(isset($_SESSION['metodo_pago'])) {
+                    $metodo_pago = $_SESSION['metodo_pago'];
+                }
+                echo '<option value="efectivo"';
+                if($metodo_pago === 'efectivo') {
+                    echo ' selected';
+                }
+                echo '> Efectivo</option>';
+                echo '<option value="tarjeta"';
+                if($metodo_pago === 'tarjeta') {
+                    echo ' selected';
+                }
+                echo '> Tarjeta</option>';
+                echo '<option value="cheque"';
+                if($metodo_pago === 'cheque') {
+                    echo ' selected';
+                }
+                echo '> Cheque</option>';
+            ?>
+        </select>
     </form>
     <div class='opciones_interfaz'>
         <button id='boton_cancelar' class='boton'> Cancelar</button>
@@ -83,4 +107,12 @@ include '../headers/ordenador_transacciones.php';
     echo '</label>';
     ?>
     </form>
+    <picture>
+        <source media='(min-width: 48rem)' srcset='../img/regresar_largo.png'>
+        <source media='(max-width: 48rem)' srcset='../img/regresar.png'>
+        <img class='regresar' data-destino='../menu_empresa.php' src='../img/regresar_largo.png' alt='regresar'>
+    </picture>
 </article>
+</body>
+
+</html>

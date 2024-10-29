@@ -1,10 +1,11 @@
 <?php
-    require '../backend/conexion.php';
+    require '../backend/comprobar_usuario_administrador.php';
     require '../headers/header_interfaces.php';
+    require '../backend/conexion.php';
     include '../headers/ordenador_transacciones.php';
 ?>
 </header>
-<h1> Generar Enlace de Permiso de Registro Administrativo</h1>
+<h1> Generar Enlace de Registro de Usuario</h1>
 <article>
     <p> Tenga en cuenta que...</p>
     <li> Esta sección permite generar enlaces que permitirán el registro como usuario administrador a quien lo posea y acceda a él. </li>
@@ -21,4 +22,12 @@
         ?>    
         <button class='boton_grande'> Generar Enlace <img class='icono' src="../iconos/links-fill.svg" alt=""></button>
     </form>
+    <picture>
+        <source media='(min-width: 48rem)' srcset='../img/regresar_largo.png'>
+        <source media='(max-width: 48rem)' srcset='../img/regresar.png'>
+        <img class='regresar' data-destino='../menu_usuarios.php' src='../img/regresar_largo.png' alt='regresar'>
+    </picture>
 </article>
+</body>
+
+</html>

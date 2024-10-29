@@ -37,6 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         Header('Location: ../interfaces/ingreso_ventas.php?&a=sddas');
         die();
     }
+    if (isset($_POST['metodo_pago']) && isset($_POST['metodo_pago'])) {
+        $metodo_pago = $_POST['metodo_pago'];
+        $_SESSION['metodo_pago'] = $metodo_pago;
+
+        echo json_encode(['estado' => 'exito', 'metodo_pago' => $_SESSION['metodo_pago']]);
+        die();
+    }
 } else {
     echo json_encode(['estado' => 'error', 'mensaje' => 'Método de solicitud inválido (debe ser POST)']);
     die();

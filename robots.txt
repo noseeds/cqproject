@@ -1,7 +1,7 @@
-User-agent: *
-Allow: /
-
-User-agent: Googlebot
-Disallow:
-
+User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Disallow:
+
 Sitemap: petsmimos.infinityfreeapp.com/sitemap.xml
