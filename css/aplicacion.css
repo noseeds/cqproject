@@ -3,14 +3,14 @@
 
 body {
     background-color: rgb(240, 233, 227);
-    background-image: url('/img/patron4.png');
+    background-image: url('../img/patron.png');
     background-size: 30%;
     background-repeat: repeat;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     width: 100%;
-    max-width: 100vw;
+    max-width: 100dvw;
     top: 0;
     left: 0;
     padding: 0;
@@ -62,11 +62,12 @@ article {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 10rem;
 }
 
 select {
     background-color: rgba(255, 255, 255, 0.45);
-    width: 30%;
+    width: 25%;
     max-width: 40%;
     border: 0.1rem solid rgba(0, 0, 0, 0.45);
     font-size: 1rem;
@@ -102,7 +103,7 @@ hr {
 p {
     font-family: "Baloo Thambi 2", system-ui;
     font-weight: 600;
-    line-height: 0.5rem;
+    line-height: 1rem;
 }
 
 li {
@@ -129,8 +130,8 @@ li {
 }
 
 .menu_div a {
-    max-width: 16vw;
-    margin: 0 1vw;
+    max-width: 16dvw;
+    margin: 0 1dvw;
     display: flex;
     color: rgba(0, 0, 0, 1);
     font-size: 0.8rem;
@@ -154,7 +155,7 @@ li {
     display: none;
     flex-direction: column;
     flex-wrap: nowrap;
-    width: 45vw;
+    width: 45dvw;
     position: fixed;
     top: 6rem;
     right: 0;
@@ -183,6 +184,10 @@ li {
     font-family: "Baloo Thambi 2", system-ui;
 }
 
+#tabla_registros {
+    white-space: normal;
+}
+
 #tabla_registros th,
 #tabla_registros td {
     padding: 0.5rem;
@@ -201,7 +206,7 @@ li {
     border-collapse: collapse;
     border: none;
     font-family: "Baloo Thambi 2", system-ui;
-    font-size: 1.5vw;
+    font-size: 1.5dvw;
     table-layout: fixed;
     position: relative;
     width: 100%;
@@ -223,7 +228,7 @@ li {
     border-collapse: collapse;
     border: none;
     font-family: "Baloo Thambi 2", system-ui;
-    font-size: 2.5vw;
+    font-size: 2.5dvw;
     table-layout: fixed;
     position: relative;
     width: 100%;
@@ -231,7 +236,6 @@ li {
 
 #tabla_productos th {
     padding: 0.5rem;
-    white-space: nowrap;
     overflow: hidden;
     white-space: normal;
     word-wrap: break-word;
@@ -239,13 +243,15 @@ li {
 }
 
 .tabla_registros_celda {
-    width: 15vw;
+    width: 15dvw;
     border: 0.1rem solid rgb(214, 190, 169);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     text-align: left;
     vertical-align: top;
+    white-space: normal;
+    word-wrap: break-word;
+    word-break:normal;
+    overflow-wrap: break-word;
+    text-align: left;
 }
 
 .tabla_registros_opciones img {
@@ -263,7 +269,7 @@ li {
 .celda_imagen {
     background-color: rgba(255, 255, 255, 1);
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 60%, bisque 95%, rgba(255, 255, 255, 1) 100%);
-    height: 10vh;
+    height: 10dvh;
     width: auto;
     max-width: 30%;
     position: relative;
@@ -271,7 +277,7 @@ li {
 
 .celda_imagen img {
     width: auto;
-    height: 10vh;
+    height: 10dvh;
     position: absolute;
     right: 0;
     top: 50%;
@@ -321,7 +327,7 @@ li {
 .egreso td {
     min-width: 2rem;
     max-height: 3rem;
-    color: white;
+    color: rgba(255, 255, 255, 1);
     font-size: 0.8rem;
     font-family: "Baloo Thambi 2", system-ui;
     font-weight: 800;
@@ -333,7 +339,7 @@ li {
 .egreso a {
     margin: 0 0 0 0.5rem;
     display: flex;
-    color: white;
+    color: rgba(255, 255, 255, 1);
     font-size: 1.1rem;
     text-decoration: underline;
 }
@@ -456,12 +462,39 @@ form *:not(input) {
 }
 
 form input {
-    margin-left: 5vw;
+    margin-left: 2dvw;
     border-radius: 1.5rem;
 }
 
+form input[type="submit"] {
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+form input[type="date"] {
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+form textarea {
+    width: auto;
+    margin: 0 0 0 2dvw;
+    padding-left: 0.5rem;
+    resize: none;
+}
+
+form input[type='number'] {
+    max-width: 3.5rem;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+#valor {
+    max-width: 5rem;
+}
+
 form label {
-    margin: 0 0 0 1rem;
+    margin: 0 0 0 2dvw;
 }
 
 form textarea {
@@ -470,6 +503,9 @@ form textarea {
 
 form select {
     border-radius: 1.5rem;
+    margin: 0 0 0 2dvw;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 1);
 }
 
 #formulario_imagen {
@@ -502,15 +538,13 @@ form select {
 
 #formulario_producto {
     max-width: 100%;
-    height: auto;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: baseline;
     justify-content: flex-start;
     flex-shrink: 1;
-    gap: 1vw;
+    gap: 1dvw;
     overflow: hidden;
-    padding-bottom: 0;
 }
 
 #formulario_producto input[type="text"]{
@@ -522,12 +556,6 @@ form select {
 
 #formulario_producto input[type="number"] {
     width: 4rem;
-}
-
-#formulario_producto textarea {
-    width: auto;
-    padding-left: 0.5rem;
-    resize: none;
 }
 
 .opciones_interfaz {
@@ -565,7 +593,7 @@ form select {
 }
 
 .boton_grande {
-    height: 5vh;
+    height: 5dvh;
     width: 40%;
     font-family: "Baloo Thali 2", system-ui;
     font-weight: 700;
@@ -586,8 +614,32 @@ form select {
 #formulario_venta {
     padding: 1rem;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: left;
+}
+
+#formulario_descuento {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#formulario_descuento input[type='date'] {
+    width: 7rem;
+}
+
+#formulario_descuento input[type='number'] {
+    width: 3rem;
+}
+
+#contenedor_metodos_pago {
+    display: flex;
+    flex-direction: column;
+}
+
+.metodo_pago {
+    display: flex;
+    flex-direction: row;
 }
 
 /* IMAGENES */
@@ -651,7 +703,7 @@ form select {
 
 .regresar {
     position: fixed;
-    max-width: 70vw;
+    max-width: 70dvw;
     bottom: 0;
     left: 50%;
     transform:translateX(-50%);
@@ -743,6 +795,11 @@ NOTIFICACIONES */
         margin: 1rem 0;
     }
 
+    select {
+        max-width: 50dvw;
+        width: 50dvw;
+    }
+
     .nav_item {
         font-size: x-small;
     }
@@ -765,17 +822,16 @@ NOTIFICACIONES */
     }
 
     #tabla_registros {
-        font-size: 3vw;
+        font-size: 3dvw;
     }
 
     .celda_imagen img {
-        max-height: 4vh;
+        max-height: 4dvh;
         width: auto;
     }
 
     #tabla_registros td, #tabla_registros th {
-        padding: 0.1rem;
-        max-height: 2vh; 
+        max-height: 2dvh; 
     }
 
     #tabla_productos th {
@@ -784,7 +840,7 @@ NOTIFICACIONES */
     
     #formulario_producto {
         margin: 0 auto;
-        width: 80vw;
+        width: 80dvw;
     }
 }
 
@@ -796,7 +852,6 @@ NOTIFICACIONES */
     }
 
     #articulo_productos{
-        flex-direction: row;
         justify-content: center;
         width: auto;
         padding: 1rem 15%;
@@ -804,7 +859,6 @@ NOTIFICACIONES */
     }
 
     #formulario_producto {
-        max-height: 90vh;
         width: 65%;
     }
 
@@ -815,8 +869,8 @@ NOTIFICACIONES */
     .imagen_cargada {
         min-height: 3rem;
         min-width: 5rem;
-        width: 6vw;
-        height: 6vw;
+        width: 6dvw;
+        height: 6dvw;
         height:auto;
     }
 
@@ -829,7 +883,7 @@ NOTIFICACIONES */
     }
 
     .tabla_registros_celda {
-        height: 3vw;
+        height: 3dvw;
     }
 }
 

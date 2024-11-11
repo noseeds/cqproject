@@ -11,6 +11,12 @@
     position: relative;
     top: 100%;
     user-select: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.ingreso_o_registro:hover {
+    background-color: rgba(58, 137, 255, 0.2);
+    transform: scale(1.5);
 }
 
 #login_registro{

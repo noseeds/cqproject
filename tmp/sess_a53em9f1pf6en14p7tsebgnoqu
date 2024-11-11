@@ -1,0 +1,56 @@
+ PMA_token |s:32:"4e3b6958734b616a493d31343c7d2e5e"; HMAC_secret |s:16:"pTg$S|Rn$h2Scc)v";browser_access_time|a:4:{s:7:"default";i:1727399085;s:36:"eaa124e7-44d1-618c-1f23-b4a6e9ab2935";i:1727312592;s:36:"8cfe4e2e-f77b-1828-5772-28314cae755b";i:1727393304;s:36:"636b8d35-c51b-8264-3b85-fbd1a934e1c0";i:1727401666;}relation|a:1:{i:1;a:41:{s:7:"version";s:5:"5.2.1";s:4:"user";N;s:2:"db";N;s:8:"bookmark";N;s:15:"central_columns";N;s:11:"column_info";N;s:17:"designer_settings";N;s:16:"export_templates";N;s:8:"favorite";N;s:7:"history";N;s:16:"navigationhiding";N;s:9:"pdf_pages";N;s:6:"recent";N;s:8:"relation";N;s:13:"savedsearches";N;s:12:"table_coords";N;s:10:"table_info";N;s:13:"table_uiprefs";N;s:8:"tracking";N;s:10:"userconfig";N;s:10:"usergroups";N;s:5:"users";N;s:12:"bookmarkwork";b:0;s:8:"mimework";b:0;s:18:"centralcolumnswork";b:0;s:8:"commwork";b:0;s:9:"menuswork";b:0;s:20:"designersettingswork";b:0;s:11:"displaywork";b:0;s:19:"exporttemplateswork";b:0;s:12:"favoritework";b:0;s:7:"navwork";b:0;s:7:"pdfwork";b:0;s:10:"recentwork";b:0;s:7:"relwork";b:0;s:17:"savedsearcheswork";b:0;s:11:"historywork";b:0;s:12:"trackingwork";b:0;s:11:"uiprefswork";b:0;s:14:"userconfigwork";b:0;s:8:"allworks";b:0;}}userconfig|a:2:{s:2:"db";a:2:{s:4:"lang";s:2:"es";s:12:"Console/Mode";s:4:"show";}s:2:"ts";i:1727315239;}two_factor_check|b:1;cache|a:3:{s:8:"server_1";a:4:{s:15:"userprefs_mtime";i:1727315239;s:14:"userprefs_type";s:7:"session";s:12:"config_mtime";i:1447170388;s:9:"userprefs";a:2:{s:4:"lang";s:2:"es";s:7:"Console";a:1:{s:4:"Mode";s:4:"show";}}}s:13:"server_1_root";a:17:{s:17:"is_create_db_priv";b:1;s:14:"is_reload_priv";b:1;s:12:"db_to_create";s:0:"";s:30:"dbs_where_create_table_allowed";a:1:{i:0;s:1:"*";}s:11:"dbs_to_test";b:0;s:9:"proc_priv";b:1;s:10:"table_priv";b:1;s:8:"col_priv";b:1;s:7:"db_priv";b:1;s:11:"binary_logs";a:0:{}s:18:"menu-levels-server";a:13:{s:9:"databases";s:14:"Bases de datos";s:3:"sql";s:3:"SQL";s:6:"status";s:13:"Estado actual";s:6:"rights";s:8:"Usuarios";s:6:"export";s:8:"Exportar";s:6:"import";s:8:"Importar";s:8:"settings";s:14:"Configuración";s:6:"binlog";s:16:"Registro binario";s:11:"replication";s:12:"Replicación";s:4:"vars";s:9:"Variables";s:7:"charset";s:20:"Juegos de caracteres";s:7:"plugins";s:12:"Complementos";s:6:"engine";s:7:"Motores";}s:19:"profiling_supported";b:1;s:17:"menu-levels-table";a:11:{s:6:"browse";s:8:"Examinar";s:9:"structure";s:10:"Estructura";s:3:"sql";s:3:"SQL";s:6:"search";s:6:"Buscar";s:6:"insert";s:8:"Insertar";s:6:"export";s:8:"Exportar";s:6:"import";s:8:"Importar";s:10:"privileges";s:11:"Privilegios";s:9:"operation";s:11:"Operaciones";s:8:"tracking";s:11:"Seguimiento";s:8:"triggers";s:12:"Disparadores";}s:14:"menu-levels-db";a:14:{s:9:"structure";s:10:"Estructura";s:3:"sql";s:3:"SQL";s:6:"search";s:6:"Buscar";s:5:"query";s:20:"Generar una consulta";s:6:"export";s:8:"Exportar";s:6:"import";s:8:"Importar";s:9:"operation";s:11:"Operaciones";s:10:"privileges";s:11:"Privilegios";s:8:"routines";s:7:"Rutinas";s:6:"events";s:7:"Eventos";s:8:"triggers";s:12:"Disparadores";s:8:"tracking";s:11:"Seguimiento";s:8:"designer";s:10:"Diseñador";s:15:"central_columns";s:18:"Columnas centrales";}s:12:"is_superuser";b:1;s:14:"mysql_cur_user";s:14:"root@localhost";s:12:"is_grantuser";b:1;}s:13:"version_check";a:2:{s:8:"response";s:411:"{
+    "version": "5.2.1",
+    "date": "2023-02-08",
+    "releases": [
+        {
+            "version": "5.2.1",
+            "date": "2023-02-08",
+            "php_versions": ">=7.2,<8.4",
+            "mysql_versions": ">=5.5"
+        },
+        {
+            "version": "4.9.11",
+            "date": "2023-02-08",
+            "php_versions": ">=5.5,<8.0",
+            "mysql_versions": ">=5.5"
+        }
+    ]
+}";s:9:"timestamp";i:1727312368;}}tmpval|a:14:{s:14:"favoriteTables";a:1:{i:1;a:0:{}}s:12:"recentTables";a:1:{i:1;a:1:{i:0;a:2:{s:2:"db";s:9:"petsmimos";s:5:"table";s:8:"usuarios";}}}s:5:"query";a:10:{s:32:"7693a7e1be6438faa50bff3afdbafe8f";a:8:{s:3:"sql";s:421:"CREATE TABLE `detalles_venta` (
+  `ID_venta` int(11) NOT NULL,
+  `ID_producto` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  KEY `ID_venta` (`ID_venta`, `ID_producto`),
+  KEY `ID_producto` (`ID_producto`),
+  CONSTRAINT `detalles_venta_ibfk_1` FOREIGN KEY (`ID_producto`) REFERENCES `productos` (`ID_producto`),
+  CONSTRAINT `detalles_venta_ibfk_2` FOREIGN KEY (`ID_venta`) REFERENCES `ventas` (`ID_venta`)
+);";s:12:"repeat_cells";i:100;s:8:"max_rows";i:25;s:3:"pos";i:0;s:6:"pftext";s:1:"P";s:18:"relational_display";s:1:"K";s:9:"geoOption";s:4:"GEOM";s:14:"display_binary";b:1;}s:32:"0316e5423b30d9ca44a8c87933c8b1b5";a:8:{s:3:"sql";s:133:"CREATE TABLE `codigos_acceso` (
+  `codigo` varchar(100) NOT NULL,
+  `fecha_expiracion` date NOT NULL,
+  PRIMARY KEY (`codigo`)
+);";s:12:"repeat_cells";i:100;s:8:"max_rows";i:25;s:3:"pos";i:0;s:6:"pftext";s:1:"P";s:18:"relational_display";s:1:"K";s:9:"geoOption";s:4:"GEOM";s:14:"display_binary";b:1;}s:32:"ca31985110b79d95b6ad3ddc2e7353c8";a:8:{s:3:"sql";s:229:"/* Ingreso de registros a modo de prueba  */
+
+INSERT INTO `usuarios` (`nombre`, `contrasena`, `tipo`) VALUES 
+('admin', 'hashedpassword1', 'admin'),
+('user1', 'hashedpassword2', 'user'),
+('user2', 'hashedpassword3', 'user');";s:12:"repeat_cells";i:100;s:8:"max_rows";i:25;s:3:"pos";i:0;s:6:"pftext";s:1:"P";s:18:"relational_display";s:1:"K";s:9:"geoOption";s:4:"GEOM";s:14:"display_binary";b:1;}s:32:"e34d2ad69cefaacbc4145fd05a096d5c";a:8:{s:3:"sql";s:152:"INSERT INTO `imagenes` (`imagen`) VALUES 
+(LOAD_FILE('/path/to/image1.jpg')),
+(LOAD_FILE('/path/to/image2.jpg')),
+(LOAD_FILE('/path/to/image3.jpg'));";s:12:"repeat_cells";i:100;s:8:"max_rows";i:25;s:3:"pos";i:0;s:6:"pftext";s:1:"P";s:18:"relational_display";s:1:"K";s:9:"geoOption";s:4:"GEOM";s:14:"display_binary";b:1;}s:32:"717b7d2a4de0e6558563adf3fbd61688";a:8:{s:3:"sql";s:245:"INSERT INTO `productos` (`ID_imagen`, `nombre`, `descripcion`, `precio`, `stock`) VALUES 
+(1, 'Dog Food', 'High-quality dog food', 50, 100),
+(2, 'Cat Toy', 'Interactive cat toy', 20, 200),
+(3, 'Bird Cage', 'Spacious cage for birds', 150, 50);";s:12:"repeat_cells";i:100;s:8:"max_rows";i:25;s:3:"pos";i:0;s:6:"pftext";s:1:"P";s:18:"relational_display";s:1:"K";s:9:"geoOption";s:4:"GEOM";s:14:"display_binary";b:1;}s:32:"85b85fc3e0aa2e5d1ffd03abb34fae26";a:8:{s:3:"sql";s:198:"INSERT INTO `gastos` (`ID_usuario`, `motivo`, `valor`, `fecha`) VALUES 
+(1, 'Compra de insumos', 100, '2024-09-01'),
+(2, 'Mantenimiento', 200, '2024-09-02'),
+(3, 'Publicidad', 300, '2024-09-03');";s:12:"repeat_cells";i:100;s:8:"max_rows";i:25;s:3:"pos";i:0;s:6:"pftext";s:1:"P";s:18:"relational_display";s:1:"K";s:9:"geoOption";s:4:"GEOM";s:14:"display_binary";b:1;}s:32:"6feea2cd4723d8769b6e0020c2fd3900";a:8:{s:3:"sql";s:133:"INSERT INTO `ventas` (`ID_venta`, `ID_usuario`, `fecha`) VALUES 
+(1, 1, '2024-09-04'),
+(2, 2, '2024-09-05'),
+(3, 3, '2024-09-06');";s:12:"repeat_cells";i:100;s:8:"max_rows";i:25;s:3:"pos";i:0;s:6:"pftext";s:1:"P";s:18:"relational_display";s:1:"K";s:9:"geoOption";s:4:"GEOM";s:14:"display_binary";b:1;}s:32:"a6238c06997d71f23c70cd36a010f3d9";a:8:{s:3:"sql";s:112:"INSERT INTO `detalles_venta` (`ID_venta`, `ID_producto`, `cantidad`) VALUES 
+(1, 1, 2),
+(2, 2, 1),
+(3, 3, 3);";s:12:"repeat_cells";i:100;s:8:"max_rows";i:25;s:3:"pos";i:0;s:6:"pftext";s:1:"P";s:18:"relational_display";s:1:"K";s:9:"geoOption";s:4:"GEOM";s:14:"display_binary";b:1;}s:32:"a260055edaf64ef38f820e78a6ce214e";a:8:{s:3:"sql";s:148:"INSERT INTO `codigos_acceso` (`codigo`, `fecha_expiracion`) VALUES 
+('ABC123', '2024-12-31'),
+('XYZ789', '2025-01-15'),
+('LMN456', '2024-11-30');";s:12:"repeat_cells";i:100;s:8:"max_rows";i:25;s:3:"pos";i:0;s:6:"pftext";s:1:"P";s:18:"relational_display";s:1:"K";s:9:"geoOption";s:4:"GEOM";s:14:"display_binary";b:1;}s:32:"f3e3e39ed428eab6404bcf89377e993c";a:8:{s:3:"sql";s:24:"SELECT * FROM `usuarios`";s:12:"repeat_cells";i:100;s:8:"max_rows";i:25;s:3:"pos";i:0;s:6:"pftext";s:1:"P";s:18:"relational_display";s:1:"K";s:9:"geoOption";s:4:"GEOM";s:14:"display_binary";b:1;}}s:6:"pftext";s:1:"P";s:18:"relational_display";s:1:"K";s:9:"geoOption";s:4:"GEOM";s:14:"display_binary";b:1;s:12:"display_blob";b:0;s:19:"hide_transformation";b:0;s:3:"pos";i:0;s:8:"max_rows";i:25;s:12:"repeat_cells";i:100;s:20:"possible_as_geometry";b:1;s:13:"table_uiprefs";a:1:{i:1;a:1:{s:9:"petsmimos";a:1:{s:8:"usuarios";a:0:{}}}}}git_location|N;is_git_revision|b:0;ConfigFile1|a:2:{s:7:"Console";a:1:{s:4:"Mode";s:4:"show";}s:7:"Servers";a:1:{i:1;a:2:{s:7:"only_db";s:0:"";s:7:"hide_db";s:0:"";}}}debug|a:0:{}Import_message|a:2:{s:7:"message";N;s:11:"go_back_url";s:27:"index.php?route=/server/sql";}is_multi_query|b:0;sql_history|a:4:{i:0;a:3:{s:2:"db";s:0:"";s:5:"table";s:0:"";s:8:"sqlquery";s:148:"INSERT INTO `codigos_acceso` (`codigo`, `fecha_expiracion`) VALUES 
+('ABC123', '2024-12-31'),
+('XYZ789', '2025-01-15'),
+('LMN456', '2024-11-30');";}i:1;a:3:{s:2:"db";s:9:"petsmimos";s:5:"table";s:8:"usuarios";s:8:"sqlquery";s:24:"SELECT * FROM `usuarios`";}i:2;a:3:{s:2:"db";s:9:"petsmimos";s:5:"table";s:8:"usuarios";s:8:"sqlquery";s:24:"SELECT * FROM `usuarios`";}i:3;a:3:{s:2:"db";s:9:"petsmimos";s:5:"table";s:8:"usuarios";s:8:"sqlquery";s:24:"SELECT * FROM `usuarios`";}}errors|a:0:{}

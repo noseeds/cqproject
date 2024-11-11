@@ -71,7 +71,7 @@ include '../headers/ordenador_ventas.php';
                     <a class="editar_venta">
                         <img src="../iconos/edit-2.svg">
                     </a>
-                    <a class="eliminar_venta">
+                    <a class="desactivar_venta">
                         <img src="../iconos/line/checkbox-indeterminate-line.svg">
                     </a>
                 </td>

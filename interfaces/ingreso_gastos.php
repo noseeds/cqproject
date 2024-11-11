@@ -13,9 +13,9 @@
     <h2> Detalles: </h2>
     <form id='formulario_gasto' action='../backend/cargar_gasto.php' method='POST'>
         <label for='valor'> Valor:</label>
-        <input type='number' name='valor' min='1' value=''>
+        <input id='valor' type='number' name='valor' min='1' value=''>
         <label for='motivo'> Motivo/descripci&oacute;n</label>
-        <input type='text' name='motivo'>
+        <textarea type='text' name='motivo' placeholder='Descripción' rows='3'></textarea>
         <?php
             echo '<input id="ID_usuario" type="hidden" name="usuario" value="';
             echo $_SESSION['ID_usuario'];

@@ -1,16 +1,17 @@
 <?php
-    require '../backend/comprobar_usuario.php';
-    require '../headers/header_interfaces.php';
-    require '../backend/conexion.php';
-    include '../headers/ordenador_transacciones.php';
+require '../backend/comprobar_usuario.php';
+require '../headers/header_interfaces.php';
+require '../backend/conexion.php';
+include '../headers/ordenador_transacciones.php';
 ?>
 </header>
 <h1> Registro de Ventas</h1>
 <article>
     <h2> Artículos:</h2>
-    <table class='tabla_registros'>
+    <table id='tabla_registros'>
         <thead>
             <tr>
+                <th></th>
                 <th>Producto</th>
                 <th>Cantidad</th>
                 <th>Precio Unitario</th>
@@ -23,6 +24,7 @@
             if (isset($_SESSION['productos_seleccionados']) && !empty($_SESSION['productos_seleccionados'])) {
                 foreach ($_SESSION['productos_seleccionados'] as $producto) {
                     echo '<tr>
+                                <td class="celda_imagen"> <img src="data:image/jpeg;base64,' . $producto['imagen'] . '"> </td>
                                 <td>' . $producto['nombre'] . '</td>
                                 <td>' . $producto['cantidad'] . '</td>
                                 <td>' . $producto['precio'] . '</td>
@@ -34,7 +36,7 @@
             ?>
             <tr>
                 <th>Total:</th>
-                <td> <?php echo $total; ?> </td>
+                <td id='total'><?php echo $total; ?></td>
             </tr>
         </tbody>
     </table>
@@ -56,40 +58,21 @@
         echo '</select>';
         ?>
         <input type='number' min='1' value='1' name='cantidad'>
+        <input type='hidden' value='ingreso_ventas' name='interfaz'>
         <input type='submit' value='A&ntilde;adir'>
     </form>
     <form id='formulario_venta' action='../backend/cargar_venta.php' method='POST'>
         <?php
-        echo "<input type='hidden' name='productos' value='";
+        echo '<input type="hidden" name="productos" value="';
         echo json_encode($_SESSION['productos_seleccionados']);
-        echo "'>";
+        echo '">';
         echo '<input id="ID_usuario" type="hidden" name="usuario" value="';
         echo $_SESSION['ID_usuario'];
         echo '">';
         ?>
-        <select id='metodo_pago' name='metodo_pago'>
-            <?php
-                $metodo_pago = 'efectivo';
-                if(isset($_SESSION['metodo_pago'])) {
-                    $metodo_pago = $_SESSION['metodo_pago'];
-                }
-                echo '<option value="efectivo"';
-                if($metodo_pago === 'efectivo') {
-                    echo ' selected';
-                }
-                echo '> Efectivo</option>';
-                echo '<option value="tarjeta"';
-                if($metodo_pago === 'tarjeta') {
-                    echo ' selected';
-                }
-                echo '> Tarjeta</option>';
-                echo '<option value="cheque"';
-                if($metodo_pago === 'cheque') {
-                    echo ' selected';
-                }
-                echo '> Cheque</option>';
-            ?>
-        </select>
+        <div id='contenedor_metodos_pago'>
+        </div>
+        <button class='boton_grande' type='button' id='agregar_metodo_pago'>Agregar Método de Pago</button>
     </form>
     <div class='opciones_interfaz'>
         <button id='boton_cancelar' class='boton'> Cancelar</button>
@@ -97,16 +80,15 @@
     </div>
     <?php
     echo '<label id="respuesta_servidor"';
-    if(isset($_GET['notificacion'])){
+    if (isset($_GET['notificacion'])) {
         echo ' class="notificacion">';
         echo $_GET['notificacion'];
-    } else if(isset($_GET['advertencia'])){
+    } else if (isset($_GET['advertencia'])) {
         echo ' class="advertencia">';
         echo $_GET['advertencia'];
     }
     echo '</label>';
     ?>
-    </form>
     <picture>
         <source media='(min-width: 48rem)' srcset='../img/regresar_largo.png'>
         <source media='(max-width: 48rem)' srcset='../img/regresar.png'>

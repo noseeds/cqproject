@@ -24,6 +24,7 @@ include '../headers/ordenador_productos.php';
         <thead>
             <tr>
                 <th class='celda_imagen'> </th>
+                <th> ID</th>
                 <th> Nombre</th>
                 <th> Descripcion</th>
                 <th> Categoria</th>
@@ -43,13 +44,13 @@ include '../headers/ordenador_productos.php';
                 $orden = $_SESSION['orden_preferido'];
             }
 
-            $instruccion = 'SELECT p.ID_producto, 
-               p.nombre AS nombre, 
-               p.descripcion, 
-               p.precio, 
-               p.stock, 
-               p.activo,
-               i.imagen, 
+            $instruccion = 'SELECT p.ID_producto,
+                p.nombre, 
+                p.descripcion, 
+                p.precio, 
+                p.stock, 
+                p.activo,
+                i.imagen, 
                GROUP_CONCAT(c.nombre) AS categoria
             FROM productos p 
             JOIN imagenes i ON p.ID_producto = i.ID_producto 
@@ -70,6 +71,7 @@ include '../headers/ordenador_productos.php';
                 echo '
                     <tr>
                         <td class="celda_imagen"> <img src="data:image/jpeg;base64,' . $imagen_base64 . '"> </td>
+                        <td class="tabla_registros_celda"> ' . $ID_producto . '</td>
                         <td class="tabla_registros_celda"> ' . $nombre_producto . '</td>
                         <td class="tabla_registros_celda"> ' . $descripcion . '</td>
                         <td class="tabla_registros_celda"> ' . $categoria . '</td>
