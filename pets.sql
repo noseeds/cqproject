@@ -135,10 +135,9 @@ ALTER TABLE categoria_productos
 COMMIT;
 
 INSERT INTO `usuarios` (`ID_usuario`, `nombre`, `contrasena`, `tipo`) VALUES
-(222, 'banananana', '17007d055e4149923bf0a9b8beec5dd3eeeebadbbe993b09bcdb9c2b86f0126c', ''),
-(1337, 'asd', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 'administrador'),
-(101, 'dsa', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 'común');
+(1337, 'admin', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 'administrador'),
+(101, 'usuario', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 'común');
 
-INSERT INTO `categorias` (nombre) VALUES ('Alimentos'), ('Juguetes'), ('Accesorios'), ('Camas y Mantas'), ('Higiene'), ('Collares y Correas'), ('Transportadoras'), ('Areneros'), ('Ropa para Mascotas'), ('Comederos y Bebederos'), ('Rascadores'), ('Casetas'), ('Sustratos'), ('Adiestramiento');
+INSERT INTO `categorias` (nombre) VALUES ('Alimentos'), ('Juguetes'), ('Accesorios'), ('Camas y Mantas'), ('Higiene'), ('Collares y Correas'), ('Transportadoras'), ('Areneros'), ('Ropa para Mascotas'), ('Comederos y Bebederos'), ('Rascadores'), ('Casetas');
 
 INSERT INTO `metodos_pago` (`nombre`) VALUES ('Efectivo'), ('Tarjeta');

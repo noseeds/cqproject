@@ -1,6 +1,7 @@
 <?php
-require "../backend/conexion.php";
-require "../backend/comprobar_usuario_administrador.php";
+require '../backend/conexion.php';
+require '../backend/comprobar_usuario_administrador.php';
+require '../backend/funciones.php';
 
 function comprobar_post()
 {
@@ -12,7 +13,6 @@ function comprobar_post()
         && isset($_POST['stock']) && !empty($_POST['stock'])
         && isset($_POST['stock_minimo']) && !empty($_POST['stock_minimo'])
         && isset($_POST['categoria']) && !empty($_POST['categoria'])
-        && isset($_POST['categoria_anterior']) && !empty($_POST['categoria_anterior'])
     ) {
         return true;
     } else {
@@ -31,14 +31,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // CORROBORAR EXPRESION REGULAR de inputs con if() { die("mensaje") }
 
-        $ID_producto = $_POST['producto'];
-        $nombre = $_POST['nombre'];
-        $descripcion = $_POST['descripcion'];
-        $categoria_anterior = $_POST['categoria_anterior'];
-        $ID_categoria = $_POST['categoria'];
-        $precio = $_POST['precio'];
-        $stock_minimo = $_POST['stock_minimo'];
-        $stock = $_POST['stock'];
+        $ID_producto = (int) sanitizar($_POST['producto']);
+        $nombre = sanitizar($_POST['nombre']);
+        $nombre = mysqli_real_escape_string($conn, $nombre);
+        $descripcion = sanitizar($_POST['descripcion']);
+        $descripcion = mysqli_real_escape_string($conn, $descripcion);
+        $ID_categoria = (int) sanitizar($_POST['categoria']);
+        $precio = (int) sanitizar($_POST['precio']);
+        $stock = (int) sanitizar($_POST['stock']);
+        $stock_minimo = (int) sanitizar($_POST['stock_minimo']);
 
         $instruccion = 'SELECT * FROM categoria_productos WHERE ID_producto =' . $ID_producto . ' AND ID_categoria =' . $ID_categoria;
         $resultado = mysqli_query($conn, $instruccion);
@@ -63,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $instruccion = 'DELETE FROM imagenes WHERE ID_producto=' . $ID_producto;
             mysqli_query($conn, $instruccion);
             if (mysqli_query($conn, $instruccion) === TRUE) {
-                $instruccion = "INSERT INTO imagenes (ID_producto, imagen) VALUES ($ID_producto, '$data_imagen')";
+                $instruccion = 'INSERT INTO imagenes (ID_producto, imagen) VALUES ($ID_producto, "' . $data_imagen . '")';
                 if (mysqli_query($conn, $instruccion) === TRUE) {
                     Header('Location: ../interfaces/gestion_productos.php?notificacion=' . urlencode('Información del producto actualizada exitosamente') . '#respuesta_servidor');
                     die();
@@ -77,14 +78,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             Header('Location: ../interfaces/modificar_producto.php?advertencia=' . urlencode('Ocurrió un error. No se ha modificado el producto' . mysqli_error($conn)));
         }
     } else if (comprobar_post() && !isset($_FILES['imagen']) || $_FILES['imagen']['error'] !== UPLOAD_ERR_OK) {
-        $ID_producto = $_POST['producto'];
-        $nombre = $_POST['nombre'];
-        $descripcion = $_POST['descripcion'];
-        $categoria_anterior = $_POST['categoria_anterior'];
-        $ID_categoria = $_POST['categoria'];
-        $precio = $_POST['precio'];
-        $stock = $_POST['stock'];
-        $stock_minimo = $_POST['stock_minimo'];
+        $ID_producto = (int) sanitizar($_POST['producto']);
+        $nombre = sanitizar($_POST['nombre']);
+        $nombre = mysqli_real_escape_string($conn, $nombre);
+        $descripcion = sanitizar($_POST['descripcion']);
+        $descripcion = mysqli_real_escape_string($conn, $descripcion);
+        $ID_categoria = (int) sanitizar($_POST['categoria']);
+        $precio = (int) sanitizar($_POST['precio']);
+        $stock = (int) sanitizar($_POST['stock']);
+        $stock_minimo = (int) sanitizar($_POST['stock_minimo']);
 
         $instruccion = 'SELECT * FROM categoria_productos WHERE ID_producto =' . $ID_producto . ' AND ID_categoria =' . $ID_categoria;
         $resultado = mysqli_query($conn, $instruccion);

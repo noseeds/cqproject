@@ -1,16 +1,35 @@
 <?php
-function registrar_auditoria($conexion, $id_registro, $tabla, $campo, $valor_anterior, $valor_nuevo, $accion, $id_usuario) {
-    $fecha_cambio = date("Y-m-d H:i:s");
-    $sql = "INSERT INTO auditoria (ID_registro_auditado, tabla, campo, valor_anterior, valor_nuevo, fecha_cambio, ID_usuario, accion) 
-            VALUES ('$id_registro', '$tabla', '$campo', '$valor_anterior', '$valor_nuevo', '$fecha_cambio', '$id_usuario', '$accion')";
-    mysqli_query($conexion, $sql);
-}
-function sanitizar(string $cadena): string {
+function sanitizar($entrada) {
+    if (is_numeric($entrada)) {
+        if (strpos(strtolower($entrada), 'e') !== false) {
+            die('El formato de n&uacute;mero cient&iacute;fico no est&aacute; permitido');
+        }
+        $numero = (int)$entrada;
+        if (strlen((string)$numero) > 11 ) {
+            die('El n&uacute;mero excede el tama&ntilde;o soportado');
+        }
+        return $numero;
+    }
 
-    $cadena = strip_tags($cadena);
-    $cadena = htmlspecialchars($cadena, ENT_QUOTES, 'UTF-8');
-    $cadena = trim($cadena);
-    $cadena = preg_replace('/\s+/', ' ', $cadena);
+    if (!empty($entrada)) {
+        $cadena_texto = $entrada;
+        // decodificar caracteres de codificación URL (por ejemplo, %27 se convierte en ' para que después addslashes pueda escaparlas correctamente)
+        $cadena_texto = rawurldecode($cadena_texto);
+        // remueve símbolos de comentario de SQL para evitar ataques de "truncamiento"
+        $cadena_texto = preg_replace('/(--|#)/', '', $cadena_texto);
+        // remueve caracteres no imprimibles o inválidos en UTF-8
+        $cadena_texto = mb_convert_encoding($cadena_texto, 'UTF-8', 'UTF-8');
+        // remueve etiquetas HTML y PHP
+        $cadena_texto = strip_tags($cadena_texto);
+        // convertir caracteres especiales a entidades HTML (por ejemplo, ñ se convierte en &ntilde; á en &aacute; y & en &amp;)
+        $cadena_texto = htmlspecialchars($cadena_texto, ENT_QUOTES, 'UTF-8');
+        // eliminar espacios extra
+        $cadena_texto = trim($cadena_texto); // remueve espacios al inicio y final
+        $cadena_texto = preg_replace('/\s+/', ' ', $cadena_texto); // remueve espacios repetidos
+        $cadena_texto = addslashes($cadena_texto);
 
-    return $cadena;
+        return $cadena_texto;
+    }
+
+    return '';
 }

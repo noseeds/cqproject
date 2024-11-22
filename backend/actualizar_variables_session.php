@@ -1,10 +1,11 @@
 <?php
 require "../backend/conexion.php";
+require '../backend/funciones.php';
 session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['ordenar_por'])) {
-        $ordenar_por = $_POST['ordenar_por'];
-        $orden_preferido = $_POST['orden_preferido'];
+        $ordenar_por = sanitizar($_POST['ordenar_por']);
+        $orden_preferido = sanitizar($_POST['orden_preferido']);
         $_SESSION['ordenar_por'] = $ordenar_por;
         $_SESSION['orden_preferido'] = $orden_preferido;
         
@@ -12,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die();
     }
     if (isset($_POST['producto_para_agregar']) && isset($_POST['cantidad']) && isset($_POST['interfaz']) && $_POST['interfaz'] === 'ingreso_ventas') {
-        $ID_producto = $_POST['producto_para_agregar'];
-        $cantidad = $_POST['cantidad'];
-        $interfaz = $_POST['interfaz'];
+        $ID_producto = (int) sanitizar($_POST['producto_para_agregar']);
+        $cantidad = (int) sanitizar($_POST['cantidad']);
+        $interfaz = sanitizar($_POST['interfaz']);
 
         $instruccion = 'SELECT
         p.ID_producto,
@@ -46,12 +47,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
         $_SESSION['productos_seleccionados'][] = $producto_a_seleccionar;
-        Header('Location: ../interfaces/' . $_POST['interfaz'] . '.php');
+        Header('Location: ../interfaces/' . $interfaz . '.php');
         die();
     }
     if (isset($_POST['producto_para_agregar']) && isset($_POST['interfaz']) && $_POST['interfaz'] === 'ingreso_descuentos') {
-        $ID_producto = $_POST['producto_para_agregar'];
-        $interfaz = $_POST['interfaz'];
+        $ID_producto = (int) sanitizar($_POST['producto_para_agregar']);
+        $interfaz = sanitizar($_POST['interfaz']);
 
         $instruccion = 'SELECT
         i.imagen,
@@ -122,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die();
     }
     if (isset($_POST['metodo_pago']) && isset($_POST['metodo_pago'])) {
-        $metodo_pago = $_POST['metodo_pago'];
+        $metodo_pago = sanitizar($_POST['metodo_pago']);
         $_SESSION['metodo_pago'] = $metodo_pago;
 
         echo json_encode(['estado' => 'exito', 'metodo_pago' => $_SESSION['metodo_pago']]);

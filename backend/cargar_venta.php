@@ -1,6 +1,7 @@
 <?php
 require '../backend/conexion.php';
 require '../backend/comprobar_usuario.php';
+require '../backend/funciones.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['usuario']) && !empty($_POST['usuario'])) {
@@ -15,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             die();
         }
 
-        $ID_usuario = $_POST['usuario'];
+        $ID_usuario = (int) sanitizar($_POST['usuario']);
         $metodos_pago = $_POST['metodos_pago'];
         $cantidad_paga = $_POST['cantidades_pago'];
         for ($i = 0; $i < count($metodos_pago); $i++) {

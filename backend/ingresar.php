@@ -1,8 +1,10 @@
 <?php
+require 'conexion.php';
+require '../backend/funciones.php';
 session_start();
+
 $_SESSION['ordenar_por'] = 'fecha';
 $_SESSION['orden_preferido'] = 'DESC';
-require 'conexion.php';
 
 if (!$conn || $_SERVER['REQUEST_METHOD'] !== 'POST') {
     Header('Location: ../login.php?advertencia=' . urlencode('Error de conexión. ' . mysqli_connect_error()) . '&formulario_actual=' . urlencode('login'));
@@ -13,14 +15,16 @@ $nombre_ingresado;
 $contrasena_ingresada;
 
 if (isset($_POST['nombre_login']) && !empty($_POST['nombre_login'])) {
-    $nombre_ingresado = $_POST['nombre_login'];
+    $nombre_ingresado = sanitizar($_POST['nombre_login']);
+    $nombre_ingresado = mysqli_real_escape_string($conn, $nombre_ingresado);
 } else {
     Header('Location: ../login.php?advertencia=' . urlencode('nombre no ingresado') . '&formulario_actual=' . urlencode('login'));
     die();
 }
 
 if (isset($_POST['contrasena_login']) && !empty($_POST['contrasena_login'])) {
-    $contrasena_ingresada = $_POST['contrasena_login'];
+    $contrasena_ingresada = sanitizar($_POST['contrasena_login']);
+    $contrasena_ingresada = mysqli_real_escape_string($conn, $contrasena_ingresada);
 } else {
     Header('Location: ../login.php?advertencia=' . urlencode('Contraseña no ingresada') . '&formulario_actual=' . urlencode('login'));
     die();

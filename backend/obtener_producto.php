@@ -1,17 +1,19 @@
 <?php
 require "../backend/conexion.php";
+require '../backend/funciones.php';
+
 if(isset($_GET['producto']) && !empty($_GET['producto'])) {
-    $ID_producto = $_GET['producto'];
+    $ID_producto = (int) sanitizar($_GET['producto']);
 } else {
     die();
 }
 if(isset($_GET['venta']) && !empty($_GET['venta'])) {
-    $ID_venta = $_GET['venta'];
+    $ID_venta = (int) sanitizar($_GET['venta']);
 } else {
     die();
 }
 if(isset($_GET['cantidad']) && !empty($_GET['cantidad'])) {
-    $cantidad = $_GET['cantidad'];
+    $cantidad = (int) sanitizar($_GET['cantidad']);
 } else {
     die();
 }

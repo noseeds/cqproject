@@ -1,9 +1,10 @@
 <?php
     require '../backend/conexion.php';
     require '../headers/header_interfaces.php';
+    require '../backend/funciones.php';
 
     if(isset($_GET['gasto']) && !empty($_GET['gasto'])) {
-        $_SESSION['gasto'] = $_GET['gasto'];
+        $_SESSION['gasto'] = (int) sanitizar($_GET['gasto']);
     }
 
     if(isset($_SESSION['gasto']) && !empty($_SESSION['gasto']) && $_SESSION['gasto'] != 0) {

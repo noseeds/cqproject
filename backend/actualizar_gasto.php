@@ -1,16 +1,22 @@
 <?php
 require '../backend/conexion.php';
+require '../backend/funciones.php';
 session_start();
 
 if (isset($_SESSION['gasto']) && !empty($_SESSION['gasto'])
 && isset($_POST['valor']) && !empty($_POST['valor']) && $_POST['valor'] != 0
 && isset($_POST['motivo'])
 && isset($_POST['usuario']) && !empty($_POST['usuario'])) {
+    $usuario = (int) sanitizar($_POST['usuario']);
+    $gasto = (int) sanitizar($_POST['gasto']);
+    $valor = (int) sanitizar($_POST['valor']);
+    $motivo = sanitizar($_POST['motivo']);
+    $motivo = mysqli_real_escape_string($conn, $motivo);
 
-    $instruccion = "UPDATE gastos SET ID_usuario = " . (int)$_POST['usuario'] . 
-    ", motivo = '" . addslashes($_POST['motivo']) . 
-    "', valor = " . (float)$_POST['valor'] . 
-    " WHERE ID_gasto = " . (int)$_SESSION['gasto'];
+    $instruccion = "UPDATE gastos SET ID_usuario = " . $usuario . 
+    ", motivo = '" . $motivo . 
+    "', valor = " . $valor . 
+    " WHERE ID_gasto = " . $gasto;
 
     echo $instruccion;
     if($resultado = mysqli_query($conn, $instruccion)){

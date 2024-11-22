@@ -19,7 +19,7 @@ $contrasena_ingresada2;
 
 if (isset($_POST['nombre_registro']) && !empty($_POST['nombre_registro'])) {
     $nombre_ingresado = mysqli_real_escape_string($conn, $_POST['nombre_registro']);
-    $patron = '/^[a-zA-Z0-9_.]{3,16}$/';
+    $patron = '/^[a-zA-Z0-9_.áéíóúÁÉÍÓÚñÑ]{3,16}$/';
     if (!preg_match($patron, $nombre_ingresado)) {
         Header('Location: ../registro.php?advertencia=' . urlencode('El nombre solo puede contener letras y números, y debe tener entre 3 y 16 carácteres') . '&formulario_actual=' . urlencode('registro'));
         die();

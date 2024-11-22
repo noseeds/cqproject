@@ -1,8 +1,10 @@
 <?php
 require '../backend/conexion.php';
 require '../backend/comprobar_usuario_administrador.php';
+require '../backend/funciones.php';
+
 $codigo = hash("sha256", mt_rand(1000, 9999));
-$ID_usuario = $_POST['usuario'];
+$ID_usuario = (int) sanitizar($_POST['usuario']);
 $instruccion = 'INSERT INTO codigos_acceso VALUES ("' . $codigo . '", "' . $ID_usuario . '", DATE_ADD(CURRENT_TIMESTAMP(), INTERVAL 1 DAY))';
 
 $resultado = mysqli_query($conn, $instruccion);

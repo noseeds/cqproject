@@ -1,5 +1,6 @@
 <?php
 require './conexion.php';
+require '../backend/funciones.php';
 if(!$conn){
     die();
 }
@@ -16,12 +17,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $data_imagen = addslashes(file_get_contents($imagen));
 
         // CORROBORAR EXPRESION REGULAR de inputs con if() { die("mensaje") }
-        $nombre = $_POST['nombre'];
-        $precio = $_POST['precio'];
-        $stock = $_POST['stock'];
-        $stock_minimo = $_POST['stock_minimo'];
-        $descripcion = $_POST['descripcion'];
-        $ID_categoria = $_POST['categoria'];
+        $nombre = sanitizar($_POST['nombre']);
+        $nombre = mysqli_real_escape_string($conn, $nombre);
+        $precio = (int) sanitizar($_POST['precio']);
+        $stock = (int) sanitizar($_POST['stock']);
+        $stock_minimo = (int) sanitizar($_POST['stock_minimo']);
+        $descripcion = sanitizar($_POST['descripcion']);
+        $descripcion = mysqli_real_escape_string($conn, $motivo);
+        $ID_categoria = (int) sanitizar($_POST['categoria']);
         $instruccion = "INSERT INTO productos (nombre, descripcion, precio, stock, stock_minimo) VALUES ('$nombre', '$descripcion', '$precio', '$stock', '$stock_minimo')";
         if (mysqli_query($conn, $instruccion) === TRUE) {
             $ID_producto = mysqli_insert_id($conn);

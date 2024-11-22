@@ -1,10 +1,11 @@
 <?php
     require '../backend/conexion.php';
     require '../headers/header_interfaces.php';
+    require '../backend/funciones.php';
 
     if(isset($_GET['usuario']) && !empty($_GET['usuario'])) {
-
-        $instruccion = 'UPDATE usuarios SET activo = 0 WHERE ID_usuario = ' . $_GET['usuario'];
+        $usuario = (int) sanitizar($_GET['usuario']);
+        $instruccion = 'UPDATE usuarios SET activo = 0 WHERE ID_usuario = ' . $usuario;
         if($resultado = mysqli_query($conn, $instruccion))
         {
             Header('Location: ../interfaces/gestion_usuarios.php?notificacion=' . urlencode('Usuario desactivado con &eacute;xito.'));
