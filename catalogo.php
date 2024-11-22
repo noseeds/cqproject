@@ -3,8 +3,9 @@
 <article id='articulo_banner'>
     <div class='slider' id='slider_banner'>
         <img id='objeto1' src='./img/banner.png' alt='banner'>
-        <img id='objeto2' src='./img/banner1.png' alt='banner'>
-        <img id='objeto3' src='./img/banner7.png' alt='banner'>
+        <img id='objeto2' src='./img/banner3.png' alt='banner'>
+        <img id='objeto3' src='./img/banner4.png' alt='banner'>
+        <img id='objeto3' src='./img/banner2.png' alt='banner'>
     </div>
 </article>
 <h1> Artículos</h1>
@@ -19,11 +20,12 @@
         p.nombre AS nombre_producto,
         p.precio AS precio_producto,
         p.descripcion AS descripcion_producto,
-        i.imagen
+        MAX(i.imagen) AS imagen
         FROM productos p
-        JOIN imagenes i
-        ON p.ID_producto = i.ID_producto';
-
+        JOIN imagenes i ON p.ID_producto = i.ID_producto
+        GROUP BY p.ID_producto
+        ';
+        
         $resultado = mysqli_query($conn, $instruccion);
 
         echo '<div class="slider">';
@@ -86,7 +88,7 @@
 <div id='visor_producto'>
 </div>
 
-<footer>Pets Mimos © 2024 | made by CodeQuarry</footer>
+<footer>Pets Mimos © 2024 | made by CodeQuarry </footer>
 
 </body>
 

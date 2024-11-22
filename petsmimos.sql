@@ -290,7 +290,8 @@ INSERT INTO `usuarios` (`ID_usuario`, `nombre`, `contrasena`, `tipo`) VALUES
 (101, 'dsa', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 'común');
 
 INSERT INTO `categorias` (nombre) VALUES ('Alimentos'), ('Juguetes'), ('Accesorios'), ('Camas y Mantas'), ('Higiene'), ('Collares y Correas'), ('Transportadoras'), ('Areneros'), ('Ropa para Mascotas'), ('Comederos y Bebederos'), ('Rascadores'), ('Casetas'), ('Sustratos'), ('Adiestramiento');
-INSERT INTO `metodos_pago` (nombre) VALUES ('Efectivo'), ('Tarjeta');
+
+INSERT INTO `metodos_pago` (`nombre`) VALUES ('Efectivo'), ('Tarjeta');
 
 INSERT INTO `productos` (`ID_producto`, `nombre`, `descripcion`, `precio`, `stock`, `stock_minimo`, `activo`) VALUES
 (1, 'Alimento para Perros', 'Alimento seco para perros adultos.', 500, 50, 10, 1),
@@ -337,9 +338,8 @@ INSERT INTO detalles_venta (ID_venta, ID_producto, cantidad) VALUES
 INSERT INTO venta_metodos_pago (ID_venta, ID_metodo_pago, cantidad_paga) VALUES
 (1, 1, 800),
 (1, 2, 350),
-(2, 3, 200),
 (2, 2, 250),
-(2, 1, 200),
+(2, 1, 400),
 (3, 1, 1600);
 
 INSERT INTO `imagenes` (`ID_imagen`, `ID_producto`, `imagen`) VALUES

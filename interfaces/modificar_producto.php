@@ -62,7 +62,7 @@
         <textarea type='text' name='descripcion' placeholder='Descripci&oacute;n'
             rows='3'><?php echo $descripcion; ?></textarea>
         <label for='stock'> Precio Unitario</label>
-        <input type='number' step="1" min="1" name='precio' <?php echo 'value="' . $precio . '"'; ?>
+        <input type='number' step="1" min="1" name='precio' <?php echo 'value="' . number_format($precio, 2, ',', '.') . '"'; ?>
             placeholder='0 uyu'>
         <label for='stock'> Unidades</label>
         <input type='number' step="1" min="0" name='stock' <?php echo 'value="' . $stock . '"'; ?> placeholder='0'>
@@ -84,8 +84,10 @@
             }
             ?>
         </select>
-        <?php echo '
-        <input type="hidden" name="categoria_anterior" value="' . $ID_categoria_actual . '">'; ?>
+        <?php
+        echo '
+        <input type="hidden" name="categoria_anterior" value="' . $ID_categoria_actual . '">';
+        echo '<input type="hidden" name="producto" value="' . $_GET['producto'] . '">'; ?>
 
         <div class='opciones_interfaz'>
             <input id='boton_cancelar' class='boton' type='button' name='cancelar' value='Cancelar'>

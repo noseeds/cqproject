@@ -42,7 +42,7 @@ include '../headers/ordenador_transacciones.php';
     </table>
     <form id='formulario_agregar_producto' action='../backend/actualizar_variables_session.php' method='POST'>
         <?php
-        $instruccion = 'SELECT * FROM productos WHERE stock > 0';
+        $instruccion = 'SELECT * FROM productos WHERE stock > 0 AND activo = 1';
         $resultado = mysqli_query($conn, $instruccion);
         echo '<select id="selector_productos" name="producto_para_agregar">';
         while ($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {

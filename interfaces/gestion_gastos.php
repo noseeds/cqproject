@@ -39,7 +39,7 @@ include '../headers/ordenador_transacciones.php';
         $ID_gasto = $fila['ID_gasto'];
         $ID_usuario = $fila['ID_usuario'];
         $nombre_usuario = $fila['nombre_usuario'];
-        $valor = number_format($fila['valor'], 2);
+        $valor = number_format($fila['valor'], 2, ',', '.');
         $motivo = $fila['motivo'];
         $fecha = $fila['fecha'];
         echo '

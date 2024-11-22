@@ -1,0 +1,11 @@
+*mostrar tabla con productos de la venta y dar opción para removerlos. poner ID del producto y clase a cada fila
+para removerla con el botón mediante js (usando una clase para seleccionar el elemento con jquery).
+Insertar paralelamente inputs con name="productos[]" y un ID equivalente al de la fila (ID_producto].
+Estos inputs también se removerán junto con la fila
+
+*mostrar metodos pago anteriores 
+
+-eliminar productos asociados a la venta anteriores (detalles_venta)
++insertar nuevos productos asociados a la venta
+-eliminar metodos de pago anteriores
++insertar nuevos

@@ -33,7 +33,7 @@ include '../headers/ordenador_transacciones.php';
             <tr>
                 <td>' . $fila['usuario'] . '</td>
                 <td>' . $fila['motivo'] . '</td>
-                <td>' . number_format($fila['valor'], 2) . '</td>
+                <td>' . number_format($fila['valor'], 2, ',', '.') . '</td>
                 <td>' . $fila['fecha'] . '</td>
             </tr>
         </tbody>

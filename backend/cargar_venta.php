@@ -3,25 +3,42 @@ require '../backend/conexion.php';
 require '../backend/comprobar_usuario.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['productos']) && !empty($_POST['productos']) &&
-        isset($_POST['usuario']) && !empty($_POST['usuario']) &&
-        isset($_POST['metodo_pago']) && !empty($_POST['metodo_pago'])) {
+    if (isset($_POST['usuario']) && !empty($_POST['usuario'])) {
 
-        $productos = json_decode($_POST['productos'], true);
-        if (!is_array($productos) || $productos == [] || json_last_error() !== JSON_ERROR_NONE) {
+        $productos = $_SESSION['productos_seleccionados'];
+        if (!isset($_POST['metodos_pago']) || !is_array($_POST['metodos_pago']) || !count($_POST['metodos_pago']) > 0) {
+            Header('Location: ../interfaces/ingreso_ventas.php?advertencia=' . urlencode('Ingrese un m&eacute;todo de pago para poder registrar su venta'));
+            die();
+        }
+        if (!isset($_SESSION['productos_seleccionados']) || empty($_SESSION['productos_seleccionados']) || !is_array($_SESSION['productos_seleccionados'])) {
             Header('Location: ../interfaces/ingreso_ventas.php?advertencia=' . urlencode('Ingrese un producto para poder registrar su venta'));
             die();
         }
 
         $ID_usuario = $_POST['usuario'];
-        $metodo_pago = $_POST['metodo_pago'];
-        $cantidad_paga = $_POST['cantidad_paga'];
+        $metodos_pago = $_POST['metodos_pago'];
+        $cantidad_paga = $_POST['cantidades_pago'];
+        for ($i = 0; $i < count($metodos_pago); $i++) {
+            $pagos[] = [
+                'metodo_pago' => $metodos_pago[$i],
+                'cantidad_pago' => $cantidad_paga[$i]
+            ];
+        }
 
         $instruccion_venta = 'INSERT INTO ventas (ID_usuario) VALUES (' . $ID_usuario . ')';
         if (mysqli_query($conn, $instruccion_venta)) {
             $ID_venta = mysqli_insert_id($conn);
 
-            $instruccion_metodo_pago = 'INSERT INTO venta_metodos_pago (ID_venta, ID_metodo_pago, cantidad_paga) VALUES (' . $ID_venta . ', ' . $metodo_pago . ', ' . $cantidad_paga . ')';
+            $instruccion_metodo_pago = 'INSERT INTO venta_metodos_pago (ID_venta, ID_metodo_pago, cantidad_paga) VALUES ';
+            $i=0;
+            foreach($pagos as $pago) {
+                $i++;
+                $instruccion_metodo_pago .= '(' . $ID_venta . ', ' . $pago['metodo_pago'] . ', ' . $pago['cantidad_pago'] . ')';
+                if($i != count($pagos)){
+                    $instruccion_metodo_pago .= ', ';
+                }
+            }
+            echo $instruccion_metodo_pago;
             
             $instruccion_detalles_venta = 'INSERT INTO detalles_venta (ID_venta, ID_producto, cantidad) VALUES ';
             $detalles_values = [];

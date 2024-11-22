@@ -86,11 +86,8 @@ $(document).ready(function () {
     });
 
     $('#boton_guardar').on('click', function () {
-        if (window.location.href.includes('ingreso_ventas')) {
+        if (window.location.href.includes('ingreso_ventas') || window.location.href.includes('modificar_venta')) {
             $('#formulario_venta').submit();
-        }
-        if (window.location.href.includes('nuevo_usuario')) {
-            $('#formulario_codigo').submit();
         }
         if (window.location.href.includes('ingreso_descuentos')) {
             $('#formulario_descuento').submit();
@@ -98,33 +95,6 @@ $(document).ready(function () {
         if (window.location.href.includes('ingreso_producto')) {
             $('#formulario_producto').submit();
         }
-    });
-
-    $('#formulario_codigo').on('submit', function (event) {
-        event.preventDefault();
-        $datos_formulario = new FormData($('#formulario_codigo')[0]);
-        $.ajax({
-            url: $(this).attr('action'),
-            type: 'POST',
-            data: $datos_formulario,
-            contentType: false,
-            processData: false,
-            success: function (datos) {
-                $('body').append(datos);
-                $url = $('#url').val();
-                console.log($url);
-                navigator.clipboard.writeText($url)
-                    .then(() => {
-                        alert('Enlace copiado al portapapeles, debe enviar este enlace a la persona que desea registrarse como usuario administrador. Compartir este enlace únicamente con personas de confianza. ');
-                    })
-                    .catch(error => {
-                        console.error('Error al copiar el enlace: ', error);
-                    });
-            },
-            error: function (error) {
-                console.error('Ocurrió un error, registro no concretado.', error);
-            }
-        });
     });
 
     $('#formulario_codigo').on('submit', function (event) {
@@ -198,10 +168,12 @@ $(document).ready(function () {
         window.location.href = '../interfaces/modificar_gasto.php?gasto=' + $(this).parent().attr('id');
     });
     $('.eliminar_gasto').on('click', function () {
-        window.location.href = '../backend/eliminar_gasto.php?gasto=' + $(this).parent().attr('id');
+        if(confirm('¿Está seguro?')){
+            window.location.href = '../backend/eliminar_gasto.php?gasto=' + $(this).parent().attr('id');
+        }
     });
     $('.editar_venta').on('click', function () {
-        window.location.href = '../interfaces/modificar_venta.php?venta=' + $(this).parent().attr('id');
+        window.location.href = '../interfaces/modificar_venta.php?venta=' + $(this).parent().parent().data('producto');
     });
     $('.desactivar_venta').on('click', function () {
         window.location.href = '../backend/desactivar_venta.php?venta=' + $(this).parent().attr('id');
@@ -219,6 +191,68 @@ $(document).ready(function () {
         $destino = $(this).data('destino');
         window.location.href = $destino;
     });
+    $('.remover_metodo_pago').on('click', function () {
+        $(this).parent().remove();
+    });
+    $('.remover_producto').on('click', function () {
+        $ID_producto_actual = $(this).parent().data('producto');
+        $(this).parent().parent().remove();
+        total = 0;
+        $('.producto').each(function() {
+            var precio = parseFloat($(this).data('precio'));
+            if (!isNaN(precio)) {
+                total += precio;
+            }
+        });
+        $('.' + $ID_producto_actual).remove();
+        $('#total').html(total);
+    });
+    $('#agregar_producto_modificar_venta').on('click', function () {
+        var total_fila = $('#total');
+        var ID_venta = new URLSearchParams(window.location.search).get('venta');
+        var ID_producto = $('#selector_productos').val();
+        var cantidad_agregar = $('#cantidad_producto_agregar').val();
+        $.ajax({
+            url: '../backend/obtener_producto.php',
+            type: 'GET',
+            data: { producto: ID_producto, venta: ID_venta, cantidad: cantidad_agregar },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    var producto_agregar = response.producto;
+                    var producto_nuevo = $('<tr>', {
+                        class: 'producto',
+                        'data-producto': producto_agregar.ID_producto,
+                        'data-precio': producto_agregar.total_producto
+                    }).append(
+                        $('<td>').text(producto_agregar.nombre),
+                        $('<td>').text(producto_agregar.cantidad),
+                        $('<td>').text(Number(producto_agregar.precio).toFixed(2)),
+                        $('<td>').text(Number(producto_agregar.total_sin_descuento).toFixed(2)),
+                        $('<td>').text(producto_agregar.porcentaje_descuento + '%'),
+                        $('<td>').text(Number(producto_agregar.total_producto).toFixed(2)),
+                        $('<td>').append(
+                            $('<a>', {
+                                class: 'remover_producto',
+                                html: $('<img>', { class: 'icono', src: '../iconos/delete-back-2-fill.svg' })
+                            })
+                        )
+                    );
+                    var input_producto_nuevo = $('<input>', {
+                        class:'7', type:'hidden', name:'cantidades[]', value:'7'
+                    });
+                    $('#formulario_venta').append(input_producto_nuevo);
+                    producto_nuevo.insertBefore(total_fila.parent());
+                } else {
+                    console.log('Error');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('la consulta de Ajax falló:', status, error);
+            }
+        });
+    });
+    
 
     function guardar_metodos_pago() {
         var metodos_pago = [];
@@ -235,7 +269,7 @@ $(document).ready(function () {
         localStorage.setItem('cantidades_pago', JSON.stringify(cantidades));
     }
 
-    if (window.location.href.includes('ingreso_ventas')) {
+        if (window.location.href.includes('ingreso_ventas') || window.location.href.includes('modificar_venta')) {
         $('#formulario_venta').on('submit', guardar_metodos_pago);
         $contenedor = $('#contenedor_metodos_pago');
         $('#agregar_metodo_pago').on('click', function() {
@@ -273,44 +307,25 @@ $(document).ready(function () {
                             step: 1,
                             value: $('#total').html()
                         });
-                        $metodo_pago.append($label2, $input);
+                        $boton_eliminar = $('<a class="remover_metodo_pago"> </a>');
+                        $img_eliminar = $('<img>', {
+                            class: 'icono',
+                            src: '../iconos/delete-back-2-fill.svg'
+                        });
+                        $boton_eliminar.append($img_eliminar);
+                        $metodo_pago.append($label2, $input, $boton_eliminar);
                         $contenedor.append($metodo_pago);
+                        $('.remover_metodo_pago').on('click', function () {
+                            $(this).parent().remove();
+                        });
                     } else {
                         console.log("No payment methods found.");
                     }
                 },
                 error: function() {
-                    alert("An error occurred while loading the payment methods.");
+                    alert("Ocurrió un error al cargar los métodos de pago");
                 }
-            });
-            alert('New payment method and amount fields added');  // Alert #5
-        });
-    
-        $(window).on('load', function() {
-    
-            var metodos_pago = JSON.parse(localStorage.getItem('metodos_pago')) || [];
-            var cantidades = JSON.parse(localStorage.getItem('cantidades_pago')) || [];
-    
-            if (metodos_pago.length === 0) {
-                alert('No saved payment methods found');  // Alert #7
-            } else {
-                alert('Saved payment methods found, loading them');  // Alert #8
-            }
-    
-            var contenedor_metodos_pago = $('#metodos_pago_container');
-            metodos_pago.forEach(function(metodo, indice) {
-                var select = $('<select></select>', {
-                    name: 'metodos_pago[]',
-                    html: '<option value="' + metodo + '">' + metodo + '</option>'
-                });
-                var input = $('<input>', {
-                    type: 'number',
-                    name: 'cantidades_pago[]',
-                    value: cantidades[indice]
-                });
-                contenedor_metodos_pago.append(select, input);
-                alert('Loaded saved payment method: ' + metodo + ' with amount: ' + cantidades[indice]);  // Alert #9
-            });
+            }); 
         });
     }
 });

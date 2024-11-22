@@ -5,15 +5,50 @@
     <?php
     session_start();
     require 'backend/conexion.php';
-    
+
     $codigo;
-    if(isset($_GET['codigo_acceso'])) $codigo = $_GET['codigo_acceso'];
-    if(isset($_SESSION['codigo_acceso'])) $codigo = $_SESSION['codigo_acceso'];
+    if(!isset($_SESSION['codigo_acceso']) || empty($_SESSION['codigo_acceso'])) {
+        if($_GET['codigo_acceso'] ){
+            $codigo = $_GET['codigo_acceso'];
+            $instruccion = 'SELECT
+            codigo,
+            CASE
+                WHEN fecha_expiracion > CURRENT_TIMESTAMP()
+                THEN "activo"
+                ELSE "inactivo"
+            END AS estado
+            FROM codigos_acceso
+            WHERE codigo = "' . $codigo . '"';
+            if($resultado = mysqli_query($conn, $instruccion)) {
+                if($fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
+                    if($fila['estado'] === 'inactivo') {
+                        Header('Location: ../login.php?advertencia=' . urlencode('Código de acceso expirado, solicite uno nuevo al administrador. '));
+                        die();
+                    }
+                } else {
+                    Header('Location: ../login.php?advertencia=' . urlencode('Código de acceso inválido'));
+                    die();
+                }
+            } else {
+                Header('Location: ../login.php?advertencia=' . urlencode('Error de consulta' . mysqli_error($conn)));
+                die();
+            }
+        } else {
+            Header('Location: ../login.php?advertencia=' . urlencode('Usted necesita un enlace de acceso para poder registrarse'));
+            die();
+        }
+    } else {
+        $codigo = $_SESSION['codigo_acceso'];
+    }
 
-    $resultado = mysqli_query($conn, "SELECT codigo FROM codigos_acceso WHERE codigo = '$codigo' AND fecha_expiracion > CURDATE()");
-
-    if (!$fila = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
-        Header('Location: ../login.php?advertencia=' . urlencode('Código de acceso inválido'));
+    $instruccion = 'SELECT codigo, fecha_expiracion FROM codigos_acceso WHERE codigo = "' . $codigo . '" AND fecha_expiracion > CURDATE()';
+    if(!$resultado = mysqli_query($conn, $instruccion)) {
+        Header('Location: ../login.php?advertencia=' . urlencode('Error de consulta'));
+        die();
+    }
+    if (!$fila = mysqli_fetch_row($resultado)) {
+        Header('Location: ../login.php?advertencia=' . urlencode('Código de acceso no válido'));
+        die();
     } else {
         $_SESSION['codigo_acceso'] = $codigo;
     }
@@ -41,10 +76,10 @@
                 <div id='alerta_ingreso' class='respuesta_backend' style='color: rgba(255,0,0,0.8);'>
                     <?php
                     if (isset($_GET['advertencia']) && !empty($_GET['advertencia'])) {
-                        echo '<p style="color: rgb(255,0,0);">' . $_GET['advertencia'] . '</p>';
+                        echo '<p>' . $_GET['advertencia'] . '</p>';
                     }
                     if (isset($_GET['notificacion']) && !empty($_GET['notificacion'])) {
-                        echo '<p style="color: rgb(75,255,0);">' . $_GET['notificacion'] . '</p>';
+                        echo '<p>' . $_GET['notificacion'] . '</p>';
                     }
                     ?>
                 </div>

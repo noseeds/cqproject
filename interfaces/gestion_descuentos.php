@@ -24,7 +24,7 @@ include '../headers/ordenador_descuentos.php';
         fecha,
         fecha_expiracion,
         CASE
-            WHEN fecha_expiracion > CURDATE()
+            WHEN fecha_expiracion > CURRENT_TIMESTAMP()
             THEN "activo"
             ELSE "inactivo"
         END AS estado,
@@ -80,11 +80,22 @@ include '../headers/ordenador_descuentos.php';
                 <td id="' . $ID_descuento . '" class="tabla_registros_celda tabla_registros_opciones">';
                 if($activo == 1)
                 {
-                    echo '<a class="desactivar_descuento"><img src="../iconos/line/checkbox-indeterminate-line.svg"></a>';
+                    echo '
+                    <a class="desactivar_descuento">
+                        <img src="../iconos/line/checkbox-indeterminate-line.svg">
+                    </a>';
                 } else {
-                    echo '<a class="activar_descuento"><img src="../iconos/checkbox-indeterminate-fill.svg"></a>';
+                    echo '
+                    <a class="activar_descuento">
+                        <img src="../iconos/checkbox-indeterminate-fill.svg">
+                    </a>';
                 }
                 echo '
+                </td>
+                <td>
+                    <a href="./detalles_descuento.php?ID=' . $ID_descuento . '">
+                        <img class="icono" src="../iconos/information-2-fill.svg">
+                    </a>
                 </td>
             </tr>
                 ';

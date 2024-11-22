@@ -5,7 +5,7 @@ require "../backend/comprobar_usuario_administrador.php";
 function comprobar_post()
 {
     if (
-        isset($_SESSION['producto']) && !empty($_SESSION['producto'])
+        isset($_POST['producto']) && !empty($_POST['producto'])
         && isset($_POST['nombre']) && !empty($_POST['nombre'])
         && isset($_POST['descripcion']) && !empty($_POST['descripcion'])
         && isset($_POST['precio']) && !empty($_POST['precio'])
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // CORROBORAR EXPRESION REGULAR de inputs con if() { die("mensaje") }
 
-        $ID_producto = $_SESSION['producto'];
+        $ID_producto = $_POST['producto'];
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];
         $categoria_anterior = $_POST['categoria_anterior'];
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             Header('Location: ../interfaces/modificar_producto.php?advertencia=' . urlencode('Ocurrió un error. No se ha modificado el producto' . mysqli_error($conn)));
         }
     } else if (comprobar_post() && !isset($_FILES['imagen']) || $_FILES['imagen']['error'] !== UPLOAD_ERR_OK) {
-        $ID_producto = $_SESSION['producto'];
+        $ID_producto = $_POST['producto'];
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];
         $categoria_anterior = $_POST['categoria_anterior'];

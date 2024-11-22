@@ -36,7 +36,7 @@ include 'backend/limpiar_session.php';
         if($_SESSION['tipo_usuario'] === 'administrador') {
             echo '
     <hr>
-    <h2> Modificar...</h2>
+    <h2> Gesti&oacute;n...</h2>
     <div class="menu_div">
         <a href="interfaces/gestion_ventas.php">
             <img src="./iconos/line/shopping-basket-2-line.svg" alt="">

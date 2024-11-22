@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         IFNULL(
             GROUP_CONCAT(
                 CASE 
-                    WHEN d.ID_descuento IS NOT NULL AND d.fecha_expiracion > CURDATE() 
+                    WHEN d.ID_descuento IS NOT NULL AND d.fecha_expiracion > CURRENT_TIMESTAMP() 
                     THEN CONCAT(d.porcentaje, "%off")
                 END
                 ORDER BY d.porcentaje DESC 
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ) AS descuentos,
         SUM(
             CASE
-                WHEN d.ID_descuento IS NOT NULL AND d.fecha_expiracion > CURDATE()
+                WHEN d.ID_descuento IS NOT NULL AND d.fecha_expiracion > CURRENT_TIMESTAMP()
                 THEN d.porcentaje
                 ELSE 0
             END

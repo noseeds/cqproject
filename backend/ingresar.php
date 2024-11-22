@@ -59,7 +59,7 @@ if (!$resultado) {
             die();
         }
     } else {
-        Header('Location: ../login.php?advertencia=' . urlencode('No se han encontrado registros'));
+        Header('Location: ../login.php?advertencia=' . urlencode('El nombre de usuario ingresado no existe'));
         die();
     }
 }

@@ -202,16 +202,16 @@ li {
 }
 
 #tabla_ventas {
-    background-color: bisque;
+    border: 0.1rem rgba(79, 58, 32, 1) solid;
     border-collapse: collapse;
-    border: none;
+    background-color: bisque;
     font-family: "Baloo Thambi 2", system-ui;
     font-size: 1.5dvw;
     table-layout: fixed;
     position: relative;
     width: 100%;
     padding: 0.5rem;
-    white-space: nowrap;
+    white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: left;
@@ -221,6 +221,19 @@ li {
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: left;
+}
+
+#tabla_ventas td {
+    border: 0.1rem rgb(205, 188, 167) solid;
+    word-break: break-all;
+}
+
+#tabla_ventas tr {
+    border: 0.1rem rgba(79, 58, 32, 1) solid;
+}
+
+#tabla_ventas .tabla_registros_celda {
+    border: 0.1rem rgba(79, 58, 32, 1) solid;
 }
 
 #tabla_productos {
@@ -822,6 +835,10 @@ NOTIFICACIONES */
     }
 
     #tabla_registros {
+        font-size: 2.5dvw;
+    }
+
+    #tabla_ventas {
         font-size: 3dvw;
     }
 
@@ -841,6 +858,13 @@ NOTIFICACIONES */
     #formulario_producto {
         margin: 0 auto;
         width: 80dvw;
+    }
+
+    #formulario_venta {
+        font-size:x-small;
+    }
+    #formulario_venta select, #formulario_venta input {
+        max-width: 5rem;
     }
 }
 

@@ -16,7 +16,17 @@
 
 .ingreso_o_registro:hover {
     background-color: rgba(58, 137, 255, 0.2);
-    transform: scale(1.5);
+    transform: scale(1.2);
+}
+
+.advertencia {
+    margin: 0 auto;
+    color: rgb(255, 0, 0, 1);
+}
+
+.notificacion {
+    margin: 0 auto;
+    color: rgb(79, 135, 0)
 }
 
 #login_registro{
@@ -28,8 +38,10 @@
     z-index: 3;
 }
 #logo{
-    width: 14rem;
     margin: 0 auto;
+}
+#logo img {
+    width: 14rem;
 }
 #login{
     position: relative;

@@ -63,7 +63,7 @@ include '../headers/ordenador_productos.php';
                 $nombre_producto = $fila['nombre'];
                 $descripcion = $fila['descripcion'];
                 $categoria = $fila['categoria'];
-                $precio = $fila['precio'];
+                $precio = number_format($fila['precio'], 2, ',', '.');
                 $stock = $fila['stock'];
                 $activo = $fila['activo'];
                 $imagen = $fila['imagen'];
